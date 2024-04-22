@@ -5,7 +5,7 @@ const MockData = [
     gender: 'female',
     mbti: 'ISFP',
     title: '1박 2일 뚜벅이 경주여행👍🤣',
-    img: '',
+    img: '../assets/image/id1.svg',
     content:
       '밤에 황리단길 걷다가 나와서 첨성대까지 갔었는데 무척 예뻤어요. 첨성대를 밤에 본 건 처음이었는데 정말 색다른 매력이 느껴지더라고요. 다른 분들도 경주 여행 왔을 때 저녁 먹고 동궁과 월지 보는 김에 첨성대까지 들리는 걸 추천합니다.',
     rating: 9,
@@ -13,14 +13,15 @@ const MockData = [
   },
   {
     id: 2,
-      pw : 2222,
-      gender : 'male',
-      mbti : 'INTJ',
-      title : '강화도 조양방직',
-      img : '',
-      content: '폐공장을 개조해서 만든 조양방직 그냥 흔한 대형카페중 하나일 것이라 생각했는데 볼거리가 너무 많아서 만족스러운 방문이었어요! 조명 반짝반짝 너무 예뻐요 사장님이 열심히 모으신 골동품 손님들이 만지면 고장날 수도 있는데, 만질 수 있어서 더 기억에 남고 재밌는 경험이었어요!',
-      rating : 4,
-      createdDate: new Date('2023-03-26').getTime(),
+    pw: 2222,
+    gender: 'male',
+    mbti: 'INTJ',
+    title: '강화도 조양방직',
+    img: '',
+    content:
+      '폐공장을 개조해서 만든 조양방직 그냥 흔한 대형카페중 하나일 것이라 생각했는데 볼거리가 너무 많아서 만족스러운 방문이었어요! 조명 반짝반짝 너무 예뻐요 사장님이 열심히 모으신 골동품 손님들이 만지면 고장날 수도 있는데, 만질 수 있어서 더 기억에 남고 재밌는 경험이었어요!',
+    rating: 4,
+    createdDate: new Date('2023-03-26').getTime(),
   },
   {
     id: 3,
@@ -36,16 +37,16 @@ const MockData = [
   },
   {
     id: 4,
-    pw : 1234,
-    gender : 'female',
-    mbti : 'ENFP',
-    title : '강릉 여행을 다녀왔습니다!',
-    img : '',
-    content: '강릉에서 보는 해돋이는 더욱 아름다우며, 특히 정동진이 유명합니다. 수평선 너머로 아침이 시작되는 모습을 지켜보는 것은 아주 감동적인 경험입니다',
-    rating : 10,
-   createdDate: new Date('2022-04-18').getTime(),
-  }
-
+    pw: 1234,
+    gender: 'female',
+    mbti: 'ENFP',
+    title: '강릉 여행을 다녀왔습니다!',
+    img: '',
+    content:
+      '강릉에서 보는 해돋이는 더욱 아름다우며, 특히 정동진이 유명합니다. 수평선 너머로 아침이 시작되는 모습을 지켜보는 것은 아주 감동적인 경험입니다',
+    rating: 10,
+    createdDate: new Date('2022-04-18').getTime(),
+  },
 ];
 
 export default MockData;
