@@ -1,0 +1,29 @@
+.header {
+  position: fixed;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  height: 80px;
+  background-color: gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.contents {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.navigation ul li {
+  margin-left: 20px;
+}
