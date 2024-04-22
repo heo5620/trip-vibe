@@ -13,18 +13,18 @@ export const ReviewStateContext = createContext();
 function App() {
   const [data, setData] = useState(MockData);
   const idRef = useRef(5);
+  //레이아웃을 최상단으로 빼고 나머지 페이지를 밑으로 변경
   return (
-    <>
-      <ReviewStateContext.Provider value={data}>
-        <Routes>
-          <Route path='/' element={<Layout />} />
-          <Route path='' element={<Main />} />
+    <ReviewStateContext.Provider value={data}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path='/' element={<Main />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/new' element={<New />} />
           <Route path='/edit/:id' element={<Edit />} />
-        </Routes>
-      </ReviewStateContext.Provider>
-    </>
+        </Route>
+      </Routes>
+    </ReviewStateContext.Provider>
   );
 }
 

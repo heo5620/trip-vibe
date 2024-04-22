@@ -7,8 +7,7 @@ import { ReviewStateContext } from '../App';
 const Main = () => {
   const data = useContext(ReviewStateContext);
   return (
-    <div className="main">
-      헤더
+    <div className='main'>
       <section>이미지, 검색</section>
       <section>
         <ReviewList data={data}></ReviewList>

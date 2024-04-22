@@ -1,5 +1,5 @@
 const Sidebar = () => {
-  return <div>Sidebar 페이지입니다.</div>;
+  return <div>사이드바</div>;
 };
 
 export default Sidebar;
