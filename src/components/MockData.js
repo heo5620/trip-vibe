@@ -1,6 +1,7 @@
 const MockData = [
   {
     id: 1,
+    username: 'heo5620',
     pw: 5620,
     gender: 'female',
     mbti: 'ISFP',
@@ -13,6 +14,7 @@ const MockData = [
   },
   {
     id: 2,
+    username: 'moon',
     pw: 2222,
     gender: 'male',
     mbti: 'INTJ',
@@ -25,6 +27,7 @@ const MockData = [
   },
   {
     id: 3,
+    username: 'jihyunjoo2023',
     pw: 3333,
     gender: 'female',
     mbti: 'ENTJ',
@@ -37,6 +40,7 @@ const MockData = [
   },
   {
     id: 4,
+    username: 'daaaaaahee',
     pw: 1234,
     gender: 'female',
     mbti: 'ENFP',
