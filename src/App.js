@@ -10,6 +10,7 @@ import Edit from './pages/Edit';
 import Layout from './components/Layout';
 import MyPage from './pages/MyPage';
 import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
@@ -26,6 +27,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Main />} />
             <Route path="/SignIn" element={<SignIn />} />
+            <Route path="/SignUp" element={<SignUp />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/new" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />

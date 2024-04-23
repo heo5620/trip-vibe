@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/Header.module.css';
-import { ReactComponent as SideBarButton } from '../assets/icon/Group 4.svg';
+import { ReactComponent as SideBarButton } from './styles/icon/Group 4.svg';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
