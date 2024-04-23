@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import MockData from '../components/MockData';
 import styles from './styles/Mypage.module.css';
+import Button from 'react-bootstrap/Button';
 
 const MyPage = () => {
 
