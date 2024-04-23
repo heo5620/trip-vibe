@@ -1,7 +1,7 @@
 .header {
   position: fixed;
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
   height: 80px;
   background-color: gray;
