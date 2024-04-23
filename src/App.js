@@ -8,6 +8,7 @@ import Detail from './pages/Detail';
 import Edit from './pages/Edit';
 import Layout from './components/Layout';
 import MyPage from './pages/MyPage';
+import SignIn from './pages/SignIn';
 
 export const ReviewStateContext = createContext();
 
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Main />} />
+          <Route path='/SignIn' element={<SignIn />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/new' element={<New />} />
           <Route path='/edit/:id' element={<Edit />} />
