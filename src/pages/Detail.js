@@ -10,11 +10,14 @@ const Detail = () => {
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
   //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-  const review = data.find((item) => item.id === parseInt(params.id));
+  const review = data.review.find((item) => item.id === parseInt(params.id));
 
+  //삭제 누르면
   const handleDelete = () => {
-    const updateData = data.filter((item) => item.id !== parseInt(params.id));
-    setData(updateData);
+    const updateData = data.review.filter(
+      (item) => item.id !== parseInt(params.id)
+    );
+    setData({ ...data, review: updateData });
     nav('/');
   };
   return (

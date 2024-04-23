@@ -1,77 +1,66 @@
 import React, { useState, useContext } from 'react';
 import { ReviewStateContext } from '../App';
-import MockData from '../components/MockData';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../SignIn.css';
 
 const SignIn = () => {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+  const [userId, setUserId] = useState(''); //userId
+  const [password, setPassword] = useState(''); //userPw
+
+  //에러 상태 관리
+  //const [userIdError, setUserIdError] = useState('');
+  //const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState('');
+
   const data = useContext(ReviewStateContext);
-  const [userIdError, setUserIdError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
   const navigate = useNavigate(); // useNavigate 초기화
 
+  //로그인 버튼 클릭 시 호출
   const handleSignIn = (e) => {
-    e.preventDefault();
-    console.log('아이디:', userId);
-    console.log('비밀번호:', password);
+    e.preventDefault(); //기본 동작 x
 
-    if (validateUserId() && validatePassword()) {
-      const user = MockData.find((user) => user.username === userId);
-      if (user && user.pw === password) {
-        console.log('로그인 성공'); // 로그인 성공 메시지
-        navigate('/');  // 로그인 성공 시 Main 페이지로 이동
-      } 
+    // 입력받은 값이 유효성 검사에 맞지 않을 때,
+    if (!validateUserId() || !validatePassword()) {
+      setLoginError('아이디와 비밀번호를 올바르게 입력하세요.');
+      return;
     }
+
+    // 유저 정보 확인
+    const user = data.user.find((user) => user.username === userId);
+
+    //입력 받은 값이 data 안에서 없거나, 일치 하지 않을 때
+    if (!user || user.pw !== password) {
+      setLoginError('아이디 또는 비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    // 로그인 성공
+    console.log('로그인 성공');
+    navigate('/');
   };
 
+  //아이디 유효성 검사
   const validateUserId = () => {
     const regex = /^[a-z0-9]{6,18}$/;
-    if (!regex.test(userId)) {
-      setUserIdError('영소문자와 숫자를 포함하여 4~18자로만 입력해주세요');
-      return false;
-    } else if (!isUsernameAvailable(userId)) {
-      setUserIdError('존재하지 않는 아이디입니다.');
-      return false;
-    } else {
-      setUserIdError('');
-    }
-    return true;
+    return regex.test(userId); //t/f
   };
 
+  //비밀번호 유효성 검사
   const validatePassword = () => {
     const regex = /^[a-zA-Z0-9!@_]{8,20}$/;
-    if (!regex.test(password)) {
-      setPasswordError('비밀번호는 영문, 숫자, 특수문자(!,@,_)를 포함하여 8~20자로만 입력해주세요');
-      return false;
-    } else if (!isUserpwAvailable(password)) {
-      setPasswordError('비밀번호가 다릅니다.');
-      return false;
-    } else {
-      setPasswordError('');
-    }
-    return true;
-  };
-
-  const isUsernameAvailable = (username) => {
-    return MockData.some((user) => user.username === username);
-  };
-
-  const isUserpwAvailable = (password) => {
-    return MockData.some((user) => user.pw === password);
+    return regex.test(password); //t/f
   };
 
   //회원가입 페이지로 이동
-  const handleSignUp= () =>{
+  const handleSignUp = () => {
     navigate('/SignUp');
-  }
+  };
 
   return (
     <div className="container">
       <div className="content">
-        <h1 style={{ textAlign: 'center'}}>로그인</h1>
+        <h1 style={{ textAlign: 'center' }}>로그인</h1>
         <form onSubmit={handleSignIn}>
           <input
             type="text"
@@ -81,7 +70,6 @@ const SignIn = () => {
             className="input-field"
             required
           />
-          {userIdError && <div className="error-message">{userIdError}</div>}
           <input
             type="password"
             placeholder="비밀번호를 입력하세요"
@@ -92,10 +80,18 @@ const SignIn = () => {
             className="input-field"
             required
           />
-         {passwordError && <div className="error-message">{passwordError}</div>}
+          {loginError && <div className="error-message">{loginError}</div>}
           <div style={{ textAlign: 'center' }}>
-            <button type="submit" className='signin-button'>로그인</button> 
-            <button type="submit" className='signup-button' onClick={handleSignUp}>회원가입</button> 
+            <button type="submit" className="signin-button">
+              로그인
+            </button>
+            <button
+              type="submit"
+              className="signup-button"
+              onClick={handleSignUp}
+            >
+              회원가입
+            </button>
           </div>
         </form>
       </div>
