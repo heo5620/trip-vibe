@@ -1,8 +1,8 @@
 
 .imageSection {
   margin-top: 2%;
-  background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다 */
-  background-position: center; /* 이미지를 가운데 정렬합니다 */
+  background-size: cover; /* 이미지를 컨테이너에 맞게 조정 */
+  background-position: center; /* 이미지를 가운데 정렬 */
   width: 100%; /* 가로 크기 지정a */
   height: 380px; /* 세로 크기 지정 */
 }

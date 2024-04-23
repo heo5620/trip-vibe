@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react';
+import { useContext } from 'react';
+import { ReviewStateContext, ReviewSetStateContext } from '../App';
 import MockData from '../components/MockData';
 import styles from './styles/Mypage.module.css';
 import Button from 'react-bootstrap/Button';
