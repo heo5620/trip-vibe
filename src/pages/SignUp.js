@@ -27,7 +27,7 @@ const SignUp = () => {
 
   //회원 가입 버튼 클릭
   const handleSignUp = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (
       //유효성 검사가 모두 올바른지 확인
       validateUserId() &&
@@ -117,7 +117,7 @@ const SignUp = () => {
     <div className="container">
       <div className="content">
         <h1 style={{ textAlign: 'center' }}>회원가입</h1>
-        <form onSubmit={handleSignUp}>
+        <form>
           <input
             type="text"
             placeholder="아이디를 입력하세요"
@@ -194,6 +194,7 @@ const SignUp = () => {
           <button
             type="submit"
             style={{ display: 'block', margin: '10px auto 0' }}
+            onClick={handleSignUp}
           >
             가입하기
           </button>
