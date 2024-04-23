@@ -23,7 +23,7 @@ function App() {
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/new' element={<New />} />
           <Route path='/edit/:id' element={<Edit />} />
-          <Route path='/mypage' element={ <MyPage/> } />
+          <Route path='/mypage' element={ <MyPage /> } />
         </Route>
       </Routes>
     </ReviewStateContext.Provider>
