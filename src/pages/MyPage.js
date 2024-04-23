@@ -8,9 +8,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyPage = () => {
-  const data = useContext(ReviewStateContext);
-  const setData = useContext(ReviewSetStateContext);
-
   // 목데이터
   const [info, setInfo] = useState(MockData);
 
@@ -49,7 +46,7 @@ const MyPage = () => {
     }
 
     setEditingMbti(false); // 수정중이 아니므로 false
-    setData(copiedInfo => ({
+    setInfo(copiedInfo => ({
       ...copiedInfo, // 이전 정보를 copiedInfo로 복사(원본유지)
       [1]: {
         ...copiedInfo[1], // 이전 정보가 1인 항목 복사. *** 추후 변경 ***
@@ -108,6 +105,9 @@ const MyPage = () => {
     }
   };
 
+  // 알림창
+  const notify = () => toast.error('toastify test!');
+
   return (
     <>
       <h1>my page</h1>
@@ -161,7 +161,10 @@ const MyPage = () => {
           <div>
             <h4>아이디</h4>
           </div>
-          <span className={styles.idInfo}>{info[1].username}</span>
+          <span className={styles.idInfo}>
+            {/* *** 추후 변경 *** */}
+            {info[1].username}
+          </span>
         </div>
         <div className={styles.info}>
           {editingMbti ? (
@@ -181,7 +184,10 @@ const MyPage = () => {
               <div className={styles.mbtiHeader}>
                 <h4>MBTI</h4>
               </div>
-              <span className={styles.mbtiInfo}>{info[1].mbti.toUpperCase()}</span>
+              <span className={styles.mbtiInfo}>
+                {/* *** 추후 변경 *** */}
+                {info[1].mbti.toUpperCase()}
+              </span>
               <span>
                 <Button variant='outline-success' onClick={idEditingNow}>
                   수정
@@ -194,7 +200,10 @@ const MyPage = () => {
           <div>
             <h4>성별</h4>
           </div>
-          <span className={styles.genderInfo}>{info[1].gender === 'male' ? '남자' : '여자'}</span>
+          <span className={styles.genderInfo}>
+            {/* *** 추후 변경 *** */}
+            {info[1].gender === 'male' ? '남자' : '여자'}
+          </span>
         </div>
       </div>
     </>
