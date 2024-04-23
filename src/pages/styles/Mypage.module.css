@@ -41,7 +41,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   opacity: 0; /* 초기에는 투명하게 설정하여 숨김 */
-  transition: opacity 0.4s ease; /* 투명도에 대한 전환 효과 설정 */
+  transition: opacity 0.5s ease; /* 투명도에 대한 전환 효과 설정 */
 }
 
 .profileWrapper:hover .editText {
@@ -51,4 +51,34 @@
 .info {
   text-align: center;
   margin-bottom: 30px; 
+  font-family: 'Arial', sans-serif;
+  color: #333; 
+
+  /* 가로로 설정 */
+  display: flex; 
+   justify-content: flex-end;
+}
+
+h4 {
+  font-weight: 700;
+  margin-right: 80px;
+}
+
+.mbtiInfo {
+  margin-right: 30px;
+  margin-left: -20px;
+}
+
+.mbtiHeader {
+  margin-left: 80px; /* 왼쪽 여백 초기화 */
+  margin-right: 30px;
+}
+
+.genderInfo {
+  margin-left: 10px;
+}
+
+.idInfo, .mbtiInfo, .genderInfo {
+  font-weight: bolder;
+  font-size: 20px;
 }
