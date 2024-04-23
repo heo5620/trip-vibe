@@ -8,14 +8,14 @@ const ReviewItem = ({ id, title, img, createdDate }) => {
   const nav = useNavigate();
   console.log(img);
   return (
-    <div className="ReviewItem">
-      <div className="review_img" onClick={() => nav(`/detail/${id}`)}>
-        <img src={img} alt="reivew 이미지" width="300" height="300"></img>
+    <div className='ReviewItem'>
+      <div className='review_img' onClick={() => nav(`/detail/${id}`)}>
+        <img src={img} alt='reivew 이미지' width='300' height='300'></img>
       </div>
-      <div className="title" onClick={() => nav(`/detail/${id}`)}>
+      <div className='title' onClick={() => nav(`/detail/${id}`)}>
         {title}
       </div>
-      <div className="created_date" onClick={() => nav(`/detail/${id}`)}>
+      <div className='created_date' onClick={() => nav(`/detail/${id}`)}>
         {new Date(createdDate).toLocaleDateString()}{' '}
       </div>
     </div>

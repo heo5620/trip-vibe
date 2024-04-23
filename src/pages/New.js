@@ -35,8 +35,19 @@ const New = () => {
   const [visible, setVisible] = useState(false);
 
   const handleFinish = () => {
-    const updateData = data.filter(item => item.id !== parseInt(params.id));
-    setData(updateData);
+    // 새로운 리뷰 데이터 생성
+    const newReview = {
+      id: data.review.length + 1, // 새로운 리뷰의 ID는 현재 데이터 길이 + 1로 설정
+      title: reviewTitle,
+      content: reviewText,
+      image: selectedImage, // 선택한 이미지도 추가할 수 있습니다
+      createdDate: new Date().toISOString(), // 현재 날짜와 시간으로 생성일 설정
+    };
+
+    // 기존 데이터에 새로운 리뷰 추가
+    setData({ ...data, review: [...data.review, newReview] });
+
+    // 메인 페이지로 이동
     navigate('/');
   };
 
@@ -48,30 +59,6 @@ const New = () => {
   const handleDiaryTitleChange = event => {
     setReviewTitle(event.target.value);
   };
-
-  // 게시글 작성 완료 눌렀을 때 통신
-  // const handleWritingComplete = async event => {
-  //   event.preventDefault();
-  //   setIsWritingComplete(prevIsWritingComplete => !prevIsWritingComplete);
-  //   const formData = new FormData();
-  //   const request = {
-  //     title: reviewTitle,
-  //     content: reviewText,
-  //   };
-  //   formData.append('request', new Blob([JSON.stringify(request)], { type: 'application/json' }));
-  //   formData.append('image', selectedImage);
-
-  //   try {
-  //     const res = await axios.post('/api/post', formData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/formData',
-  //       },
-  //     });
-  //     navigate('/MainHomePage');
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // };
 
   const handleImageSelect = event => {
     setSelectedImage(event.target.files[0]);
