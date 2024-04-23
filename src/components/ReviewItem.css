@@ -1,0 +1,29 @@
+.ReviewItem {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: calc(
+    33.33% - 20px
+  ); /* 3개씩 나열하므로 너비를 33.33%로 설정하고 마진을 추가 */
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  text-align: center;
+}
+
+.review_img img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.title,
+.created_date {
+  cursor: pointer;
+}
+
+.review_group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
