@@ -6,7 +6,6 @@ import './ReviewItem.css';
 //이미지, 제목, 날짜를 클릭하면 상세 페이지로 이동.
 const ReviewItem = ({ id, title, img, createdDate }) => {
   const nav = useNavigate();
-  console.log(img);
   return (
     <div className="ReviewItem">
       <div className="review_img" onClick={() => nav(`/detail/${id}`)}>
