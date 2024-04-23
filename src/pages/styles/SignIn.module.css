@@ -10,9 +10,16 @@
   flex-direction: column;
 }
 
-.input-field {
-  display: block;
+.heading {
+  text-align: center;
+  margin-top: 20px; 
+  margin-bottom: 20px;
+}
+
+.inputField {
+  width: 80%;
   padding: 10px;
+  display: block;
   margin: 0 auto;
   margin-bottom: 10px;
   text-align: center;
@@ -26,17 +33,16 @@
   padding: 20px;
 }
 
-h1 {
-  margin-top: 20px; /* h1 태그 위쪽 여백 추가 */
+.buttonContainer{
+  text-align: center;
 }
-
-.signin-button{
+.signinButton{
   display: 'block';
   margin: 0 auto;
   margin-top: 10px; 
 }
 
-.signup-button {
+.signupButton {
   /* 버튼 사이에 여백 추가 */
   margin-left: 10px; 
   margin: 10 auto;

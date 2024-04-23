@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { ReviewStateContext } from '../App';
 import { useNavigate } from 'react-router-dom';
-import '../SignIn.css';
+import styles from './styles/SignIn.module.css';
+
 
 const SignIn = () => {
   const [userId, setUserId] = useState(''); //userId
@@ -36,6 +37,7 @@ const SignIn = () => {
     }
 
     // 로그인 성공
+    alert('로그인 성공! 메인 페이지로 이동합니다');
     console.log('로그인 성공');
     navigate('/');
   };
@@ -58,16 +60,16 @@ const SignIn = () => {
   };
 
   return (
-    <div className="container">
-      <div className="content">
-        <h1 style={{ textAlign: 'center' }}>로그인</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.heading}>로그인</h1>
         <form onSubmit={handleSignIn}>
           <input
             type="text"
             placeholder="아이디를 입력하세요"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
-            className="input-field"
+            className={styles.inputField}
             required
           />
           <input
@@ -77,17 +79,17 @@ const SignIn = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className="input-field"
+            className={styles.inputField}
             required
           />
-          {loginError && <div className="error-message">{loginError}</div>}
-          <div style={{ textAlign: 'center' }}>
-            <button type="submit" className="signin-button">
+          {loginError && <div className={styles.errorMessage}>{loginError}</div>}
+          <div className={styles.buttonContainer}>
+            <button type="submit" className={styles.signinButton}>
               로그인
             </button>
             <button
               type="submit"
-              className="signup-button"
+              className={styles.signupButton}
               onClick={handleSignUp}
             >
               회원가입

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { ReviewStateContext, ReviewSetStateContext } from '../App';
-
+import styles from './styles/SignUp.module.css';
 import { useNavigate } from 'react-router-dom';
-import '../SignUp.css';
+
 
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
@@ -58,17 +58,21 @@ const SignUp = () => {
   };
 
   //아이디 유효성 검사
-  const validateUserId = () => {
-    const regex = /^[a-z0-9]{4,12}$/;
-    if (!regex.test(userId)) {
-      setUserIdError(
-        '아이디는 영소문자와 숫자를 포함하여 4~12자로만 입력해주세요.'
-      );
-      return false;
+  const handleUserIdChange = (e) => {
+    setUserId(e.target.value);
+    const isValid = validateUserId(e.target.value);
+    if (!isValid) {
+      setUserIdError('아이디는 영소문자와 숫자를 포함하여 4~12자로만 입력해주세요.');
+    } else {
+      setUserIdError('');
     }
-    setUserIdError('');
-    return true;
   };
+  
+  const validateUserId = (userId) => {
+    const regex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{4,12}$/;
+    return regex.test(userId);
+  }; 
+
 
   //비밀번호 유효성 검사
   const validatePassword = () => {
@@ -114,22 +118,19 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container">
-      <div className="content">
-        <h1 style={{ textAlign: 'center' }}>회원가입</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.heading}>회원가입</h1>
         <form>
           <input
             type="text"
             placeholder="아이디를 입력하세요"
             value={userId}
-            onChange={(e) => {
-              setUserId(e.target.value);
-              validateUserId();
-            }}
-            className="input-field"
+            onChange={handleUserIdChange}
+            className={styles.inputField}
             required
           />
-          {userIdError && <div className="error-message">{userIdError}</div>}
+          <div>{userIdError}</div>
           <input
             type="password"
             placeholder="비밀번호를 입력하세요"
@@ -138,12 +139,10 @@ const SignUp = () => {
               setPassword(e.target.value);
               validatePassword();
             }}
-            className="input-field"
+            className={styles.inputField}
             required
           />
-          {passwordError && (
-            <div className="error-message">{passwordError}</div>
-          )}
+          <div>{passwordError}</div>
           <input
             type="password"
             placeholder="비밀번호 확인"
@@ -152,48 +151,48 @@ const SignUp = () => {
               setConfirmPassword(e.target.value);
               validateConfirmPassword();
             }}
-            className="input-field"
+            className={styles.inputField}
             required
           />
-          {confirmPasswordError && (
-            <div className="error-message">{confirmPasswordError}</div>
-          )}
+          <div>{confirmPasswordError}</div>
           <input
             type="text"
             placeholder="MBTI를 입력하세요"
             value={mbti}
             onChange={(e) => setMbti(e.target.value)}
-            className="input-field"
+            className={styles.inputField}
             required
           />
-          {mbtiError && <div className="error-message">{mbtiError}</div>}
-          <div className="gender-container">
-            <label>
+          <div>{mbtiError}</div>
+          <div className={styles.genderContainer}>
+            <label className={styles.radioLabel}>
               <input
                 type="radio"
                 value="male"
                 checked={gender === 'male'}
                 onChange={(e) => setGender(e.target.value)}
                 required
+                className={styles.radioInput}
               />
               남성
             </label>
-            <label>
+            <label className={styles.radioLabel}>
               <input
                 type="radio"
                 value="female"
                 checked={gender === 'female'}
                 onChange={(e) => setGender(e.target.value)}
                 required
+                className={styles.radioInput}
               />
               여성
             </label>
           </div>
-          {genderError && <div className="error-message">{genderError}</div>}
+          <div>{genderError}</div>
 
           <button
             type="submit"
-            style={{ display: 'block', margin: '10px auto 0' }}
+            className={styles.signupButton}
             onClick={handleSignUp}
           >
             가입하기
