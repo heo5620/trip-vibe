@@ -4,7 +4,6 @@
   align-items: center;
   flex-direction: column;
   height: 60vh;
-  /* background-color: #f0f0f0; */
 }
 
 .picture {
@@ -14,18 +13,42 @@
   overflow: hidden;
   margin: 0 auto 50px;
   border-radius: 70%;
+  position: relative; 
+}
+
+.profileWrapper {
+  position: relative;
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  border-radius: 70%;
+  object-fit: cover;
+  transition: filter 0.3s ease; /* 필터 속성에 대한 전환 효과 설정 */
+}
+
+.profile:hover {
+  filter: brightness(70%); /* 마우스가 위로 올라가면 프로필사진이 어두워짐 */
+}
+
+.editText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  opacity: 0; /* 초기에는 투명하게 설정하여 숨김 */
+  transition: opacity 0.4s ease; /* 투명도에 대한 전환 효과 설정 */
+}
+
+.profileWrapper:hover .editText {
+  opacity: 1; /* 프로필사진 위에 마우스 올리면 수정 글씨가 나옴 */
 }
 
 .info {
   text-align: center;
   margin-bottom: 30px; 
-}
-
-.profile {
-    width: 100%;
-    height: 100%;
-    border-radius: 70%;
-
-    /* 넘치는 부분 지워줌 */
-    object-fit: cover;
 }

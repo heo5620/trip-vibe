@@ -3,6 +3,7 @@ import MockData from '../components/MockData';
 import styles from './styles/Mypage.module.css';
 
 const MyPage = () => {
+
   // 목데이터
   const [info, setInfo] = useState(MockData);
   
@@ -17,6 +18,8 @@ const MyPage = () => {
 
   // 파일 업로드 input 요소 참조
   const fileInputRef = useRef(null);
+
+  const [hovering, setHovering] = useState(false);
 
   // idEditingNow : 수정버튼을 누르면 수정중인상태 -> editingMbti를 true로 설정
   const idEditingNow = () => {
@@ -57,19 +60,33 @@ const MyPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.picture}>
-      <input
-          type="file"
-          style={{ display: 'none' }}
-          ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
-          onChange={changeImage}
-          accept="image/*"
-        />
-        <img 
-        className={styles.profile} 
-        src={profileImage || require('./../assets/image/unnamed.jpg')} // profileImage가 null이면 기본이미지가 나옴
-        alt="프로필 사진" 
-        onClick={() => fileInputRef.current.click()}/>
-        {/* unnamed.jpg는 임시 샘플파일임 */}
+        <input
+            type="file"
+            style={{ display: 'none' }}
+            ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
+            onChange={changeImage}
+            accept="image/*"
+          />
+
+        <div 
+          className={styles.profileWrapper} 
+          onMouseEnter={() => setHovering(true)} 
+          onMouseLeave={() => setHovering(false)}>
+            <img 
+            className={styles.profile} 
+            src={profileImage || require('./../assets/image/unnamed.jpg')} // profileImage가 null이면 기본이미지가 나옴
+            alt="프로필 사진" 
+            />
+            {/* unnamed.jpg는 임시 샘플파일임 */}
+
+              {hovering && ( // 이미지 위에 마우스가 올라가면 수정하기 글씨가 나옴
+              <div 
+              className={styles.editText} 
+              onClick={ () => fileInputRef.current.click() }>수정</div>
+            )}
+
+        </div>
+
       </div>
       <div className={styles.info}>
         {info[1].username}
