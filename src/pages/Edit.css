@@ -1,0 +1,30 @@
+.Edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.edit_title_rating {
+  display: flex;
+  gap: 20px;
+}
+
+.edit_title {
+  width: 30%;
+}
+
+.edit_rating {
+  width: 10%;
+}
+
+.btn {
+}
+
+.edit_img_content {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
