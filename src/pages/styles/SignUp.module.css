@@ -1,0 +1,54 @@
+
+
+.container {
+  margin-top: 30px; /* 위쪽 여백 추가 */
+  text-align: center; /* 가로 방향 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  text-align: center;  
+  width: 300px;
+  display: inline-block;
+  padding: 20px;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 20px; 
+  margin-bottom: 30px;
+}
+
+.inputField {
+  display: block;
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 35px;
+}
+
+.genderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.radioLabel{ 
+  margin-right: 15px; /*라디오 버튼 사이의 간격 조정*/
+}
+
+.radioInput{
+  margin-right: 2px;
+}
+
+.signupButton {
+  margin-top: 10%;
+  display: block;
+  margin-left: 10px; 
+  margin: 10px auto 0;
+}
+

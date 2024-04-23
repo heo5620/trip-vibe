@@ -6,9 +6,10 @@ import styles from './styles/Main.module.css';
 //header
 const Main = () => {
   const data = useContext(ReviewStateContext);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(''); //검색어
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  //logo 이미지 2초마다 변경
   useEffect(() => {
     const images = [
       '/resources/images/id1.jpg',
@@ -18,32 +19,23 @@ const Main = () => {
     ];
     const interval = setInterval(() => {
       setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
-    }, 4000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []); //빈 배열을 전달해서 컴포넌트가 첫 렌더링 될 때만 useEffect 실행
 
+  //검색어 저장
   const handleSearchInputChange = e => {
     setSearchText(e.target.value);
-  };
-
-  //엔터로 검색
-  const handleKeyPress = e => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
-  const handleSearch = () => {
-    // 아마도 검색동작기능
-    console.log('검색어:', searchText);
   };
 
   return (
     <div className={styles.main}>
       <section
         className={styles.imageSection}
-        style={{ backgroundImage: `url(/resources/images/id${currentImageIndex + 1}.jpg)` }}
+        style={{
+          backgroundImage: `url(/resources/images/id${currentImageIndex + 1}.jpg)`,
+        }}
       >
         {/* 이미지를 넣어야 함 */}
       </section>
@@ -55,12 +47,12 @@ const Main = () => {
           placeholder=' ... 어떤 여행을 찾아볼까요?'
           value={searchText}
           onChange={handleSearchInputChange}
-          onKeyPress={handleKeyPress} /*엔터로 검색기능*/
         />
+        <button>검색</button>
       </section>
 
       <section className={styles.reviewSection}>
-        <ReviewList data={data} />
+        {searchText ? <ReviewList data={data} searchText={searchText} /> : <ReviewList data={data} />}
       </section>
     </div>
   );

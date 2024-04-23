@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import ReviewItem from './ReviewItem';
 
 //리뷰 아이템들로 구성된 리뷰 리스트
-const ReviewList = ({ data }) => {
+const ReviewList = ({ data, searchText }) => {
   // 배열을 3개씩 자르고 그룹화하는 함수
   const chunkArray = (arr, chunkSize) => {
     const chunkedArray = [];
@@ -17,10 +17,13 @@ const ReviewList = ({ data }) => {
   const goNew = () => {
     navigate('/new');
   };
+  // 검색어가 입력되었을 때 필터링하여 해당하는 리뷰만 표시
+  const filteredData = searchText
+    ? data.review.filter(item => item.title.toLowerCase().includes(searchText.toLowerCase()))
+    : data.review;
 
   // 데이터를 3개씩 자르고 그룹화
-  const chunkedData = chunkArray(data.review, 3);
-  console.log(chunkedData);
+  const chunkedData = chunkArray(filteredData, 3);
 
   return (
     <div className='ReviewList'>
@@ -31,7 +34,6 @@ const ReviewList = ({ data }) => {
         {chunkedData.map((group, index) => (
           <div key={index} className='review_group'>
             {group.map(item => {
-              console.log(item.img);
               return <ReviewItem key={item.id} img={item.img} {...item} />;
             })}
           </div>
