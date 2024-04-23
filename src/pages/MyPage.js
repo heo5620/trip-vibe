@@ -75,6 +75,7 @@ const MyPage = () => {
             <img 
             className={styles.profile} 
             src={profileImage || require('./../assets/image/unnamed.jpg')} // profileImage가 null이면 기본이미지가 나옴
+            onClick={ () => fileInputRef.current.click() }
             alt="프로필 사진" 
             />
             {/* unnamed.jpg는 임시 샘플파일임 */}
