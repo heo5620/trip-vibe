@@ -11,8 +11,11 @@ const Detail = () => {
   const setData = useContext(ReviewSetStateContext);
   //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
   const review = data.review.find((item) => item.id === parseInt(params.id));
+  console.log(review);
 
-  //삭제 누르면
+  //image 절대경로
+  const absoluteImagePath = `/${review.img}`;
+
   const handleDelete = () => {
     const updateData = data.review.filter(
       (item) => item.id !== parseInt(params.id)
@@ -39,7 +42,7 @@ const Detail = () => {
       </div>
       <div className="detail_viewer">
         <div>
-          <img src={review.img} alt="이미지"></img>
+          <img src={absoluteImagePath} alt="이미지"></img>
         </div>
         <div>평점 : {review.rating}</div>
         <div className="detail_content">{review.content}</div>
