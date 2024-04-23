@@ -1,15 +1,15 @@
 import { useRef, useState } from 'react';
+import { useContext } from 'react';
 import MockData from '../components/MockData';
 import styles from './styles/Mypage.module.css';
-import Button from 'react-bootstrap/Button';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const MyPage = () => {
+  const data = useContext(ReviewStateContext);
+  const setData = useContext(ReviewSetStateContext);
 
   // 목데이터
   const [info, setInfo] = useState(MockData);
-  
+
   // editingMbti : MBTI를 수정중인지 여부. 수정중 = true, 아닐때 = false
   const [editingMbti, setEditingMbti] = useState(false);
 
@@ -44,9 +44,12 @@ const MyPage = () => {
     }
 
     setEditingMbti(false); // 수정중이 아니므로 false
-    setInfo(copiedInfo => ({...copiedInfo, // 이전 정보를 copiedInfo로 복사(원본유지)
-      [1]: {...copiedInfo[1], // 이전 정보가 1인 항목 복사. *** 추후 변경 ***
-      mbti: newMbti} // mbti를 newMbti(수정된 MBTI)로 변경
+    setData((copiedInfo) => ({
+      ...copiedInfo, // 이전 정보를 copiedInfo로 복사(원본유지)
+      [1]: {
+        ...copiedInfo[1], // 이전 정보가 1인 항목 복사. *** 추후 변경 ***
+        mbti: newMbti,
+      }, // mbti를 newMbti(수정된 MBTI)로 변경
     }));
   };
 
@@ -73,17 +76,16 @@ const MyPage = () => {
     const file = e.target.files[0]; // 선택된 파일 가져옴
     const reader = new FileReader();
 
-    reader.onloadend = () => { // 파일 작업이 완료되면
+    reader.onloadend = () => {
+      // 파일 작업이 완료되면
       setProfileImage(reader.result); // reder.result : 파일 데이터 URL(바꿀 이미지)
     };
 
-    if(file) { // 선택된 파일이 있을 경우에만 수행
+    if (file) {
+      // 선택된 파일이 있을 경우에만 수행
       reader.readAsDataURL(file); // 파일 내용을 읽고 URL로 변환, 뭔지 잘 모름
     }
   }
-
-  // 알림창
-  const notify = () => toast.error('toastify test!');
 
 
 
@@ -107,21 +109,21 @@ const MyPage = () => {
         </>
       <div className={styles.picture}>
         <input
-            type="file"
-            style={{ display: 'none' }}
-            ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
-            onChange={changeImage}
-            accept="image/*"
-          />
+          type="file"
+          style={{ display: 'none' }}
+          ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
+          onChange={changeImage}
+          accept="image/*"
+        />
 
-        <div 
-          className={styles.profileWrapper} 
-          onMouseEnter={() => setHovering(true)} 
-          onMouseLeave={() => setHovering(false)}>
-            <img 
-            className={styles.profile} 
+        <div
+          className={styles.profileWrapper}
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
+          <img
+            className={styles.profile}
             src={profileImage || '/resources/images/unnamed.jpg'} // profileImage가 null이면 기본이미지가 나옴
-            onClick={ () => fileInputRef.current.click() }
             alt="프로필 사진" 
             />
             {/* unnamed.jpg는 임시 샘플파일임 */}
@@ -129,28 +131,22 @@ const MyPage = () => {
               {hovering && ( // 이미지 위에 마우스가 올라가면 수정하기 글씨가 나옴
               <div 
               className={styles.editText} 
-              onClick={ () => fileInputRef.current.click() }>업로드</div>
+              onClick={ () => fileInputRef.current.click() }>수정</div>
             )}
 
         </div>
-
       </div>
       <div className={styles.info}>
-          <div>
-            <h4>아이디</h4>
-          </div>
-          <span className={styles.idInfo}>
-            {info[1].username}
-          </span>
+        {info[1].username}
       </div>
       <div className={styles.info}>
         {editingMbti ? (
           <>
-          {/* 수정중일 때 */}
+            {/* 수정중일 때 */}
             <input
               type="text"
               value={newMbti}
-              onChange={e => setNewMbti(e.target.value)}
+              onChange={(e) => setNewMbti(e.target.value)}
             />
             <Button variant="success" onClick={confirmEdit}>확인</Button>
             <Button variant="outline-success" onClick={cancelEdit}>취소</Button>
@@ -158,10 +154,6 @@ const MyPage = () => {
         ) : (
           <>
           {/* 수정중이 아닐 때(기본상태) */}
-          <div className={styles.mbtiHeader}>
-            <h4>MBTI</h4>
-          </div>
-          <span className={styles.mbtiInfo}>
             {info[1].mbti.toUpperCase()}
             </span>
             <span>

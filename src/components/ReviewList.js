@@ -12,7 +12,7 @@ const ReviewList = ({ data }) => {
   };
 
   // 데이터를 3개씩 자르고 그룹화
-  const chunkedData = chunkArray(data, 3);
+  const chunkedData = chunkArray(data.review, 3);
   console.log(chunkedData);
 
   return (
