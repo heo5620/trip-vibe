@@ -90,6 +90,9 @@ const MyPage = () => {
 
 
   return (
+    <>
+    <h1>my page</h1>
+
     <div className={styles.container}>
         <>
           <ToastContainer
@@ -105,6 +108,9 @@ const MyPage = () => {
             // limit={1} // 알람 개수 제한
           />
         </>
+
+        
+
       <div className={styles.picture}>
         <input
             type="file"
@@ -131,7 +137,6 @@ const MyPage = () => {
               className={styles.editText} 
               onClick={ () => fileInputRef.current.click() }>업로드</div>
             )}
-
         </div>
 
       </div>
@@ -179,6 +184,7 @@ const MyPage = () => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 
