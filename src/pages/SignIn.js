@@ -19,7 +19,7 @@ const SignIn = () => {
       const user = MockData.find((user) => user.username === userId);
       if (user && user.pw === password) {
         console.log('로그인 성공'); // 로그인 성공 메시지
-        navigate('Main');  // 로그인 성공 시 Main 페이지로 이동
+        navigate('Main'); // 로그인 성공 시 Main 페이지로 이동
       } else {
         console.log('아이디 또는 비밀번호가 올바르지 않습니다.');
       }
@@ -30,10 +30,10 @@ const SignIn = () => {
     const regex = /^[a-z0-9]{6,18}$/;
     if (!regex.test(userId)) {
       alert('영소문자와 숫자를 포함하여 6~18자로만 입력해주세요');
-      return false;
+      //return false;
     } else if (!isUsernameAvailable(userId)) {
       alert('존재하지 않는 아이디 입니다.');
-      return false;
+      //return false;
     }
     return true;
   };
@@ -41,9 +41,11 @@ const SignIn = () => {
   const validatePassword = () => {
     const regex = /^[a-zA-Z0-9!@_]{8,20}$/;
     if (!regex.test(password)) {
-      alert('비밀번호는 영문, 숫자, 특수문자(!,@,_)를 포함하여 8~20자로만 입력해주세요');
+      alert(
+        '비밀번호는 영문, 숫자, 특수문자(!,@,_)를 포함하여 8~20자로만 입력해주세요'
+      );
       return false;
-    }else if (!isUserpwAvailable(password)) {
+    } else if (!isUserpwAvailable(password)) {
       alert('비밀번호가 다릅니다.');
       return false;
     }
@@ -61,7 +63,7 @@ const SignIn = () => {
   return (
     <div className="container">
       <div className="content">
-        <h1 style={{ textAlign: 'center'}}>로고</h1>
+        <h1 style={{ textAlign: 'center' }}>로고</h1>
         <form onSubmit={handleSignIn}>
           <input
             type="text"
@@ -79,7 +81,9 @@ const SignIn = () => {
             onBlur={validatePassword} // 비밀번호 입력 후 유효성 검사
             className="input-field"
           />
-          <button type="submit" style={{ display: 'block', margin: '0 auto' }}>로그인</button> 
+          <button type="submit" style={{ display: 'block', margin: '0 auto' }}>
+            로그인
+          </button>
         </form>
       </div>
     </div>
