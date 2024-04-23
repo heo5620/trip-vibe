@@ -1,33 +1,4 @@
-// import styles from './styles/Header.module.css';
-// import { ReactComponent as SideBarButton } from '../assets/icon/Group 4.svg';
-// import { useNavigate } from 'react-router-dom';
-
-// const Header = () => {
-//   const navigate = useNavigate();
-
-//   const goMain = () => {
-//     navigate('/');
-//   };
-
-//   return (
-//     <header className={styles.header}>
-//       <div className={styles.contents}>
-//         <div onClick={goMain}>로고</div>
-//       </div>
-//       <nav className={styles.navigation}>
-//         <ul>
-//           <div>
-//             <SideBarButton />
-//           </div>
-//         </ul>
-//       </nav>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/Header.module.css';
 import { ReactComponent as SideBarButton } from '../assets/icon/Group 4.svg';
 import { useNavigate } from 'react-router-dom';
@@ -36,6 +7,12 @@ import Sidebar from './Sidebar';
 const Header = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    setHeaderHeight(headerRef.current.clientHeight);
+  }, []);
 
   const goMain = () => {
     navigate('/');
@@ -46,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} ref={headerRef}>
       <div className={styles.contents}>
         <div onClick={goMain}>로고</div>
       </div>
@@ -57,7 +34,7 @@ const Header = () => {
           </div>
         </ul>
       </nav>
-      {isOpen && <Sidebar setIsOpen={setIsOpen} />}
+      {isOpen && <Sidebar setIsOpen={setIsOpen} headerHeight={headerHeight} />}
     </header>
   );
 };
