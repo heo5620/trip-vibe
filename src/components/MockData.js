@@ -2,7 +2,7 @@ const MockData = [
   {
     id: 1,
     username: 'heo5620',
-    pw: 5620,
+    pw: 'heo5620_@!',
     gender: 'female',
     mbti: 'ISFP',
     title: '1박 2일 뚜벅이 경주여행👍🤣',
@@ -14,8 +14,8 @@ const MockData = [
   },
   {
     id: 2,
-    username: 'moon',
-    pw: 2222,
+    username: 'moon11',
+    pw: 'moon2222!',
     gender: 'male',
     mbti: 'INTJ',
     title: '강화도 조양방직',
@@ -28,7 +28,7 @@ const MockData = [
   {
     id: 3,
     username: 'jihyunjoo2023',
-    pw: 3333,
+    pw: 'joo@@2023',
     gender: 'female',
     mbti: 'ENTJ',
     title: '여름에 한달 살고싶은 곳 어디? 여기!',
@@ -40,8 +40,8 @@ const MockData = [
   },
   {
     id: 4,
-    username: 'daaaaaahee',
-    pw: 1234,
+    username: 'daaaaaahee25',
+    pw: 'dahee1234!',
     gender: 'female',
     mbti: 'ENFP',
     title: '강릉 여행을 다녀왔습니다!',
