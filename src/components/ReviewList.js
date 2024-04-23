@@ -24,7 +24,7 @@ const ReviewList = ({ data }) => {
           <div key={index} className="review_group">
             {group.map((item) => {
               console.log(item.img);
-              return <ReviewItem key={item.id} img={`${item.img}`} {...item} />;
+              return <ReviewItem key={item.id} img={item.img} {...item} />;
             })}
           </div>
         ))}

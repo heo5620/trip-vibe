@@ -10,7 +10,7 @@ const ReviewItem = ({ id, title, img, createdDate }) => {
   return (
     <div className="ReviewItem">
       <div className="review_img" onClick={() => nav(`/detail/${id}`)}>
-        <img src={{ img }} alt="reivew 이미지"></img>
+        <img src={img} alt="reivew 이미지" width="300" height="300"></img>
       </div>
       <div className="title" onClick={() => nav(`/detail/${id}`)}>
         {title}
