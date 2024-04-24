@@ -119,7 +119,6 @@ const MyPage = () => {
 
   return (
     <>
-      <h1 className={styles.heading}>My Page</h1>
 
       <div className={styles.container}>
         <>
