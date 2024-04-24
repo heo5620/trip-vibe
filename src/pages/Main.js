@@ -15,12 +15,7 @@ const Main = () => {
   //logo 이미지 2초마다 변경
   useEffect(() => {
     console.log(data);
-    const images = [
-      '/resources/images/id1.jpg',
-      '/resources/images/id2.jpg',
-      '/resources/images/id3.jpg',
-      '/resources/images/id4.jpg',
-    ];
+    const images = ['/resources/images/logo1.jpg', '/resources/images/logo2.jpg', '/resources/images/logo3.jpg'];
     const interval = setInterval(() => {
       setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
     }, 3000);
@@ -65,7 +60,7 @@ const Main = () => {
       <section
         className={styles.imageSection}
         style={{
-          backgroundImage: `url(/resources/images/id${currentImageIndex + 1}.jpg)`,
+          backgroundImage: `url(/resources/images/logo${currentImageIndex + 1}.jpg)`,
         }}
       >
         {/* 이미지를 넣어야 함 */}

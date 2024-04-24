@@ -70,21 +70,51 @@ h4 {
   margin-right: 80px;
 }
 
-.mbtiInfo {
-  margin-right: 30px;
-  margin-left: -20px;
+
+.idInfo {
+  margin-left: 100px;
+  margin-right: 60px;
 }
 
-.mbtiHeader {
-  margin-left: 80px; 
+.mbtiInfo {
   margin-right: 30px;
+  margin-left: 25px;
 }
 
 .genderInfo {
-  margin-left: 10px;
+  margin-left: 145px;
+  margin-right: 90px;
+}
+
+.idHeader {
+  margin-left: 70px;
+}
+
+.mbtiHeader {
+  margin-left: -30px; 
+  margin-right: -20px;
+}
+
+.genderHeader {
+  margin-left: 70px; 
+  margin-right: -50px;
 }
 
 .idInfo, .mbtiInfo, .genderInfo {
-  font-weight: bolder;
   font-size: 20px;
+}
+
+.idHeader, .mbtiHeader, .genderHeader {
+  flex: 1; 
+}
+
+.infoWrapper {
+  text-align: center; 
+  margin-top: 40px; 
+  /* width: 400px;
+  height: 600px; */
+  display: inline-block;
+  padding: 30px;
+  border: 4px solid rgb(88, 167, 150) ;
+  border-radius: 20px;
 }
