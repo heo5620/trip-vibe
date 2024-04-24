@@ -4,7 +4,7 @@
   max-width: 1000px;
   margin: 0 auto;
   height: 80px;
-  background-color: gray;
+  background: linear-gradient(to left, rgb(143, 200, 219), rgb(13, 133, 83));
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,4 +26,8 @@
 
 .navigation ul li {
   margin-left: 20px;
+}
+
+.logo {
+  cursor: pointer;
 }
