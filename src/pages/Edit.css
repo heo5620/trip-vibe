@@ -58,3 +58,32 @@
   margin-top: 20px;
   width: 700px;
 }
+
+.edit_image {
+  object-fit: cover; 
+  transition: filter 0.3s ease; 
+}
+
+.edit_image:hover {
+  filter: brightness(70%); 
+}
+
+.edit_img_editText {
+  position: absolute;
+  top: 29%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 1.6rem;
+  font-weight: bold;
+  opacity: 0; 
+  transition: opacity 0.5s ease; 
+}
+
+.edit_image {
+  position: relative;
+}
+
+.edit_img_wrapper:hover .edit_img_editText {
+  opacity: 1;
+}
