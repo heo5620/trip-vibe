@@ -1,29 +1,36 @@
 
 
 .container {
-  margin-top: 30px; /* 위쪽 여백 추가 */
   text-align: center; /* 가로 방향 중앙 정렬 */
+  display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
-  display: flex;
   flex-direction: column;
-}
-
-.content {
-  text-align: center;  
-  width: 300px;
-  display: inline-block;
-  padding: 20px;
+  height: 70vh;
 }
 
 .heading {
   text-align: center;
-  margin-top: 20px; 
-  margin-bottom: 30px;
+  margin-top: 60px; 
+  margin-bottom: 60px;
+  font-family: NexonGothic;
 }
 
+.content {
+  text-align: center; 
+  margin-top: 40px; 
+  width: 400px;
+  height: 600px;
+  display: inline-block;
+  padding: 30px;
+  border: 4px solid rgb(88, 167, 150) ;
+  border-radius: 20px;
+}
+
+
+
 .inputField {
+  width: 80%;
   display: block;
   padding: 10px;
   margin: 0 auto;
@@ -33,26 +40,40 @@
 }
 
 .genderContainer {
+  margin-top: 5%;
   display: flex;
   justify-content: center;
+  align-items: center;  /*수직 가운데 정렬*/
 }
 
-.radioLabel{ 
-  margin-right: 15px; /*라디오 버튼 사이의 간격 조정*/
+.radioMaleLabel{ 
+  margin-right: 30px; /*라디오 버튼 사이의 간격 조정*/
+}
+
+.radioFemaleLabel{ 
+  margin-right: 30px; /*라디오 버튼 사이의 간격 조정*/
 }
 
 .radioInput{
   margin-right: 2px;
+  transform: scale(1.5); /*라디오 버튼 크기 확장*/
 }
 
 .signupButton {
-  margin-top: 10%;
   display: block;
   margin-left: 10px; 
   margin: 10px auto 0;
+  margin-top: 8%; 
+  background-color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 35px;
+  width: 250px;
+  height: 50px;
 }
 
 .signupButton:hover {
-  background-color: rgb(112, 157, 172);
+  background-color: rgb(129, 183, 201);
+  font-weight: bold;
+  
 }
 

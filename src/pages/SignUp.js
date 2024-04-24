@@ -140,7 +140,7 @@ const SignUp = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>Sign Up</h1>
+        <h1 className={styles.heading}>Sign up</h1>
         <form>
           <input
             type="text"
@@ -179,7 +179,7 @@ const SignUp = () => {
           />
           <div>{mbtiError}</div>
           <div className={styles.genderContainer}>
-            <label className={styles.radioLabel}>
+            <label className={styles.radioMaleLabel}>
               <input
                 type="radio"
                 value="male"
@@ -190,7 +190,7 @@ const SignUp = () => {
               />
               남성
             </label>
-            <label className={styles.radioLabel}>
+            <label className={styles.radioFemalLabel}>
               <input
                 type="radio"
                 value="female"
