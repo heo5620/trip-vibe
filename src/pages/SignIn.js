@@ -61,7 +61,7 @@ const SignIn = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>Sign in</h1>
+        <h1 className={styles.heading}>Welcome!</h1>
         <form onSubmit={handleSignIn}>
           <input
             type='text'

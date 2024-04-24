@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReviewSetStateContext, ReviewStateContext } from '../App';
 import './Edit.css';
@@ -56,11 +56,49 @@ const Edit = () => {
     //파일을 Base64 형식으로 읽기..???ㅠㅠ
   };
 
+
+  // 사진수정기능////////////////////
+  //프로필 이미지 위에 마우스 호버링
+  const [hovering, setHovering] = useState(false);
+
+   // 파일 업로드 input 요소 참조
+   const fileInputRef = useRef(null);
+
+
+
   return (
     <div className='Edit'>
       <div className='edit_img_content'>
-        <input type='file' id='imageUpload' accept='image/*' onChange={handleImageUpload} />
-        <img src={newImg} alt='이미지' width='300' height='300'></img>
+        <input 
+        type='file' 
+        id='imageUpload' 
+        style={{ display: 'none' }}
+        ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
+        accept='image/*' 
+        onChange={handleImageUpload} />
+        <div
+          className='edit_img_wrapper'
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}>
+
+          <img 
+          className='edit_image'
+          src={newImg} 
+          alt='이미지' 
+          onClick={() => fileInputRef.current.click()}
+          width='400' 
+          height='400' />
+
+          {hovering && ( 
+              <div
+                className='edit_img_editText'
+                onClick={() => fileInputRef.current.click()}
+              >
+                사진 수정
+              </div>
+            )}
+
+        </div>
       </div>
       <div className='edit_title_rating'>
         <input type='text' className='edit_title' value={title} onChange={e => setTitle(e.target.value)}></input>

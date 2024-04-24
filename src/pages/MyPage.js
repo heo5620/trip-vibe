@@ -109,13 +109,11 @@ const MyPage = () => {
     }
   };
 
-  // 알림창
-  const notify = () => toast.error('toastify test!');
 
-  // 사용자 정보가 정의되어 있는지 확인
-  if (!data || !data.user || data.user.length === 0) {
-    return <div>Loading...</div>; // 사용자 정보가 없는 경우 로딩 메시지를 표시하거나 다른 처리를 수행할 수 있습니다.
-  }
+  // // 사용자 정보가 정의되어 있는지 확인
+  // if (!data || !data.user || data.user.length === 0) {
+  //   return <div>Loading...</div>; 
+  // }
 
   return (
     <>
@@ -148,8 +146,8 @@ const MyPage = () => {
             <div
               className={styles.profileWrapper}
               onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-            >
+              onMouseLeave={() => setHovering(false)}>
+            
               <img
                 className={styles.profile}
                 src={profileImage || '/resources/images/unnamed.jpg'} // profileImage가 null이면 기본이미지가 나옴
