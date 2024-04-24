@@ -1,5 +1,6 @@
 .ReviewItem {
   border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
   width: calc(33%);
@@ -16,14 +17,17 @@
   cursor: pointer;
 }
 
-.title,
+.title {
+  cursor: pointer;
+  font-weight: bold;
+}
 .created_date {
   cursor: pointer;
 }
 
 .review_group {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   margin-bottom: 20px;
   margin-left: 10px;
 }
