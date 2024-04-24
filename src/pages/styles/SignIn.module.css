@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: NexonGothic;
   src: url('../styles/fonts/NEXON Lv2 Gothic Bold.ttf') format('truetype');
@@ -10,28 +9,28 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 70vh;
+  height: 90vh;
 }
 
 .heading {
   text-align: center;
-  margin-top: 60px; 
+  margin-top: 110px;
   margin-bottom: 60px;
   font-family: NexonGothic;
 }
 
 .inputIdField {
-  width: 80%;
+  width: 340px;
   padding: 10px;
   display: block;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   border-radius: 35px;
 }
 
 .inputPwField {
-  width: 80%;
+  width: 340px;
   padding: 10px;
   display: block;
   margin: 0 auto;
@@ -41,35 +40,36 @@
 }
 
 .content {
-  text-align: center; 
-  margin-top: 40px; 
-  width: 400px;
-  height: 600px;
+  text-align: center;
+  margin-top: 40px;
+  width: 700px;
+  height: 560px;
   display: inline-block;
   padding: 30px;
-  border: 4px solid rgb(88, 167, 150) ;
+  /* border: 4px solid ; */
+  box-shadow: rgb(88, 167, 150, 0.6) 0px 0px 29px 0px;
   border-radius: 20px;
 }
 
-.buttonContainer{
+/* .buttonContainer {
   text-align: center;
-  margin-top: 50px; 
-  display: flex;
-  margin: 0 auto;
-  justify-content: space-between; 
-  width: 250px; 
-}
+  margin-top: 50px;
 
-.signinButton{
-  display: 'block';
   margin: 0 auto;
-  margin-right: 40px;
-  margin-top: 10px; 
+
+  width: 270px;
+} */
+
+.signinButton {
+  display: block;
+  margin-left: 10px;
+  margin: 10px auto 0;
+  margin-top: 20px;
   background-color: rgb(255, 255, 255);
   border: none;
-  border-radius: 50%;
-  width: 150px;
-  height: 95px;
+  border-radius: 35px;
+  width: 340px;
+  height: 50px;
 }
 .signinButton:hover {
   background-color: rgb(129, 183, 201);
@@ -77,19 +77,16 @@
 }
 
 .signupButton {
-  display: 'block';
-  margin-left: 70px; 
+  display: block;
+  color: lightgray;
   margin: 0 auto;
-  margin-top: 10px; 
-  background-color: rgb(255, 255, 255);
+  margin-top: 40px;
   border: none;
-  border-radius: 50%;
-  width: 150px;
-  height: 95px;
+  transition: color 0.3s;
+  font-size: medium;
 }
 
-.signupButton:hover{
-  background-color: rgb(129, 183, 201);
+.signupButton:hover {
+  color: gray;
   font-weight: bold;
 }
-

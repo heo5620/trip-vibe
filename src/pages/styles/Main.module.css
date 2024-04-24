@@ -19,6 +19,7 @@
 
 .reviewSection {
   display: flex;
+  margin-left: 30px;
   justify-content: center; /* 가운데 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
 }

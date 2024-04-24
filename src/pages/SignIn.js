@@ -3,7 +3,6 @@ import { ReviewStateContext } from '../App';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/SignIn.module.css';
 
-
 const SignIn = () => {
   const [userId, setUserId] = useState(''); //userId
   const [password, setPassword] = useState(''); //userPw
@@ -18,7 +17,7 @@ const SignIn = () => {
   const navigate = useNavigate(); // useNavigate 초기화
 
   //로그인 버튼 클릭 시 호출
-  const handleSignIn = (e) => {
+  const handleSignIn = e => {
     e.preventDefault(); //기본 동작 x
 
     // 입력받은 값이 유효성 검사에 맞지 않을 때,
@@ -28,7 +27,7 @@ const SignIn = () => {
     }
 
     // 유저 정보 확인
-    const user = data.user.find((user) => user.username === userId);
+    const user = data.user.find(user => user.username === userId);
 
     //입력 받은 값이 data 안에서 없거나, 일치 하지 않을 때
     if (!user || user.pw !== password) {
@@ -65,18 +64,18 @@ const SignIn = () => {
         <h1 className={styles.heading}>Sign in</h1>
         <form onSubmit={handleSignIn}>
           <input
-            type="text"
-            placeholder="아이디를 입력하세요"
+            type='text'
+            placeholder='아이디를 입력하세요'
             value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            onChange={e => setUserId(e.target.value)}
             className={styles.inputIdField}
             required
           />
           <input
-            type="password"
-            placeholder="비밀번호를 입력하세요"
+            type='password'
+            placeholder='비밀번호를 입력하세요'
             value={password}
-            onChange={(e) => {
+            onChange={e => {
               setPassword(e.target.value);
             }}
             className={styles.inputPwField}
@@ -84,16 +83,12 @@ const SignIn = () => {
           />
           {loginError && <div className={styles.errorMessage}>{loginError}</div>}
           <div className={styles.buttonContainer}>
-            <button type="submit" className={styles.signinButton}>
+            <button type='submit' className={styles.signinButton}>
               로그인
             </button>
-            <button
-              type="submit"
-              className={styles.signupButton}
-              onClick={handleSignUp}
-            >
+            <div type='submit' className={styles.signupButton} onClick={handleSignUp}>
               회원가입
-            </button>
+            </div>
           </div>
         </form>
       </div>
