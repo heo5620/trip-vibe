@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { ReviewSetStateContext, ReviewStateContext } from '../App';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Detail.css';
@@ -9,18 +9,29 @@ const Detail = () => {
   const nav = useNavigate();
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
-  //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-  const review = data.review.find(item => item.id === parseInt(params.id));
-  console.log(review);
-
-  //image 절대경로
-  const absoluteImagePath = `/${review.img}`;
+  const [review, setReview] = useState(null);
+  console.log(data.review);
 
   const handleDelete = () => {
     const updateData = data.review.filter(item => item.id !== parseInt(params.id));
     setData({ ...data, review: updateData });
     nav('/');
   };
+
+  //렌더링 될때마다
+  useEffect(() => {
+    //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
+    const updateReview = data.review.find(item => item.id === parseInt(params.id));
+    //id에 해당하는 리뷰가 있으면, review에 저장.
+    if (updateReview) {
+      setReview(updateReview);
+    }
+  }, [data.review, params.id]); //data.review와 params.id가 변경될 때마다 useEffect
+
+  if (!review) {
+    return <div>Loading...</div>; // review가 null인 경우 로딩 중을 나타내거나 아무것도 표시하지 않음
+  }
+
   return (
     <div className='Detail'>
       <div className='detail_header'>
@@ -37,7 +48,7 @@ const Detail = () => {
       </div>
       <div className='detail_viewer'>
         <div>
-          <img src={absoluteImagePath} alt='이미지'></img>
+          <img src={`/${review.img}`} alt='이미지'></img>
         </div>
         <div>평점 : {review.rating}</div>
         <div className='detail_content'>{review.content}</div>

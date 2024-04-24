@@ -4,7 +4,6 @@ import { ReviewStateContext, ReviewSetStateContext } from '../App';
 import styles from './styles/SignUp.module.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
   const data = useContext(ReviewStateContext);
@@ -27,26 +26,25 @@ const SignUp = () => {
 
   //회원 가입 버튼 클릭
   const handleSignUp = (e) => {
-    
-   // e.preventDefault();
-  /* console.log('아이디 유효성 검사 결과:', validateUserId(userId));
+    // e.preventDefault();
+    /* console.log('아이디 유효성 검사 결과:', validateUserId(userId));
   console.log('비밀번호 유효성 검사 결과:', validatePassword(password));
   console.log('비밀번호 확인 유효성 검사 결과:', validateConfirmPassword(confirmPassword));
   console.log('성별 유효성 검사 결과:', validateGender(gender));
   console.log('MBTI 유효성 검사 결과:', validateMbti(mbti)); */
-    
-  if (
+
+    if (
       //유효성 검사가 모두 올바른지 확인
       validateUserId(userId) &&
       validatePassword(password) &&
       validateConfirmPassword(confirmPassword) &&
-      validateGender(gender) && 
+      validateGender(gender) &&
       validateMbti(mbti)
     ) {
       alert('회원가입 성공! 메인으로 이동합니다');
       console.log('회원가입 성공!');
       console.log(userId, password, gender, mbti);
-      
+
       //기존 정보에 새 정보 추가
       setData((data) => ({
         ...data,
@@ -60,12 +58,11 @@ const SignUp = () => {
             mbti: mbti,
           },
         ],
-      })); 
-      
+      }));
+
       console.log(data.user);
-      
+
       navigate('/');
-      
     }
   };
 
@@ -74,17 +71,18 @@ const SignUp = () => {
     setUserId(e.target.value);
     const isValid = validateUserId(e.target.value);
     if (!isValid) {
-      setUserIdError('아이디는 영소문자와 숫자를 포함하여 4~12자로만 입력해주세요.');
+      setUserIdError(
+        '아이디는 영소문자와 숫자를 포함하여 4~12자로만 입력해주세요.'
+      );
     } else {
       setUserIdError('');
     }
   };
-  
+
   const validateUserId = (userId) => {
     const regex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{4,12}$/;
     return regex.test(userId);
-  }; 
-
+  };
 
   //비밀번호 유효성 검사
   const handlePasswordChange = (e) => {
@@ -98,12 +96,11 @@ const SignUp = () => {
       setPasswordError('');
     }
   };
-  
+
   const validatePassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*\d)(?=.*[@!_])[a-z\d@!_]{8,20}$/;
     return regex.test(password);
   };
-  
 
   //비밀번호 확인 검사
   const handleConfirmPasswordChange = (e) => {
@@ -167,7 +164,7 @@ const SignUp = () => {
             type="password"
             placeholder="비밀번호를 확인하세요"
             value={confirmPassword}
-            onChange={handleConfirmPasswordChange} 
+            onChange={handleConfirmPasswordChange}
             className={styles.inputField}
             required
           />
