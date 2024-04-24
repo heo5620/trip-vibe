@@ -12,13 +12,13 @@ const SignUp = () => {
   //입력 받을 id,pw,gender,mbti
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [gender, setGender] = useState('');
   const [mbti, setMbti] = useState('');
 
   //에러 관리
   const [userIdError, setUserIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [genderError, setGenderError] = useState('');
   const [mbtiError, setMbtiError] = useState('');
@@ -36,8 +36,10 @@ const SignUp = () => {
       validateGender() &&
       validateMbti()
     ) {
+      alert('회원가입 성공! 메인으로 이동합니다');
       console.log('회원가입 성공!');
       console.log(userId, password, gender, mbti);
+      
       //기존 정보에 새 정보 추가
       setData((data) => ({
         ...data,
@@ -53,6 +55,7 @@ const SignUp = () => {
         ],
       }));
       console.log(data.user);
+      
       navigate('/');
     }
   };
@@ -75,20 +78,31 @@ const SignUp = () => {
 
 
   //비밀번호 유효성 검사
-  const validatePassword = () => {
-    const regex = /^(?=.*[a-z])(?=.*\d)(?=.*[@!_])[A-Za-z\d@!_]{8,20}$/;
-    if (!regex.test(password)) {
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    const isValid = validatePassword(e.target.value);
+    if (!isValid) {
       setPasswordError(
         '비밀번호는 영문 소문자, 숫자, 특수문자(@, !, _)를 포함하여 8~20자로만 입력해주세요.'
       );
-      return false;
+    } else {
+      setPasswordError('');
     }
-    setPasswordError('');
-    return true;
+  };
+  
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*\d)(?=.*[@!_])[a-z\d@!_]{8,20}$/;
+    return regex.test(password);
+  };
+  
+
+  //비밀번호 확인 검사
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    validateConfirmPassword(e.target.value);
   };
 
-  //비밀번호가 일치하는지 확인
-  const validateConfirmPassword = () => {
+  const validateConfirmPassword = (confirmPassword) => {
     if (password !== confirmPassword) {
       setConfirmPasswordError('비밀번호가 일치하지 않습니다.');
       return false;
@@ -135,22 +149,16 @@ const SignUp = () => {
             type="password"
             placeholder="비밀번호를 입력하세요"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              validatePassword();
-            }}
+            onChange={handlePasswordChange}
             className={styles.inputField}
             required
           />
           <div>{passwordError}</div>
           <input
             type="password"
-            placeholder="비밀번호 확인"
+            placeholder="비밀번호를 확인하세요"
             value={confirmPassword}
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-              validateConfirmPassword();
-            }}
+            onChange={handleConfirmPasswordChange} 
             className={styles.inputField}
             required
           />
