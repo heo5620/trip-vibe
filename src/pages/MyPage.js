@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyPage = () => {
+
   // 목데이터
   const [info, setInfo] = useState(MockData);
 
@@ -23,6 +24,7 @@ const MyPage = () => {
   // 파일 업로드 input 요소 참조
   const fileInputRef = useRef(null);
 
+  //프로필 이미지 위에 마우스 호버링
   const [hovering, setHovering] = useState(false);
 
   // idEditingNow : 수정버튼을 누르면 수정중인상태 -> editingMbti를 true로 설정
@@ -86,7 +88,7 @@ const MyPage = () => {
     return mbtiTypes.includes(mbti.toUpperCase());
   };
 
-  // cancelEdit : 수정중이 아니게 되므로 editingMbti = false
+  // cancelEdit : MBTI 수정중이 아니게 되므로 editingMbti = false
   const cancelEdit = () => {
     setEditingMbti(false);
   };
@@ -94,7 +96,7 @@ const MyPage = () => {
   // 프로필 사진 수정
   const changeImage = (e) => {
     const file = e.target.files[0]; // 선택된 파일 가져옴
-    const reader = new FileReader();
+    const reader = new FileReader(); // FileReader 객체 생성, 파일을 URL로 읽어옴
 
     reader.onloadend = () => {
       // 파일 작업이 완료되면
@@ -136,7 +138,7 @@ const MyPage = () => {
             style={{ display: 'none' }}
             ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
             onChange={changeImage}
-            accept="image/*"
+            accept="image/*" // 모든 이미지 파일 허용. 유저가 이미지파일만 선택할 수 있도록 함
           />
 
           <div
