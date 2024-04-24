@@ -35,8 +35,8 @@ const Detail = () => {
   return (
     <div className='Detail'>
       <div className='detail_header'>
-        <h4>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
-        <h2>{review.title}</h2>
+        <h4 className='DateText'>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
+        <h2 className='TitleText'>{review.title}</h2>
         <div className='btn'>
           <button className='edit_button' onClick={() => nav(`/edit/${params.id}`)}>
             수정
@@ -50,7 +50,7 @@ const Detail = () => {
         <div>
           <img src={`/${review.img}`} alt='이미지'></img>
         </div>
-        <div>평점 : {review.rating}</div>
+        <div className='rating'>평점 : {review.rating}</div>
         <div className='detail_content'>{review.content}</div>
       </div>
     </div>
