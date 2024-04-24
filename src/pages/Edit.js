@@ -16,8 +16,7 @@ const Edit = () => {
 
   const [title, setTitle] = useState(oldReview.title);
   const [rating, setRating] = useState(oldReview.rating);
-  const [newImg, setImg] = useState(`/${oldReview.img}`);
-  const [uploadedImg, setUploadedImg] = useState(null); // 업로드된 이미지 상태 추가
+  const [newImg, setNewImg] = useState(`/${oldReview.img}`); //기존 이미지로 초기화
   const [content, setcontent] = useState(oldReview.content);
 
   //수정 완료 버튼 누를 때
@@ -29,7 +28,7 @@ const Edit = () => {
           ...item,
           title: title,
           rating: rating,
-          img: uploadedImg ? uploadedImg : newImg,
+          img: newImg,
           content: content,
         };
       } else {
@@ -37,33 +36,44 @@ const Edit = () => {
       }
     });
     setData({ ...data, review: newReview }); //기존의 데이터 유지. 리뷰 데이터만 변경.
+    console.log(data.review);
     nav(`/detail/${params.id}`); //완료 후, 상세 페이지로 이동.
+  };
+
+  const handleCancel = () => {
+    nav(-1);
   };
 
   const handleImageUpload = e => {
     const file = e.target.files[0];
     const reader = new FileReader();
+
     reader.onloadend = () => {
-      setUploadedImg(reader.result); // 업로드된 이미지 상태 업데이트
-      setImg(reader.result); // 미리보기 이미지 업데이트
+      //파일 읽기 작업이 완료되면 업로드한 이미지를 newImg에 넣기.
+      setNewImg(reader.result);
     };
     reader.readAsDataURL(file);
+    //파일을 Base64 형식으로 읽기..???ㅠㅠ
   };
 
   return (
     <div className='Edit'>
       <div className='edit_img_content'>
         <input type='file' id='imageUpload' accept='image/*' onChange={handleImageUpload} />
-        <img src={newImg} alt='이미지' width='200' height='200'></img>
+        <img src={newImg} alt='이미지' width='300' height='300'></img>
       </div>
       <div className='edit_title_rating'>
-        {/* 제목 :{' '} */}
         <input type='text' className='edit_title' value={title} onChange={e => setTitle(e.target.value)}></input>
-        {/* 평점 :{' '} */}
         <input type='text' className='edit_rating' value={rating} onChange={e => setRating(e.target.value)}></input>
       </div>
-      <textarea className='edit_text' value={content} onChange={e => setcontent(e.target.value)}></textarea>
-      <button onClick={handleUpdate}>작성완료</button>
+      <div className='edit_review_container'>
+        <textarea className='edit_text' value={content} onChange={e => setcontent(e.target.value)}></textarea>
+      </div>
+
+      <div className='edit_button_container'>
+        <button onClick={handleCancel}>취소하기</button>
+        <button onClick={handleUpdate}>작성완료</button>
+      </div>
     </div>
   );
 };
