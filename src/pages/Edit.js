@@ -12,7 +12,7 @@ const Edit = () => {
   const nav = useNavigate();
 
   //기존 데이터를 불러옴.
-  const oldReview = data.review.find((item) => item.id === parseInt(params.id));
+  const oldReview = data.review.find(item => item.id === parseInt(params.id));
 
   const [title, setTitle] = useState(oldReview.title);
   const [rating, setRating] = useState(oldReview.rating);
@@ -23,7 +23,7 @@ const Edit = () => {
   //수정 완료 버튼 누를 때
   const handleUpdate = () => {
     //params.id === itme.id 리뷰 데이터를 새로운 리뷰데이터로 변경 후, 나머지는 그대로 newReview에 담기.
-    const newReview = data.review.map((item) => {
+    const newReview = data.review.map(item => {
       if (item.id === parseInt(params.id)) {
         return {
           ...item,
@@ -40,7 +40,7 @@ const Edit = () => {
     nav(`/detail/${params.id}`); //완료 후, 상세 페이지로 이동.
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = e => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -51,37 +51,19 @@ const Edit = () => {
   };
 
   return (
-    <div className="Edit">
-      <div className="edit_title_rating">
-        제목 :{' '}
-        <input
-          type="text"
-          className="edit_title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        평점 :{' '}
-        <input
-          type="text"
-          className="edit_rating"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        ></input>
-        <button onClick={handleUpdate}>작성완료</button>
+    <div className='Edit'>
+      <div className='edit_img_content'>
+        <input type='file' id='imageUpload' accept='image/*' onChange={handleImageUpload} />
+        <img src={newImg} alt='이미지' width='200' height='200'></img>
       </div>
-      <div className="edit_img_content">
-        <input
-          type="file"
-          id="imageUpload"
-          accept="image/*"
-          onChange={handleImageUpload}
-        />
-        <img src={newImg} alt="이미지" width="200" height="200"></img>
-        <textarea
-          value={content}
-          onChange={(e) => setcontent(e.target.value)}
-        ></textarea>
+      <div className='edit_title_rating'>
+        {/* 제목 :{' '} */}
+        <input type='text' className='edit_title' value={title} onChange={e => setTitle(e.target.value)}></input>
+        {/* 평점 :{' '} */}
+        <input type='text' className='edit_rating' value={rating} onChange={e => setRating(e.target.value)}></input>
       </div>
+      <textarea className='edit_text' value={content} onChange={e => setcontent(e.target.value)}></textarea>
+      <button onClick={handleUpdate}>작성완료</button>
     </div>
   );
 };

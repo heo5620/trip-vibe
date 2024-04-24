@@ -112,12 +112,10 @@ export const StateButtonContainer = styled.div`
   display: flex;
   margin-top: 20px;
   position: relative;
-  /* border: 1px solid black; */
 `;
 
 export const ReviewContainer = styled.div`
   margin-top: 20px;
-  /* border: 1px solid black; */
   width: 700px;
 `;
 

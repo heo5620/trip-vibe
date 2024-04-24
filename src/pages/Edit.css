@@ -1,27 +1,48 @@
 .Edit {
+  width: 800px;
+  height: 900px;
+  margin: auto;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 80vh;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  align-items: center;
 }
 .edit_title_rating {
   display: flex;
-  gap: 20px;
 }
 
 .edit_title {
-  width: 30%;
+  border: 2px solid black;
+  width: 600px;
+  height: 50px;
+  padding-left: 10px;
+  margin-top: 20px;
 }
 
 .edit_rating {
-  width: 10%;
+  width: 90px;
+  height: 50px;
+  margin-left: 10px;
+  font-size: 16px;
+  margin-top: 20px;
+  padding-left: 10px;
+  border: 2px solid black;
 }
 
 .edit_img_content {
+  border: 2px solid black;
+  width: 700px;
+  height: 500px;
+  margin-top: 30px;
+  align-items: center;
   display: flex;
-  gap: 30px;
-  flex-direction: column;
+  justify-content: center;
+  /* position: relative; */
+}
+
+.edit_text {
+  border: 2px solid black;
+  width: 700px;
+  height: 180px;
+  padding-left: 10px;
 }
