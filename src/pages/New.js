@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'; // axios import 추가
 import {
@@ -18,6 +18,7 @@ import {
   SelectedImage,
   TitleInput,
   UploadButton,
+  RatingInput, // 추가한 평점 입력 칸
 } from './styles/Newcss';
 import { ReviewSetStateContext, ReviewStateContext } from '../App';
 
@@ -28,6 +29,7 @@ const New = () => {
   const setData = useContext(ReviewSetStateContext);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const [rating, setRating] = useState('');
   const [isWritingComplete, setIsWritingComplete] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,6 +42,7 @@ const New = () => {
       id: data.review.length + 1, // 새로운 리뷰의 ID는 현재 데이터 길이 + 1로 설정
       title: reviewTitle,
       content: reviewText,
+      rating: rating,
       image: selectedImage, // 선택한 이미지도 추가할 수 있습니다
       createdDate: new Date().toISOString(), // 현재 날짜와 시간으로 생성일 설정
     };
@@ -106,8 +109,12 @@ const New = () => {
         />
         {visible ? '' : <UploadButton onClick={plusImageButton}>이미지 추가하기</UploadButton>}
       </ImageContainer>
-      <ReviewContainer>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {' '}
         <TitleInput type='text' placeholder='제목' value={reviewTitle} onChange={handleDiaryTitleChange} />
+        <RatingInput type='text' placeholder='평점' value={rating} onChange={e => setRating(e.target.value)} />{' '}
+      </div>
+      <ReviewContainer>
         <ReviewInput type='text' value={reviewText} onChange={handleDiaryChange} placeholder='내용을 입력해주세요!' />
         <ReviewButtonContainer>
           <CancelButton onClick={handleCancel} isWritingComplete={isWritingComplete}>

@@ -10,42 +10,37 @@ const Detail = () => {
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
   //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-  const review = data.review.find((item) => item.id === parseInt(params.id));
+  const review = data.review.find(item => item.id === parseInt(params.id));
   console.log(review);
 
   //image 절대경로
   const absoluteImagePath = `/${review.img}`;
 
   const handleDelete = () => {
-    const updateData = data.review.filter(
-      (item) => item.id !== parseInt(params.id)
-    );
+    const updateData = data.review.filter(item => item.id !== parseInt(params.id));
     setData({ ...data, review: updateData });
     nav('/');
   };
   return (
-    <div className="Detail">
-      <div className="detail_header">
+    <div className='Detail'>
+      <div className='detail_header'>
         <h4>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
         <h2>{review.title}</h2>
-        <div className="btn">
-          <button
-            className="edit_button"
-            onClick={() => nav(`/edit/${params.id}`)}
-          >
+        <div className='btn'>
+          <button className='edit_button' onClick={() => nav(`/edit/${params.id}`)}>
             수정
           </button>
-          <button className="delete_button" onClick={handleDelete}>
+          <button className='delete_button' onClick={handleDelete}>
             삭제
           </button>
         </div>
       </div>
-      <div className="detail_viewer">
+      <div className='detail_viewer'>
         <div>
-          <img src={absoluteImagePath} alt="이미지"></img>
+          <img src={absoluteImagePath} alt='이미지'></img>
         </div>
         <div>평점 : {review.rating}</div>
-        <div className="detail_content">{review.content}</div>
+        <div className='detail_content'>{review.content}</div>
       </div>
     </div>
   );
