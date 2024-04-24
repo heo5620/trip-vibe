@@ -26,9 +26,11 @@ function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const goMypage = () => {
     navigate('/mypage');
+    setIsOpen(false);
   };
   const goSignin = () => {
     navigate('/SignIn');
+    setIsOpen(false);
   };
 
   return (
