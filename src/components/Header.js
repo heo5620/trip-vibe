@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/Header.module.css';
 import { ReactComponent as SideBarButton } from './styles/icon/Group 4.svg';
+import { ReactComponent as Logo } from './styles/icon/Group 6.svg';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
@@ -25,12 +26,12 @@ const Header = () => {
   return (
     <header className={styles.header} ref={headerRef}>
       <div className={styles.contents}>
-        <div onClick={goMain}>로고</div>
+        <Logo className={styles.logo} onClick={goMain} />
       </div>
       <nav className={styles.navigation}>
         <ul>
           <div>
-            <SideBarButton onClick={toggleSidebar} />
+            <SideBarButton className={styles.logo} onClick={toggleSidebar} />
           </div>
         </ul>
       </nav>
