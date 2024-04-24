@@ -12,7 +12,7 @@
 }
 
 .edit_title {
-  border: 2px solid black;
+  border: 1.5px solid rgb(236, 236, 236);
   width: 600px;
   height: 50px;
   padding-left: 10px;
@@ -26,11 +26,13 @@
   font-size: 16px;
   margin-top: 20px;
   padding-left: 10px;
-  border: 2px solid black;
+  border: 1.5px solid rgb(236, 236, 236);
 }
 
 .edit_img_content {
-  border: 2px solid black;
+  border: none;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
   width: 700px;
   height: 500px;
   margin-top: 30px;
@@ -41,10 +43,12 @@
 }
 
 .edit_text {
-  border: 2px solid black;
+  border: none;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
   width: 700px;
   height: 180px;
-  padding-left: 10px;
+  padding: 15px;
 }
 
 .edit_button_container {
@@ -54,30 +58,58 @@
   justify-content: space-between;
 }
 
+.edit_cancelBtn {
+  background-color: rgb(143, 200, 219);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 26px;
+  color: white;
+  cursor: pointer;
+  font-size: large;
+}
+
+.edit_cancelBtn:hover {
+  background-color: rgb(112, 157, 172);
+}
+
+.edit_completeBtn {
+  background-color: rgb(143, 200, 219);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 26px;
+  color: white;
+  cursor: pointer;
+  font-size: large;
+}
+
+.edit_completeBtn:hover {
+  background-color: rgb(112, 157, 172);
+}
+
 .edit_review_container {
   margin-top: 20px;
   width: 700px;
 }
 
 .edit_image {
-  object-fit: cover; 
-  transition: filter 0.3s ease; 
+  object-fit: cover;
+  transition: filter 0.3s ease;
 }
 
 .edit_image:hover {
-  filter: brightness(70%); 
+  filter: brightness(70%);
 }
 
 .edit_img_editText {
   position: absolute;
-  top: 29%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(255, 255, 255);
   font-size: 1.6rem;
   font-weight: bold;
-  opacity: 0; 
-  transition: opacity 0.5s ease; 
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .edit_image {

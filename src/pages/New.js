@@ -24,7 +24,7 @@ const New = () => {
   const [uploadedImg, setUploadedImg] = useState(null); // 업로드된 이미지 상태 추가
   const [rating, setRating] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // 새 리뷰 생성
     const newReview = {
@@ -36,7 +36,7 @@ const New = () => {
       rating,
     };
     // 새 리뷰 추가
-    setData(prevData => ({
+    setData((prevData) => ({
       ...prevData,
       review: [...prevData.review, newReview],
     }));
@@ -44,7 +44,7 @@ const New = () => {
     navigate('/');
   };
 
-  const handleImageUpload = e => {
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -64,12 +64,12 @@ const New = () => {
         {/* 이미지 선택을 위한 input 요소 */}
         <ImageContainer>
           {' '}
-          <label htmlFor='imageUpload'>
+          <label htmlFor="imageUpload">
             +
             <input
-              type='file'
-              id='imageUpload'
-              accept='image/*'
+              type="file"
+              id="imageUpload"
+              accept="image/*"
               onChange={handleImageUpload}
               style={{ display: 'none' }} // input 요소를 숨김
             />
@@ -79,18 +79,27 @@ const New = () => {
             <ModalImage src={img} />
           </div>
         </ImageContainer>
-        <TitleInput type='text' placeholder='제목' value={title} onChange={e => setTitle(e.target.value)} />
+        <TitleInput
+          type="text"
+          placeholder="제목"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <RatingInput
-          type='text'
-          placeholder='평점'
+          type="text"
+          placeholder="평점"
           value={rating}
-          onChange={e => setRating(parseInt(e.target.value))}
+          onChange={(e) => setRating(parseInt(e.target.value))}
         />{' '}
         <ReviewContainer>
-          <ReviewInput value={content} placeholder='내용을 입력해주세요' onChange={e => setContent(e.target.value)} />
+          <ReviewInput
+            value={content}
+            placeholder="내용을 입력해주세요"
+            onChange={(e) => setContent(e.target.value)}
+          />
           <ReviewButtonContainer>
             <CancelButton onClick={handleCancel}>뒤로 가기</CancelButton>
-            <CompleteButton type='submit'>작성 완료</CompleteButton>
+            <CompleteButton type="submit">작성 완료</CompleteButton>
           </ReviewButtonContainer>
         </ReviewContainer>
       </form>

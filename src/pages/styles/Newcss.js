@@ -12,7 +12,8 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  border: 2px solid black;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
   width: 700px;
   height: 500px;
   margin-top: 30px;
@@ -120,7 +121,6 @@ export const ReviewContainer = styled.div`
 `;
 
 export const TitleInput = styled.input`
-  border: 2px solid black;
   width: 600px;
   height: 50px;
   padding-left: 10px;
@@ -128,7 +128,9 @@ export const TitleInput = styled.input`
 `;
 
 export const ReviewInput = styled.input`
-  border: 2px solid black;
+  background-color: rgb(236, 236, 236);
+  border: none;
+  border-radius: 10px;
   width: 700px;
   height: 180px;
   padding-left: 10px;
@@ -142,11 +144,21 @@ export const ReviewButtonContainer = styled.div`
 `;
 
 export const CancelButton = styled.button`
+  background-color: rgb(143, 200, 219);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 26px;
+  color: white;
   cursor: pointer;
   font-size: large;
 `;
 
 export const CompleteButton = styled.button`
+  background-color: rgb(143, 200, 219);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 26px;
+  color: white;
   cursor: pointer;
   font-size: large;
 `;
@@ -158,5 +170,4 @@ export const RatingInput = styled.input`
   font-size: 16px;
   margin-top: 20px;
   padding-left: 10px;
-  border: 2px solid black;
 `;
