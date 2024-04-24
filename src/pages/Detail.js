@@ -13,9 +13,7 @@ const Detail = () => {
   console.log(data.review);
 
   const handleDelete = () => {
-    const updateData = data.review.filter(
-      (item) => item.id !== parseInt(params.id)
-    );
+    const updateData = data.review.filter(item => item.id !== parseInt(params.id));
     setData({ ...data, review: updateData });
     nav('/');
   };
@@ -23,9 +21,7 @@ const Detail = () => {
   //렌더링 될때마다
   useEffect(() => {
     //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-    const updateReview = data.review.find(
-      (item) => item.id === parseInt(params.id)
-    );
+    const updateReview = data.review.find(item => item.id === parseInt(params.id));
     //id에 해당하는 리뷰가 있으면, review에 저장.
     if (updateReview) {
       setReview(updateReview);
@@ -37,28 +33,25 @@ const Detail = () => {
   }
 
   return (
-    <div className="Detail">
-      <div className="detail_header">
+    <div className='Detail'>
+      <div className='detail_header'>
         <h4>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
         <h2>{review.title}</h2>
-        <div className="btn">
-          <button
-            className="edit_button"
-            onClick={() => nav(`/edit/${params.id}`)}
-          >
+        <div className='btn'>
+          <button className='edit_button' onClick={() => nav(`/edit/${params.id}`)}>
             수정
           </button>
-          <button className="delete_button" onClick={handleDelete}>
+          <button className='delete_button' onClick={handleDelete}>
             삭제
           </button>
         </div>
       </div>
-      <div className="detail_viewer">
+      <div className='detail_viewer'>
         <div>
-          <img src={`/${review.img}`} alt="이미지"></img>
+          <img src={`/${review.img}`} alt='이미지'></img>
         </div>
         <div>평점 : {review.rating}</div>
-        <div className="detail_content">{review.content}</div>
+        <div className='detail_content'>{review.content}</div>
       </div>
     </div>
   );

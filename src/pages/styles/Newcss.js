@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  border: 3px solid black;
+  /* border: 3px solid black; */
   width: 800px;
-  height: 1000px;
+  height: 900px;
   margin: auto;
-  margin-top: 50px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
@@ -20,7 +19,7 @@ export const ImageContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  position: relative;
+  /* position: relative; */
 `;
 
 export const SelectedImage = styled.img`
@@ -124,15 +123,14 @@ export const ReviewContainer = styled.div`
 
 export const TitleInput = styled.input`
   border: 2px solid black;
-  width: 700px;
+  width: 600px;
   height: 50px;
-  margin-bottom: 15px;
   padding-left: 10px;
+  margin-top: 20px;
 `;
 
 export const ReviewInput = styled.input`
   border: 2px solid black;
-  /* border-radius: 8px; */
   width: 700px;
   height: 180px;
   padding-left: 10px;
@@ -153,4 +151,14 @@ export const CancelButton = styled.button`
 export const CompleteButton = styled.button`
   cursor: pointer;
   font-size: large;
+`;
+
+export const RatingInput = styled.input`
+  width: 90px;
+  height: 50px;
+  margin-left: 10px;
+  font-size: 16px;
+  margin-top: 20px;
+  padding-left: 10px;
+  border: 2px solid black;
 `;
