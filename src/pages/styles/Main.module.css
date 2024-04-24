@@ -17,10 +17,9 @@
   margin-bottom: 4%;
 }
 
-.reviewSection {
-  height: 300px;
-  overflow-y: auto;
-}
+/* .reviewSection {
+  overflow-y: scroll;
+} */
 
 .reviewHeader {
   width: 100%;
@@ -32,12 +31,19 @@
 }
 
 .reviewText {
+  width: 8%;
   font-size: xx-large;
   font-weight: bolder;
   color: rgb(112, 157, 172);
 }
 
+.sortSelector {
+  padding-top: 1%;
+  width: 70%;
+}
+
 .writeButton {
+  float: right;
   background-color: rgb(143, 200, 219);
   color: white;
   padding: 10px 20px;

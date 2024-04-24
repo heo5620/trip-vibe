@@ -33,7 +33,7 @@ function ReviewList({ sortedData, searchText }) {
   const settings = {
     className: 'slider',
     vertical: true,
-    variableWidth: false,
+    variableWidth: true, //false
     swipeToSlide: true,
     slidesToShow: 3,
     infinite: false,
@@ -42,15 +42,15 @@ function ReviewList({ sortedData, searchText }) {
 
   return (
     <div className={styles.reviewContainser}>
-      <Slider {...settings}>
-        {chunkedData.map((group, index) => (
-          <div key={index} className="review_group">
-            {group.map((item) => (
-              <ReviewItem key={item.id} img={item.img} {...item} />
-            ))}
-          </div>
-        ))}
-      </Slider>
+      {/* <Slider {...settings}> */}
+      {chunkedData.map((group, index) => (
+        <div key={index} className="review_group">
+          {group.map((item) => (
+            <ReviewItem key={item.id} img={item.img} {...item} />
+          ))}
+        </div>
+      ))}
+      {/* </Slider> */}
     </div>
   );
 }

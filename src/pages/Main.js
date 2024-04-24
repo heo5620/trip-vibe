@@ -16,10 +16,9 @@ const Main = () => {
   useEffect(() => {
     console.log(data);
     const images = [
-      '/resources/images/id1.jpg',
-      '/resources/images/id2.jpg',
-      '/resources/images/id3.jpg',
-      '/resources/images/id4.jpg',
+      '/resources/images/logo1.jpg',
+      '/resources/images/logo2.jpg',
+      '/resources/images/logo3.jpg',
     ];
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -71,7 +70,7 @@ const Main = () => {
       <section
         className={styles.imageSection}
         style={{
-          backgroundImage: `url(/resources/images/id${
+          backgroundImage: `url(/resources/images/logo${
             currentImageIndex + 1
           }.jpg)`,
         }}
