@@ -8,6 +8,11 @@
   src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: WelcomeFont;
+  src: url('../styles/fonts/Jalnan2TTF.ttf') format('truetype');
+}
+
 .signlogo {
   box-shadow: rgb(88, 167, 150, 0.6) 0px 0px 29px 0px;
   border-radius: 50%;
@@ -17,7 +22,6 @@
 .signupButton{
   font-family: InputFont;
 }
-
 
 .container {
   text-align: center; /* 가로 방향 중앙 정렬 */
@@ -33,7 +37,7 @@
   text-align: center;
   margin-top: 60px; 
   margin-bottom: 80px;
-  font-family: NexonGothic;
+  font-family: WelcomeFont;
 }
 
 .inputField {
@@ -76,7 +80,7 @@
 }
 
 .radioInput{
-  margin-right: 2px;
+  margin-right: 10px;
   transform: scale(1.5); /*라디오 버튼 크기 확장*/
 }
 

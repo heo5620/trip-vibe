@@ -8,6 +8,16 @@
   src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: WelcomeFont;
+  src: url('../styles/fonts/Jalnan2TTF.ttf') format('truetype');
+}
+
+/*  @font-face {
+  font-family: WelcomeFont2;
+  src: url('../styles/fonts/LeferiPointSpecialItalic.ttf') format('truetype');
+}  */
+
 .container {
   text-align: center; /* 가로 방향 중앙 정렬 */
   display: flex;
@@ -22,7 +32,7 @@
   text-align: center;
   margin-top: 60px;
   margin-bottom: 80px;
-  font-family: NexonGothic;
+  font-family: WelcomeFont;
 }
 
 .inputIdField,
