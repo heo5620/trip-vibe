@@ -27,14 +27,21 @@ const SignUp = () => {
 
   //회원 가입 버튼 클릭
   const handleSignUp = (e) => {
-    // e.preventDefault();
-    if (
+    
+   // e.preventDefault();
+  /* console.log('아이디 유효성 검사 결과:', validateUserId(userId));
+  console.log('비밀번호 유효성 검사 결과:', validatePassword(password));
+  console.log('비밀번호 확인 유효성 검사 결과:', validateConfirmPassword(confirmPassword));
+  console.log('성별 유효성 검사 결과:', validateGender(gender));
+  console.log('MBTI 유효성 검사 결과:', validateMbti(mbti)); */
+    
+  if (
       //유효성 검사가 모두 올바른지 확인
-      validateUserId() &&
-      validatePassword() &&
-      validateConfirmPassword() &&
-      validateGender() &&
-      validateMbti()
+      validateUserId(userId) &&
+      validatePassword(password) &&
+      validateConfirmPassword(confirmPassword) &&
+      validateGender(gender) && 
+      validateMbti(mbti)
     ) {
       alert('회원가입 성공! 메인으로 이동합니다');
       console.log('회원가입 성공!');
@@ -53,10 +60,12 @@ const SignUp = () => {
             mbti: mbti,
           },
         ],
-      }));
+      })); 
+      
       console.log(data.user);
       
       navigate('/');
+      
     }
   };
 
@@ -112,7 +121,7 @@ const SignUp = () => {
   };
 
   //성별 유효성 검사
-  const validateGender = () => {
+  const validateGender = (gender) => {
     if (gender === '') {
       setGenderError('성별을 선택해주세요.');
       return false;
@@ -122,7 +131,7 @@ const SignUp = () => {
   };
 
   //mbti 유효성 검사
-  const validateMbti = () => {
+  const validateMbti = (mbti) => {
     if (mbti === '') {
       setMbtiError('MBTI를 입력해주세요.');
       return false;
@@ -134,7 +143,7 @@ const SignUp = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>회원가입</h1>
+        <h1 className={styles.heading}>Sign Up</h1>
         <form>
           <input
             type="text"
