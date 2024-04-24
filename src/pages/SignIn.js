@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ReviewStateContext } from '../App';
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
 import styles from './styles/SignIn.module.css';
 import Swal from 'sweetalert2';
 
@@ -38,21 +39,21 @@ const SignIn = () => {
 
     // 로그인 성공
     /* alert('로그인 성공! 메인 페이지로 이동합니다'); */
-     Swal.fire({
-                    icon: "success",
-                    title: "로그인 성공!",
-                    text: `메인 페이지로 이동합니다`,
-                    showCancelButton: false,
-                    confirmButtonText: "확인",
-                    cancelButtonText: "취소",
-                }).then((res) => {
-                    /* 확인 버튼 클릭 시, 메인 페이지로 이동 */
-                    if (res.isConfirmed) {
-                      navigate('/');
-                    }
-                    console.log('로그인 성공');
-                });
-    /* navigate('/'); */   
+    Swal.fire({
+      icon: 'success',
+      title: '로그인 성공!',
+      text: `메인 페이지로 이동합니다`,
+      showCancelButton: false,
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+    }).then(res => {
+      /* 확인 버튼 클릭 시, 메인 페이지로 이동 */
+      if (res.isConfirmed) {
+        navigate('/');
+      }
+      console.log('로그인 성공');
+    });
+    /* navigate('/'); */
   };
 
   //아이디 유효성 검사
@@ -74,6 +75,7 @@ const SignIn = () => {
 
   return (
     <div className={styles.container}>
+      <SignLogo className={styles.signlogo} />
       <div className={styles.content}>
         <h1 className={styles.heading}>Welcome!</h1>
         <form onSubmit={handleSignIn}>

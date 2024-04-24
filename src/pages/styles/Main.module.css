@@ -51,6 +51,7 @@
 
 .writeButton:hover {
   background-color: rgb(112, 157, 172);
+  font-weight: bold;
 }
 
 .searchInput {
