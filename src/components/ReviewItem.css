@@ -25,9 +25,4 @@
   cursor: pointer;
 }
 
-.review_group {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  margin-left: 10px;
-}
+

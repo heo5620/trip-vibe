@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { ReviewStateContext, ReviewSetStateContext } from '../App';
 import styles from './styles/SignUp.module.css';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
@@ -21,43 +22,62 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [genderError, setGenderError] = useState('');
   const [mbtiError, setMbtiError] = useState('');
-
+  
   const navigate = useNavigate();
 
-  //회원 가입 버튼 클릭
+  // 회원 가입 버튼 클릭
   const handleSignUp = (e) => {
+    e.preventDefault(); // 기본 동작 중단
+  
+    // 입력값의 유효성 검사
     if (
-      //유효성 검사가 모두 올바른지 확인
       validateUserId(userId) &&
       validatePassword(password) &&
       validateConfirmPassword(confirmPassword) &&
       validateGender(gender) &&
       validateMbti(mbti)
     ) {
-      alert('회원가입 성공! 메인으로 이동합니다');
-      console.log('회원가입 성공!');
-      console.log(userId, password, gender, mbti);
-
-      //기존 정보에 새 정보 추가
-      setData((data) => ({
-        ...data,
-        user: [
-          ...data.user,
-          {
-            id: data.user.length + 1,
-            username: userId,
-            pw: password,
-            gender: gender,
-            mbti: mbti,
-          },
-        ],
-      }));
-
-      console.log(data.user);
-
-      navigate('/');
+      // 회원가입 성공 팝업
+      Swal.fire({
+        icon: 'success',
+        title: '회원가입 성공!',
+        text: '메인 페이지로 이동합니다.',
+        showCancelButton: false,
+        confirmButtonText: '확인',
+        cancelButtonText: '취소',
+      }).then((res) => {
+        // 확인 버튼을 클릭했을 때 조건이 맞으면 메인 페이지로 이동
+        if (res.isConfirmed) {
+          // 기존 정보에 새 데이터를 추가
+          setData((data) => ({
+            ...data,
+            user: [
+              ...data.user,
+              {
+                id: data.user.length + 1,
+                username: userId,
+                pw: password,
+                gender: gender,
+                mbti: mbti,
+              },
+            ],
+          }));
+          /* console.log('data.user');
+          console.log('아이디 유효성 검사 결과:', validateUserId(userId));
+          console.log('비밀번호 유효성 검사 결과:', validatePassword(password));
+          console.log('비밀번호 확인 유효성 검사 결과:', validateConfirmPassword(confirmPassword));
+          console.log('성별 유효성 검사 결과:', validateGender());
+          console.log('MBTI 유효성 검사 결과:', validateMbti()); */
+          
+          // 메인 페이지로 이동
+          navigate('/');
+          
+          console.log('회원가입 성공');
+        }
+      });
     }
   };
+
 
   //아이디 유효성 검사
   const handleUserIdChange = (e) => {
@@ -142,6 +162,7 @@ const SignUp = () => {
             onChange={handleUserIdChange}
             className={styles.inputField}
             required
+            
           />
           <div>{userIdError}</div>
           <input
@@ -151,6 +172,7 @@ const SignUp = () => {
             onChange={handlePasswordChange}
             className={styles.inputField}
             required
+            
           />
           <div>{passwordError}</div>
           <input
