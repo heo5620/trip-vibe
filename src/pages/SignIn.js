@@ -62,14 +62,14 @@ const SignIn = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>Sign In</h1>
+        <h1 className={styles.heading}>Sign in</h1>
         <form onSubmit={handleSignIn}>
           <input
             type="text"
             placeholder="아이디를 입력하세요"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
-            className={styles.inputField}
+            className={styles.inputIdField}
             required
           />
           <input
@@ -79,7 +79,7 @@ const SignIn = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className={styles.inputField}
+            className={styles.inputPwField}
             required
           />
           {loginError && <div className={styles.errorMessage}>{loginError}</div>}
