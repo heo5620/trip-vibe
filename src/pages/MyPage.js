@@ -119,7 +119,7 @@ const MyPage = () => {
 
   return (
     <>
-      <h1>my page</h1>
+      <h1 className={styles.heading}>My Page</h1>
 
       <div className={styles.container}>
         <>
