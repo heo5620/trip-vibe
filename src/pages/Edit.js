@@ -16,8 +16,7 @@ const Edit = () => {
 
   const [title, setTitle] = useState(oldReview.title);
   const [rating, setRating] = useState(oldReview.rating);
-  const [newImg, setImg] = useState(`/${oldReview.img}`);
-  const [uploadedImg, setUploadedImg] = useState(null); // 업로드된 이미지 상태 추가
+  const [newImg, setNewImg] = useState(`/${oldReview.img}`); //기존 이미지로 초기화
   const [content, setcontent] = useState(oldReview.content);
 
   //수정 완료 버튼 누를 때
@@ -29,7 +28,7 @@ const Edit = () => {
           ...item,
           title: title,
           rating: rating,
-          img: uploadedImg ? uploadedImg : newImg,
+          img: newImg,
           content: content,
         };
       } else {
@@ -37,17 +36,21 @@ const Edit = () => {
       }
     });
     setData({ ...data, review: newReview }); //기존의 데이터 유지. 리뷰 데이터만 변경.
+    console.log(data.review);
     nav(`/detail/${params.id}`); //완료 후, 상세 페이지로 이동.
   };
 
+  //이미지 업로드될 때
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
+
     reader.onloadend = () => {
-      setUploadedImg(reader.result); // 업로드된 이미지 상태 업데이트
-      setImg(reader.result); // 미리보기 이미지 업데이트
+      //파일 읽기 작업이 완료되면 업로드한 이미지를 newImg에 넣기.
+      setNewImg(reader.result);
     };
     reader.readAsDataURL(file);
+    //파일을 Base64 형식으로 읽기..???ㅠㅠ
   };
 
   return (

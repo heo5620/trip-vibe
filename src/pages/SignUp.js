@@ -26,13 +26,6 @@ const SignUp = () => {
 
   //회원 가입 버튼 클릭
   const handleSignUp = (e) => {
-    // e.preventDefault();
-    /* console.log('아이디 유효성 검사 결과:', validateUserId(userId));
-  console.log('비밀번호 유효성 검사 결과:', validatePassword(password));
-  console.log('비밀번호 확인 유효성 검사 결과:', validateConfirmPassword(confirmPassword));
-  console.log('성별 유효성 검사 결과:', validateGender(gender));
-  console.log('MBTI 유효성 검사 결과:', validateMbti(mbti)); */
-
     if (
       //유효성 검사가 모두 올바른지 확인
       validateUserId(userId) &&
