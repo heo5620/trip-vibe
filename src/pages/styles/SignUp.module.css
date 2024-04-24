@@ -5,7 +5,7 @@
   text-align: center; /* 가로 방향 중앙 정렬 */
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
 }
@@ -50,5 +50,9 @@
   display: block;
   margin-left: 10px; 
   margin: 10px auto 0;
+}
+
+.signupButton:hover {
+  background-color: rgb(112, 157, 172);
 }
 
