@@ -70,21 +70,46 @@ h4 {
   margin-right: 80px;
 }
 
-.mbtiInfo {
-  margin-right: 30px;
-  margin-left: -20px;
+
+.idInfo {
+  margin-left: 100px;
+  margin-right: 60px;
 }
 
-.mbtiHeader {
-  margin-left: 80px; 
+.mbtiInfo {
   margin-right: 30px;
+  margin-left: 25px;
 }
 
 .genderInfo {
-  margin-left: 10px;
+  margin-left: 145px;
+  margin-right: 90px;
+}
+
+.idHeader {
+  margin-left: 70px;
+}
+
+.mbtiHeader {
+  margin-left: -30px; 
+  margin-right: -20px;
+}
+
+.genderHeader {
+  margin-left: 70px; 
+  margin-right: -50px;
 }
 
 .idInfo, .mbtiInfo, .genderInfo {
-  font-weight: bolder;
   font-size: 20px;
+}
+
+.idHeader, .mbtiHeader, .genderHeader {
+  flex: 1; 
+}
+
+.infoWrapper {
+  border: 3px solid rgb(236, 236, 236); /* 얇은 선 스타일과 색상 지정 */
+  border-radius: 10px; /* 둥근 모서리를 위한 반경 값 설정 */
+  padding: 20px; /* 내부 여백 설정 */
 }

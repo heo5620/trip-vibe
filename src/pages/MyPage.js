@@ -119,7 +119,6 @@ const MyPage = () => {
 
   return (
     <>
-
       <div className={styles.container}>
         <>
           <ToastContainer
@@ -136,89 +135,93 @@ const MyPage = () => {
           />
         </>
 
-        <div className={styles.picture}>
-          <input
-            type="file"
-            style={{ display: 'none' }}
-            ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
-            onChange={changeImage}
-            accept="image/*" // 모든 이미지 파일 허용. 유저가 이미지파일만 선택할 수 있도록 함
-          />
-
-          <div
-            className={styles.profileWrapper}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-          >
-            <img
-              className={styles.profile}
-              src={profileImage || '/resources/images/unnamed.jpg'} // profileImage가 null이면 기본이미지가 나옴
-              onClick={() => fileInputRef.current.click()}
-              alt="프로필 사진"
+        <div className={styles.infoWrapper}>
+          <div className={styles.picture}>
+            <input
+              type="file"
+              style={{ display: 'none' }}
+              ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
+              onChange={changeImage}
+              accept="image/*" // 모든 이미지 파일 허용. 유저가 이미지파일만 선택할 수 있도록 함
             />
-            {/* unnamed.jpg는 임시 샘플파일임 */}
 
-            {hovering && ( // 이미지 위에 마우스가 올라가면 수정하기 글씨가 나옴
-              <div
-                className={styles.editText}
+            <div
+              className={styles.profileWrapper}
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+            >
+              <img
+                className={styles.profile}
+                src={profileImage || '/resources/images/unnamed.jpg'} // profileImage가 null이면 기본이미지가 나옴
                 onClick={() => fileInputRef.current.click()}
-              >
-                업로드
-              </div>
+                alt="프로필 사진"
+              />
+              {/* unnamed.jpg는 임시 샘플파일임 */}
+
+              {hovering && ( // 이미지 위에 마우스가 올라가면 수정하기 글씨가 나옴
+                <div
+                  className={styles.editText}
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  업로드
+                </div>
+              )}
+            </div>
+          </div>
+
+        
+          <div className={styles.info}>
+            <div className={styles.idHeader}>
+              <h4>아이디</h4>
+            </div>
+            <span className={styles.idInfo}>
+              {/* *** 추후 변경 *** */}
+              {data.user[1].username}
+            </span>
+          </div>
+          <div className={styles.info}>
+            {editingMbti ? (
+              <>
+                {/* 수정중일 때 */}
+                <input
+                  type="text"
+                  value={newMbti}
+                  onChange={(e) => setNewMbti(e.target.value)}
+                />
+                <Button variant="success" onClick={confirmEdit}>
+                  확인
+                </Button>
+                <Button variant="outline-success" onClick={cancelEdit}>
+                  취소
+                </Button>
+              </>
+            ) : (
+              <>
+                {/* 수정중이 아닐 때(기본상태) */}
+                <div className={styles.mbtiHeader}>
+                  <h4>MBTI</h4>
+                </div>
+                <span className={styles.mbtiInfo}>
+                  {/* *** 추후 변경 *** */}
+                  {data.user[1].mbti.toUpperCase()}
+                </span>
+                <span>
+                  <Button variant="outline-success" onClick={idEditingNow}>
+                    수정
+                  </Button>
+                </span>
+              </>
             )}
           </div>
-        </div>
-        <div className={styles.info}>
-          <div>
-            <h4>아이디</h4>
+          <div className={styles.info}>
+            <div className={styles.genderHeader}>
+              <h4>성별</h4>
+            </div>
+            <span className={styles.genderInfo}>
+              {/* *** 추후 변경 *** */}
+              {data.user[1].gender === 'male' ? '남자' : '여자'}
+            </span>
           </div>
-          <span className={styles.idInfo}>
-            {/* *** 추후 변경 *** */}
-            {data.user[1].username}
-          </span>
-        </div>
-        <div className={styles.info}>
-          {editingMbti ? (
-            <>
-              {/* 수정중일 때 */}
-              <input
-                type="text"
-                value={newMbti}
-                onChange={(e) => setNewMbti(e.target.value)}
-              />
-              <Button variant="success" onClick={confirmEdit}>
-                확인
-              </Button>
-              <Button variant="outline-success" onClick={cancelEdit}>
-                취소
-              </Button>
-            </>
-          ) : (
-            <>
-              {/* 수정중이 아닐 때(기본상태) */}
-              <div className={styles.mbtiHeader}>
-                <h4>MBTI</h4>
-              </div>
-              <span className={styles.mbtiInfo}>
-                {/* *** 추후 변경 *** */}
-                {data.user[1].mbti.toUpperCase()}
-              </span>
-              <span>
-                <Button variant="outline-success" onClick={idEditingNow}>
-                  수정
-                </Button>
-              </span>
-            </>
-          )}
-        </div>
-        <div className={styles.info}>
-          <div>
-            <h4>성별</h4>
-          </div>
-          <span className={styles.genderInfo}>
-            {/* *** 추후 변경 *** */}
-            {data.user[1].gender === 'male' ? '남자' : '여자'}
-          </span>
         </div>
       </div>
     </>
