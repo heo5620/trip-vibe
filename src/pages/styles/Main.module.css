@@ -17,9 +17,11 @@
   margin-bottom: 4%;
 }
 
-/* .reviewSection {
-  overflow-y: scroll;
-} */
+.reviewSection {
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
 
 .reviewHeader {
   width: 100%;

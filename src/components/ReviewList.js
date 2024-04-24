@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import ReviewItem from './ReviewItem';
 import styles from './styles/Review.module.css';
+import './ReviewList.css';
 
 function ReviewList({ sortedData, searchText }) {
   //주어진 배열(arr)을 입력되는 사이즈(chunkSize) 만큼 잘라서 push
@@ -30,18 +31,18 @@ function ReviewList({ sortedData, searchText }) {
   //3개씩 추출
   const chunkedData = chunkArray(filteredData, 3);
 
-  const settings = {
-    className: 'slider',
-    vertical: true,
-    variableWidth: true, //false
-    swipeToSlide: true,
-    slidesToShow: 3,
-    infinite: false,
-    arrows: false,
-  };
+  // const settings = {
+  //   className: 'slider',
+  //   vertical: true,
+  //   variableWidth: true, //false
+  //   swipeToSlide: true,
+  //   slidesToShow: 3,
+  //   infinite: false,
+  //   arrows: false,
+  // };
 
   return (
-    <div className={styles.reviewContainser}>
+    <div className="reviewContainer">
       {/* <Slider {...settings}> */}
       {chunkedData.map((group, index) => (
         <div key={index} className="review_group">
