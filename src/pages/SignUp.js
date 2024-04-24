@@ -4,6 +4,7 @@ import { ReviewStateContext, ReviewSetStateContext } from '../App';
 import styles from './styles/SignUp.module.css';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
 
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
@@ -152,8 +153,9 @@ const SignUp = () => {
 
   return (
     <div className={styles.container}>
+      <SignLogo className={styles.signlogo} />
       <div className={styles.content}>
-        <h1 className={styles.heading}>Sign up</h1>
+        <h1 className={styles.heading}>Let's Start!</h1>
         <form>
           <input
             type="text"

@@ -63,14 +63,13 @@ const Main = () => {
           backgroundImage: `url(/resources/images/logo${currentImageIndex + 1}.jpg)`,
         }}
       >
-        {/* 이미지를 넣어야 함 */}
       </section>
 
       <section className={styles.searchContainer}>
         <input
           type='text'
           className={styles.searchInput}
-          placeholder=' ... 어떤 여행을 찾아볼까요?'
+          placeholder='   어떤 여행을 찾아볼까요?'
           value={searchText}
           onChange={handleSearchInputChange}
         />

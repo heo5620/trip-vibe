@@ -1,3 +1,17 @@
+@font-face {
+  font-family: InputFont;
+  src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
+}
+
+/* @font-face {
+  font-family: DetailFont;
+  src: url('../styles/fonts/감탄로드바탕체 Regular.ttf') format('truetype');
+} */
+
+body {
+  font-family: 'InputFont', sans-serif; /* 전체 요소에 폰트 적용 */
+}
+
 .imageSection {
   margin-top: 2%;
   background-size: cover;
