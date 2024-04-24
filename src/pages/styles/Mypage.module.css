@@ -18,10 +18,12 @@
 
 .profileWrapper {
   position: relative;
+  
+  /* 프로필 이미지 원형으로 뜨게 설정 */
   width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
+  height: 150px; 
+  border-radius: 70%;
+  overflow: hidden;
 }
 
 .profile {
