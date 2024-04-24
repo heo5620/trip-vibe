@@ -16,7 +16,8 @@ const Edit = () => {
 
   const [title, setTitle] = useState(oldReview.title);
   const [rating, setRating] = useState(oldReview.rating);
-  const [newImg, setImg] = useState(oldReview.newImg);
+  const [newImg, setImg] = useState(`/${oldReview.img}`);
+  const [uploadedImg, setUploadedImg] = useState(null); // 업로드된 이미지 상태 추가
   const [content, setcontent] = useState(oldReview.content);
 
   //수정 완료 버튼 누를 때
@@ -28,7 +29,7 @@ const Edit = () => {
           ...item,
           title: title,
           rating: rating,
-          img: 'resources/images/id1.jpg',
+          img: uploadedImg ? uploadedImg : newImg,
           content: content,
         };
       } else {
@@ -37,6 +38,16 @@ const Edit = () => {
     });
     setData({ ...data, review: newReview }); //기존의 데이터 유지. 리뷰 데이터만 변경.
     nav(`/detail/${params.id}`); //완료 후, 상세 페이지로 이동.
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setUploadedImg(reader.result); // 업로드된 이미지 상태 업데이트
+      setImg(reader.result); // 미리보기 이미지 업데이트
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -59,8 +70,13 @@ const Edit = () => {
         <button onClick={handleUpdate}>작성완료</button>
       </div>
       <div className="edit_img_content">
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          onChange={handleImageUpload}
+        />
         <img src={newImg} alt="이미지" width="200" height="200"></img>
-
         <textarea
           value={content}
           onChange={(e) => setcontent(e.target.value)}

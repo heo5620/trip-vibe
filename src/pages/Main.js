@@ -12,6 +12,7 @@ const Main = () => {
 
   //logo 이미지 2초마다 변경
   useEffect(() => {
+    console.log(data);
     const images = [
       '/resources/images/id1.jpg',
       '/resources/images/id2.jpg',

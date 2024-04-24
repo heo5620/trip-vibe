@@ -8,7 +8,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyPage = () => {
-
+  const data = useContext(ReviewStateContext);
+  const setData = useContext(ReviewSetStateContext);
   // 목데이터
   const [info, setInfo] = useState(MockData);
 
@@ -50,12 +51,11 @@ const MyPage = () => {
     }
 
     setEditingMbti(false); // 수정중이 아니므로 false
-    setInfo((copiedInfo) => ({
-      ...copiedInfo, // 이전 정보를 copiedInfo로 복사(원본유지)
-      [1]: {
-        ...copiedInfo[1], // 이전 정보가 1인 항목 복사. *** 추후 변경 ***
-        mbti: newMbti,
-      }, // mbti를 newMbti(수정된 MBTI)로 변경
+    setData((data) => ({
+      ...data, // 이전 정보를 copiedInfo로 복사(원본유지)
+      user: data.user.map((item, index) =>
+        index === 1 ? { ...item, mbti: newMbti } : item
+      ), // mbti를 newMbti(수정된 MBTI)로 변경
     }));
   };
 
@@ -111,6 +111,11 @@ const MyPage = () => {
 
   // 알림창
   const notify = () => toast.error('toastify test!');
+
+  // 사용자 정보가 정의되어 있는지 확인
+  if (!data || !data.user || data.user.length === 0) {
+    return <div>Loading...</div>; // 사용자 정보가 없는 경우 로딩 메시지를 표시하거나 다른 처리를 수행할 수 있습니다.
+  }
 
   return (
     <>
@@ -170,7 +175,7 @@ const MyPage = () => {
           </div>
           <span className={styles.idInfo}>
             {/* *** 추후 변경 *** */}
-            {info[1].username}
+            {data.user[1].username}
           </span>
         </div>
         <div className={styles.info}>
@@ -197,7 +202,7 @@ const MyPage = () => {
               </div>
               <span className={styles.mbtiInfo}>
                 {/* *** 추후 변경 *** */}
-                {info[1].mbti.toUpperCase()}
+                {data.user[1].mbti.toUpperCase()}
               </span>
               <span>
                 <Button variant="outline-success" onClick={idEditingNow}>
@@ -213,7 +218,7 @@ const MyPage = () => {
           </div>
           <span className={styles.genderInfo}>
             {/* *** 추후 변경 *** */}
-            {info[1].gender === 'male' ? '남자' : '여자'}
+            {data.user[1].gender === 'male' ? '남자' : '여자'}
           </span>
         </div>
       </div>
