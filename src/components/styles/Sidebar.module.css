@@ -23,13 +23,13 @@
   right: -15%;
   top: 0;
   position: absolute;
-  transition: 0.5s ease;
+  transition: 0.7s ease;
 }
 
 .SideBarWrap.open {
   position: absolute;
   right: 0;
-  transition: 0.5s ease;
+  transition: 0.7s ease;
 }
 
 .Menu {
