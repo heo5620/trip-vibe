@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles/Header.module.css';
+import Sidebar from './Sidebar';
 import { ReactComponent as SideBarButton } from './styles/icon/Group 4.svg';
 import { ReactComponent as Logo } from './styles/icon/Group 6.svg';
-import { useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar';
 
 const Header = () => {
   const navigate = useNavigate();

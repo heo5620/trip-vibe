@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { ReviewSetStateContext, ReviewStateContext } from '../App';
 import { useParams, useNavigate } from 'react-router-dom';
-import './Detail.css';
+import styles from './styles/Detail.module.css';
 
 //Main - ReviewItem - Detail
 const Detail = () => {
@@ -33,25 +33,25 @@ const Detail = () => {
   }
 
   return (
-    <div className='Detail'>
-      <div className='detail_header'>
-        <h4 className='DateText'>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
-        <h2 className='TitleText'>{review.title}</h2>
-        <div className='btn'>
-          <button className='edit_button' onClick={() => nav(`/edit/${params.id}`)}>
+    <div className={styles.Detail}>
+      <div className={styles.detail_header}>
+        <h4 className={styles.DateText}>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
+        <h2 className={styles.TitleText}>{review.title}</h2>
+        <div className={styles.btn}>
+          <button className={styles.edit_button} onClick={() => nav(`/edit/${params.id}`)}>
             수정
           </button>
-          <button className='delete_button' onClick={handleDelete}>
+          <button className={styles.delete_button} onClick={handleDelete}>
             삭제
           </button>
         </div>
       </div>
-      <div className='detail_viewer'>
+      <div className={styles.detail_viewer}>
         <div>
           <img src={`/${review.img}`} alt='이미지'></img>
         </div>
-        <div className='rating'>평점 : {review.rating}</div>
-        <div className='detail_content'>{review.content}</div>
+        <div className={styles.rating}>평점 : {review.rating}</div>
+        <div className={styles.detail_content}>{review.content}</div>
       </div>
     </div>
   );

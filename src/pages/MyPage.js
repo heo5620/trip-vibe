@@ -1,10 +1,9 @@
-import { useRef, useState } from 'react';
-import { useContext } from 'react';
 import { ReviewStateContext, ReviewSetStateContext } from '../App';
+import { useRef, useState, useContext } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import Button from 'react-bootstrap/Button';
 import MockData from '../components/MockData';
 import styles from './styles/Mypage.module.css';
-import Button from 'react-bootstrap/Button';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyPage = () => {

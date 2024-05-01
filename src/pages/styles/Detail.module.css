@@ -1,6 +1,11 @@
-@font-face {
+/* @font-face {
   font-family: DetailFont;
   src: url('./styles/fonts/감탄로드바탕체 Regular.ttf') format('truetype');
+} */
+
+@font-face {
+  font-family: InputFont;
+  src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
 }
 
 .Detail {
@@ -20,15 +25,15 @@
 .DateText,
 .TitleText,
 .rating,
-.detail_content{
-font-family: DetailFont;
+.detail_content {
+  font-family: DetailFont;
 }
 
-.DateText{
+.DateText {
   font-size: 15px;
 }
 
-.TitleText{
+.TitleText {
   font-size: 27px;
   letter-spacing: 1px; /*자간조정*/
 }
@@ -80,7 +85,7 @@ font-family: DetailFont;
   padding: 15px; /* 내부 여백 추가 */
 }
 
-.rating{
+.rating {
   font-size: 30px;
 }
 
