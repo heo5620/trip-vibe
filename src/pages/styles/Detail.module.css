@@ -1,11 +1,6 @@
-/* @font-face {
-  font-family: DetailFont;
-  src: url('./styles/fonts/감탄로드바탕체 Regular.ttf') format('truetype');
-} */
-
 @font-face {
-  font-family: InputFont;
-  src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
+  font-family: DetailFont;
+  src: url('./fonts/감탄로드바탕체\ Regular.ttf') format('truetype');
 }
 
 .Detail {

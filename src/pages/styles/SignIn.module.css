@@ -1,9 +1,4 @@
 @font-face {
-  font-family: NexonGothic;
-  src: url('../styles/fonts/NEXON Lv2 Gothic Bold.ttf') format('truetype');
-}
-
-@font-face {
   font-family: InputFont;
   src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
 }
