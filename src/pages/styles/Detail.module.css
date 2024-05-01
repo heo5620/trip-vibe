@@ -88,7 +88,9 @@
   background-color: rgb(236, 236, 236);
   border-radius: 10px;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
-  max-height: calc(33vh - 30px); /* 화면의 3분의 1 정도의 높이로 설정 (상하 여백을 고려하여 30px을 빼줌) */
+  max-height: calc(
+    33vh - 30px
+  ); /* 화면의 3분의 1 정도의 높이로 설정 (상하 여백을 고려하여 30px을 빼줌) */
   overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
   letter-spacing: 1px; /*자간조정*/
   font-size: 17.5px;

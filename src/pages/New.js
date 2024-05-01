@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './styles/New.module.css';
 
 const New = () => {
-  const navigate = useNavigate();
-  const setData = useContext(ReviewSetStateContext);
-  const [title, setTitle] = useState('');
   const data = useContext(ReviewStateContext);
+  const setData = useContext(ReviewSetStateContext);
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [img, setImg] = useState('');
   const [uploadedImg, setUploadedImg] = useState(null); // 업로드된 이미지 상태 추가

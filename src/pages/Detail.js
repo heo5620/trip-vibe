@@ -3,17 +3,17 @@ import { ReviewSetStateContext, ReviewStateContext } from '../App';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './styles/Detail.module.css';
 
-//Main - ReviewItem - Detail
 const Detail = () => {
-  const params = useParams();
-  const nav = useNavigate();
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
+  const params = useParams();
+  const nav = useNavigate();
   const [review, setReview] = useState(null);
-  console.log(data.review);
 
   const handleDelete = () => {
-    const updateData = data.review.filter(item => item.id !== parseInt(params.id));
+    const updateData = data.review.filter(
+      (item) => item.id !== parseInt(params.id)
+    );
     setData({ ...data, review: updateData });
     nav('/');
   };
@@ -21,7 +21,9 @@ const Detail = () => {
   //렌더링 될때마다
   useEffect(() => {
     //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-    const updateReview = data.review.find(item => item.id === parseInt(params.id));
+    const updateReview = data.review.find(
+      (item) => item.id === parseInt(params.id)
+    );
     //id에 해당하는 리뷰가 있으면, review에 저장.
     if (updateReview) {
       setReview(updateReview);
@@ -35,10 +37,15 @@ const Detail = () => {
   return (
     <div className={styles.Detail}>
       <div className={styles.detail_header}>
-        <h4 className={styles.DateText}>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
+        <h4 className={styles.DateText}>
+          작성일 : {new Date(review.createdDate).toLocaleDateString()}
+        </h4>
         <h2 className={styles.TitleText}>{review.title}</h2>
         <div className={styles.btn}>
-          <button className={styles.edit_button} onClick={() => nav(`/edit/${params.id}`)}>
+          <button
+            className={styles.edit_button}
+            onClick={() => nav(`/edit/${params.id}`)}
+          >
             수정
           </button>
           <button className={styles.delete_button} onClick={handleDelete}>
@@ -48,7 +55,7 @@ const Detail = () => {
       </div>
       <div className={styles.detail_viewer}>
         <div>
-          <img src={`/${review.img}`} alt='이미지'></img>
+          <img src={`/${review.img}`} alt="이미지"></img>
         </div>
         <div className={styles.rating}>평점 : {review.rating}</div>
         <div className={styles.detail_content}>{review.content}</div>
