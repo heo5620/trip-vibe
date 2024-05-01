@@ -1,6 +1,5 @@
-import { ReviewStateContext, ReviewSetStateContext } from '../App';
-import React, { useState } from 'react';
-import { useContext } from 'react';
+import { ReviewSetStateContext } from '../App';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/SignUp.module.css';
 import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
@@ -8,7 +7,6 @@ import Swal from 'sweetalert2';
 
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
-  const data = useContext(ReviewStateContext);
 
   //입력 받을 id,pw,gender,mbti
   const [userId, setUserId] = useState('');

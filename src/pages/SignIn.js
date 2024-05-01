@@ -5,19 +5,12 @@ import styles from './styles/SignIn.module.css';
 import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
 import Swal from 'sweetalert2';
 
-
 const SignIn = () => {
+  const data = useContext(ReviewStateContext);
+  const navigate = useNavigate();
   const [userId, setUserId] = useState(''); //userId
   const [password, setPassword] = useState(''); //userPw
-
-  //에러 상태 관리
-  //const [userIdError, setUserIdError] = useState('');
-  //const [passwordError, setPasswordError] = useState('');
   const [loginError, setLoginError] = useState('');
-
-  const data = useContext(ReviewStateContext);
-
-  const navigate = useNavigate(); // useNavigate 초기화
 
   //로그인 버튼 클릭 시 호출
   const handleSignIn = (e) => {
@@ -39,7 +32,6 @@ const SignIn = () => {
     }
 
     // 로그인 성공
-    /* alert('로그인 성공! 메인 페이지로 이동합니다'); */
     Swal.fire({
       icon: 'success',
       title: '로그인 성공!',
@@ -54,7 +46,6 @@ const SignIn = () => {
       }
       console.log('로그인 성공');
     });
-    /* navigate('/'); */
   };
 
   //아이디 유효성 검사

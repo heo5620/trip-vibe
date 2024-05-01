@@ -24,8 +24,8 @@
       "id": 3,
       "username": "jihyunjoo2024",
       "pw": "joo2024@@",
-      "email" : "nochocolatechip@gmail.com",
-      "phone" : "010-3333-4444",
+      "email": "nochocolatechip@gmail.com",
+      "phone": "010-3333-4444",
       "birth": "1998-12-20",
       "gender": "female",
       "mbti": "ENTJ"
@@ -34,8 +34,8 @@
       "id": 4,
       "username": "dahee2525",
       "pw": "dahee1234!",
-      "email" : "wondahee_25@naver.com",
-      "phone" : "010-4444-5555",
+      "email": "wondahee_25@naver.com",
+      "phone": "010-4444-5555",
       "birth": "1997-02-25",
       "gender": "female",
       "mbti": "ISFJ"
@@ -74,8 +74,7 @@
       "content": "강릉에서 보는 해돋이는 더욱 아름다우며, 특히 정동진이 유명합니다. 수평선 너머로 아침이 시작되는 모습을 지켜보는 것은 아주 감동적인 경험입니다",
       "rating": 10,
       "createdDate": "2022-04-18"
-    }
-    ,
+    },
     {
       "id": 5,
       "title": "부모님과 함께 제주여행❤️",
