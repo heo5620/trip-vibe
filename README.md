@@ -3,7 +3,6 @@
 
 <br>
 
-![java](https://github.com/heo5620/trip-vibe/assets/167669944/36e16576-41c0-4095-bfb7-31ce640c6026)
 
 - 기간
   - Front-End : 2024-04-22 ~ 2024-04-24
@@ -73,6 +72,7 @@
 
 ## 프로젝트 구조
 
+![group9](https://github.com/heo5620/trip-vibe/assets/167669944/162332e7-fa1c-4f25-b367-65e3c91b4086)
 
 <br>
 
