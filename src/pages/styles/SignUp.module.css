@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: InputFont;
   src: url('../styles/fonts/MICEGothic.ttf') format('truetype');
@@ -14,35 +15,18 @@
 }
 
 .inputField,
-.signupButton {
+.signupButton{
   font-family: InputFont;
 }
 
 .container {
-  text-align: center; /* 가로 방향 중앙 정렬 */
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 92vh;
   background-color: rgba(143, 176, 180, 0.3);
-}
-
-.heading {
-  text-align: center;
-  margin-top: 60px;
-  margin-bottom: 80px;
-  font-family: WelcomeFont;
-}
-
-.inputField {
-  width: 340px;
-  padding: 10px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  text-align: center;
-  border-radius: 35px;
 }
 
 .content {
@@ -57,26 +41,81 @@
   border-radius: 20px;
 }
 
-.genderContainer {
-  margin-top: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center; /*수직 가운데 정렬*/
-  font-family: InputFont;
+.heading {
+  text-align: center;
+  margin-top: 60px; 
+  margin-bottom: 80px;
+  font-family: WelcomeFont;
 }
 
-.radioMaleLabel {
-  margin-right: 30px; /*라디오 버튼 사이의 간격 조정*/
+.inputField {
+  width: 340px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 35px;
+}
+
+
+
+.mgContainer {
+  display: flex;
+  justify-content: 120px; 
+  align-items: flex-start;
+  
+}
+
+.mbtiContainer {
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 35px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+ font-size: 15px;
+}
+
+.genderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: InputFont;
+  font-size: 13px;
+}
+
+.genderButton {
+  background-color: #fff;
+  border-radius: 35px; 
+  padding: 12px 20px; 
+  margin-right: 120px;
+  cursor: pointer; 
+  transition: all 0.3s ease;
+}
+
+.maleButton{
+  margin-right: 10px;
+}
+
+.femaleButton{
   margin-left: 10px;
 }
 
-.radioFemaleLabel {
-  margin-right: 30px; /*라디오 버튼 사이의 간격 조정*/
+.genderButton:hover {
+  background-color: rgb(255, 255, 255); 
 }
 
-.radioInput {
-  margin-right: 10px;
-  transform: scale(1.5); /*라디오 버튼 크기 확장*/
+.selected {
+  background-color: rgb(129, 183, 201);
+  color: #fff; 
+}
+
+.mbtiContainer,
+.genderContainer {
+  width: calc(50% - 5px); 
+  margin-right: 5px; 
 }
 
 .signupButton {
@@ -94,4 +133,6 @@
 .signupButton:hover {
   background-color: rgb(129, 183, 201);
   font-weight: bold;
+  
 }
+

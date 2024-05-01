@@ -1,10 +1,11 @@
+import { ReviewStateContext, ReviewSetStateContext } from '../App';
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { ReviewStateContext, ReviewSetStateContext } from '../App';
-import styles from './styles/SignUp.module.css';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import styles from './styles/SignUp.module.css';
 import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
+import Swal from 'sweetalert2';
+
 
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
@@ -16,6 +17,9 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [gender, setGender] = useState('');
   const [mbti, setMbti] = useState('');
+  const [email, setEmail] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   //에러 관리
   const [userIdError, setUserIdError] = useState('');
@@ -23,6 +27,9 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [genderError, setGenderError] = useState('');
   const [mbtiError, setMbtiError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [birthDateError, setBirthDateError] = useState('');
+  const [phoneNumberError, setPhoneNumberError] = useState('');
   
   const navigate = useNavigate();
 
@@ -36,7 +43,10 @@ const SignUp = () => {
       validatePassword(password) &&
       validateConfirmPassword(confirmPassword) &&
       validateGender(gender) &&
-      validateMbti(mbti)
+      validateMbti(mbti) &&
+      validateEmail(email) &&
+      validateBirthDate(birthDate) &&
+      validatePhoneNumber(phoneNumber)
     ) {
       // 회원가입 성공 팝업
       Swal.fire({
@@ -60,15 +70,10 @@ const SignUp = () => {
                 pw: password,
                 gender: gender,
                 mbti: mbti,
+                email: email,
               },
             ],
           }));
-          /* console.log('data.user');
-          console.log('아이디 유효성 검사 결과:', validateUserId(userId));
-          console.log('비밀번호 유효성 검사 결과:', validatePassword(password));
-          console.log('비밀번호 확인 유효성 검사 결과:', validateConfirmPassword(confirmPassword));
-          console.log('성별 유효성 검사 결과:', validateGender());
-          console.log('MBTI 유효성 검사 결과:', validateMbti()); */
           
           // 메인 페이지로 이동
           navigate('/');
@@ -131,6 +136,52 @@ const SignUp = () => {
     return true;
   };
 
+   // 이메일 유효성 검사
+   const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    const isValid = validateEmail(e.target.value);
+    if (!isValid) {
+      setEmailError('올바른 이메일 주소를 입력해주세요.');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const validateEmail = (email) => {
+    const regex = /\S+@\S+\.\S+/;
+    return regex.test(email);
+  };
+
+  const handleBirthDateChange = (e) => {
+    setBirthDate(e.target.value);
+    validateBirthDate(e.target.value);
+  };
+
+  const validateBirthDate = (birthDate) => {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(birthDate)) {
+      setBirthDateError('생일은 YYYY-MM-DD 형식으로 입력하세요.');
+      return false;
+    }
+    setBirthDateError('');
+    return true;
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
+    validatePhoneNumber(e.target.value);
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const regex = /^\d{3}-\d{4}-\d{4}$/;
+    if (!regex.test(phoneNumber)) {
+      setPhoneNumberError('전화번호는 010-xxxx-xxxx 형식으로 입력하세요.');
+      return false;
+    }
+    setPhoneNumberError('');
+    return true;
+  };
+
   //성별 유효성 검사
   const validateGender = (gender) => {
     if (gender === '') {
@@ -187,46 +238,77 @@ const SignUp = () => {
           />
           <div>{confirmPasswordError}</div>
           <input
+          type="email"
+          placeholder="이메일을 입력하세요"
+          value={email}
+          onChange={handleEmailChange}
+          className={styles.inputField}
+          required
+          />
+          <div>{emailError}</div>
+
+          <input
+          type="text"
+          placeholder="전화번호를 입력하세요 (010-xxxx-xxxx)"
+          value={phoneNumber}
+          onChange={handlePhoneNumberChange}
+          className={styles.inputField}
+          required
+          />
+          <div>{phoneNumberError}</div>
+
+          <input
+            type="text"
+            placeholder="생년월일을 입력하세요 (YYYY-MM-DD)"
+            value={birthDate}
+            onChange={handleBirthDateChange}
+            className={styles.inputField}
+            required
+          />
+          <div>{birthDateError}</div>
+
+          <div className={styles.mgContainer}>
+          <div className={styles.mbtiContainer}>
+          <input
             type="text"
             placeholder="MBTI를 입력하세요"
             value={mbti}
             onChange={(e) => setMbti(e.target.value)}
-            className={styles.inputField}
             required
-          />
+            className={styles.mbtiContainer}
+          /></div>
           <div>{mbtiError}</div>
-          <div className={styles.genderContainer}>
-            <label className={styles.radioMaleLabel}>
-              <input
-                type="radio"
-                value="male"
-                checked={gender === 'male'}
-                onChange={(e) => setGender(e.target.value)}
-                required
-                className={styles.radioInput}
-              />
-              남성
-            </label>
-            <label className={styles.radioFemalLabel}>
-              <input
-                type="radio"
-                value="female"
-                checked={gender === 'female'}
-                onChange={(e) => setGender(e.target.value)}
-                required
-                className={styles.radioInput}
-              />
-              여성
-            </label>
-          </div>
-          <div>{genderError}</div>
 
+          <div className={styles.genderContainer}>
+            <button
+              className={`${styles.genderButton}
+              ${styles.maleButton} 
+              ${gender === 'male' ? styles.selected : ''}`}
+              onClick={() => setGender(gender === 'male' ? '' : 'male')} 
+              type="button"
+            >
+              남성
+            </button>
+            <button
+              className={`${styles.genderButton}
+              ${styles.femaleButton} 
+              ${gender === 'female' ? styles.selected : ''}`}
+              onClick={() => setGender(gender === 'female' ? '' : 'female')} 
+              type="button"
+            >
+              여성
+            </button>
+          </div>
+
+          </div> {/* mgContainer 끝 */}
+          <div>{genderError}</div>
+          
           <button
             type="submit"
             className={styles.signupButton}
             onClick={handleSignUp}
-          >
-            가입하기
+          >가입하기
+
           </button>
         </form>
       </div>

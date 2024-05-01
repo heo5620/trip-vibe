@@ -4,6 +4,9 @@
       "id": 1,
       "username": "heo5620",
       "pw": "heo5620!",
+      "email": "tnqls1035@naver.com",
+      "phone": "010-1111-2222",
+      "birth": "2001-01-05",
       "gender": "female",
       "mbti": "ISFP"
     },
@@ -11,22 +14,31 @@
       "id": 2,
       "username": "moon11",
       "pw": "moon2222!",
+      "email": "pjmoon99@gmail.com",
+      "phone": "010-2222-3333",
+      "birth": "1999-03-26",
       "gender": "male",
       "mbti": "INTJ"
     },
     {
       "id": 3,
-      "username": "jihyunjoo2023",
-      "pw": "joo@@2023",
+      "username": "jihyunjoo2024",
+      "pw": "joo2024@@",
+      "email" : "nochocolatechip@gmail.com",
+      "phone" : "010-3333-4444",
+      "birth": "1998-12-20",
       "gender": "female",
       "mbti": "ENTJ"
     },
     {
       "id": 4,
-      "username": "daaaaaahee25",
+      "username": "dahee2525",
       "pw": "dahee1234!",
+      "email" : "wondahee_25@naver.com",
+      "phone" : "010-4444-5555",
+      "birth": "1997-02-25",
       "gender": "female",
-      "mbti": "ENFP"
+      "mbti": "ISFJ"
     }
   ],
 
