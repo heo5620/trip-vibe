@@ -1,13 +1,22 @@
 import { ReviewStateContext, ReviewSetStateContext } from '../App';
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import Button from 'react-bootstrap/Button';
 import styles from './styles/Mypage.module.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { getMemberOne } from '../api/memberApi';
+import { useParams } from 'react-router-dom';
 
 const MyPage = () => {
+  const { id } = useParams();
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
+
+  useEffect(() => {
+    getMemberOne(id).then((data) => {
+      console.log(data);
+    });
+  }, [id]);
 
   // MBTI를 수정중인지 여부.
   const [editingMbti, setEditingMbti] = useState(false);

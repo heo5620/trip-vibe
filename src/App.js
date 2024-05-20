@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import { createContext, useState } from 'react';
 import MockData from './components/MockData.json';
 import Main from './pages/Main';
@@ -29,7 +29,7 @@ function App() {
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/new" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />
-            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypage/:id" element={<MyPage />} />
           </Route>
         </Routes>
       </ReviewSetStateContext.Provider>
