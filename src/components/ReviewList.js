@@ -24,7 +24,7 @@ function ReviewList({ sortedData, searchText }) {
       {chunkedData.map((group, index) => (
         <div key={index} className={styles.review_group}>
           {group.map((item) => (
-            <ReviewItem key={item.id} img={item.img} {...item} />
+            <ReviewItem key={item.id} img={item.imgName} {...item} />
           ))}
         </div>
       ))}

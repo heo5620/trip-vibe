@@ -5,14 +5,14 @@ import styles from './styles/New.module.css';
 import { saveReview } from '../api/reviewApi';
 
 const New = () => {
-  const data = useContext(ReviewStateContext);
-  const setData = useContext(ReviewSetStateContext);
+  // const data = useContext(ReviewStateContext);
+  // const setData = useContext(ReviewSetStateContext);
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [uploadedImg, setUploadedImg] = useState(null); // 업로드된 이미지 상태 추가
-  const [rating, setRating] = useState('');
+  // const [title, setTitle] = useState('');
+  // const [content, setContent] = useState('');
+  const [privewImg, setPreviewImg] = useState(null); // 업로드된 이미지 상태 추가
+  // const [rating, setRating] = useState('');
 
   const [review, setReview] = useState('');
   const [img, setImg] = useState('');
@@ -29,6 +29,15 @@ const New = () => {
   const handleImg = (e) => {
     //이미지 저장
     setImg(e.target.files[0]);
+
+    //미리보기
+    const reader = new FileReader(); //파일 읽을 수 있는 객체
+    reader.readAsDataURL(e.target.files[0]); //업로드된 파일을 읽어 url로 변경
+
+    reader.onload = () => {
+      //파일 읽기 성공했을 때
+      setPreviewImg(reader.result); //url을 privewImg에 저장
+    };
   };
 
   const handleSubmit = (e) => {
@@ -44,9 +53,7 @@ const New = () => {
         console.log(data);
 
         //폼 초기화
-        setTitle('');
-        setContent('');
-        setRating('');
+        setReview('');
         setImg(null);
       })
       .catch((error) => {
@@ -103,9 +110,15 @@ const New = () => {
             />
           </label>
           {/* 이미지 미리보기 */}
-          <div onClick={() => document.getElementById('imageUpload').click()}>
-            <img className={styles.modalimage} src={img} alt="미리보기" />
-          </div>
+          {privewImg && ( //이미지가 업로드 되었을 때만 미리보기를 보여줌
+            <div>
+              <img
+                className={styles.modalimage}
+                src={privewImg}
+                alt="미리보기"
+              />
+            </div>
+          )}
         </div>
         <input
           className={styles.titleinput}

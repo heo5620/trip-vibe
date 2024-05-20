@@ -3,14 +3,25 @@ import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReviewList from '../components/ReviewList';
 import styles from './styles/Main.module.css';
+import { getReviewList } from '../api/reviewApi';
 
 //header
 const Main = () => {
   const data = useContext(ReviewStateContext);
   const navigate = useNavigate();
+  const [review, setReveiw] = useState([]);
   const [searchText, setSearchText] = useState(''); //검색어
   const [sortType, setSortType] = useState(); //정렬
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    getReviewList()
+      .then((data) => {
+        console.log(data);
+        setReveiw(data);
+      })
+      .catch((error) => console.log(error));
+  }, [review.length]);
 
   //logo 이미지 3초마다 변경
   useEffect(() => {
@@ -39,7 +50,7 @@ const Main = () => {
 
   //리뷰 정렬해주는 함수
   const getSortedDate = () => {
-    return data.review.toSorted((a, b) => {
+    return review.sort((a, b) => {
       if (sortType === 'oldest') {
         return (
           Number(new Date(a.createdDate).getTime()) -
