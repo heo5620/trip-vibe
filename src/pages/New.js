@@ -1,24 +1,18 @@
-import { ReviewSetStateContext, ReviewStateContext } from '../App';
+import { ReviewSetStateContext } from '../App';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/New.module.css';
 import { saveReview } from '../api/reviewApi';
 
 const New = () => {
-  // const data = useContext(ReviewStateContext);
-  // const setData = useContext(ReviewSetStateContext);
+  const setData = useContext(ReviewSetStateContext);
   const navigate = useNavigate();
 
-  // const [title, setTitle] = useState('');
-  // const [content, setContent] = useState('');
-  const [privewImg, setPreviewImg] = useState(null); // 업로드된 이미지 상태 추가
-  // const [rating, setRating] = useState('');
+  const [privewImg, setPreviewImg] = useState(null);
+  const [review, setReview] = useState({ title: '', content: '', rating: '' });
+  const [img, setImg] = useState(null);
 
-  const [review, setReview] = useState('');
-  const [img, setImg] = useState('');
-
-  const handleReview = (e) => {
-    //리뷰 저장 (text)
+  const handleReview = e => {
     setReview({
       ...review,
       [e.target.name]: e.target.value,
@@ -26,67 +20,41 @@ const New = () => {
     });
   };
 
-  const handleImg = (e) => {
-    //이미지 저장
-    setImg(e.target.files[0]);
+  const handleImg = e => {
+    const file = e.target.files[0];
+    setImg(file);
 
-    //미리보기
-    const reader = new FileReader(); //파일 읽을 수 있는 객체
-    reader.readAsDataURL(e.target.files[0]); //업로드된 파일을 읽어 url로 변경
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
     reader.onload = () => {
-      //파일 읽기 성공했을 때
-      setPreviewImg(reader.result); //url을 privewImg에 저장
+      setPreviewImg(reader.result);
     };
   };
 
-  const handleSubmit = (e) => {
-    //작성 완료 버튼을 누르면
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('review', JSON.stringify(review)); //Json으로 변경해서 FormData에 추가
+    formData.append('review', JSON.stringify(review));
     formData.append('img', img);
 
-    saveReview(formData)
-      .then((data) => {
-        console.log(data);
+    try {
+      const data = await saveReview(formData);
 
-        //폼 초기화
-        setReview('');
-        setImg(null);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      // 새로운 리뷰로 컨텍스트 상태 업데이트
+      setData(prevData => ({
+        ...prevData,
+        review: [...prevData.review, data],
+      }));
 
-    // 새 리뷰 생성
-    // const newReview = {
-    //   id: data.review.length + 1,
-    //   createdDate: new Date(),
-    //   title,
-    //   content,
-    //   img: uploadedImg ? uploadedImg : img,
-    //   rating,
-    // };
-    // // 새 리뷰 추가
-    // setData((prevData) => ({
-    //   ...prevData,
-    //   review: [...prevData.review, newReview],
-    // }));
-    // 리뷰 작성 후 홈페이지로 이동
-    navigate('/');
+      setReview({ title: '', content: '', rating: '' });
+      setImg(null);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
   };
-
-  // const handleImageUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     setUploadedImg(reader.result); // 업로드된 이미지 상태 업데이트
-  //     setImg(reader.result); // 미리보기 이미지 업데이트
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
 
   const handleCancel = () => {
     navigate('/');
@@ -95,60 +63,53 @@ const New = () => {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
-        {/* 이미지 선택을 위한 input 요소 */}
         <div className={styles.imagecontainer}>
-          {' '}
-          <label htmlFor="imageUpload">
+          <label htmlFor='imageUpload'>
             +
             <input
-              type="file"
-              id="imageUpload"
-              accept="image/*"
-              name="img"
+              type='file'
+              id='imageUpload'
+              accept='image/*'
+              name='img'
               onChange={handleImg}
-              style={{ display: 'none' }} // input 요소를 숨김
+              style={{ display: 'none' }}
             />
           </label>
-          {/* 이미지 미리보기 */}
-          {privewImg && ( //이미지가 업로드 되었을 때만 미리보기를 보여줌
+          {privewImg && (
             <div>
-              <img
-                className={styles.modalimage}
-                src={privewImg}
-                alt="미리보기"
-              />
+              <img className={styles.modalimage} src={privewImg} alt='미리보기' />
             </div>
           )}
         </div>
         <input
           className={styles.titleinput}
-          type="text"
-          placeholder="제목"
-          name="title"
-          //value={title}
+          type='text'
+          placeholder='제목'
+          name='title'
+          value={review.title}
           onChange={handleReview}
         />
         <input
           className={styles.ratinginput}
-          type="text"
-          placeholder="평점"
-          name="rating"
-          //value={rating}
+          type='text'
+          placeholder='평점'
+          name='rating'
+          value={review.rating}
           onChange={handleReview}
-        />{' '}
+        />
         <div className={styles.reviewcontainer}>
           <input
             className={styles.reviewinput}
-            name="content"
-            //value={content}
-            placeholder="내용을 입력해주세요"
+            name='content'
+            value={review.content}
+            placeholder='내용을 입력해주세요'
             onChange={handleReview}
           />
           <div className={styles.reviewbuttoncontainer}>
             <button className={styles.cancelbutton} onClick={handleCancel}>
               뒤로 가기
             </button>
-            <button className={styles.completebutton} type="submit">
+            <button className={styles.completebutton} type='submit'>
               작성 완료
             </button>
           </div>
