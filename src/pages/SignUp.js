@@ -4,29 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import styles from './styles/SignUp.module.css';
 import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
 import Swal from 'sweetalert2';
+import { joinMember } from '../api/memberApi';
 
 const SignUp = () => {
   const setData = useContext(ReviewSetStateContext);
 
   //입력 받을 id,pw,gender,mbti
-  const [userId, setUserId] = useState('');
+  const [memberId, setMemberId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [gender, setGender] = useState('');
   const [mbti, setMbti] = useState('');
   const [email, setEmail] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [birth, setBirth] = useState('');
+  const [phone, setPhone] = useState('');
 
   //에러 관리
-  const [userIdError, setUserIdError] = useState('');
+  const [memberIdError, setmemberIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [genderError, setGenderError] = useState('');
   const [mbtiError, setMbtiError] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [birthDateError, setBirthDateError] = useState('');
-  const [phoneNumberError, setPhoneNumberError] = useState('');
+  const [birthError, setBirthError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
 
   const navigate = useNavigate();
 
@@ -36,14 +37,14 @@ const SignUp = () => {
 
     // 입력값의 유효성 검사
     if (
-      validateUserId(userId) &&
+      validateMemberId(memberId) &&
       validatePassword(password) &&
       validateConfirmPassword(confirmPassword) &&
       validateGender(gender) &&
       validateMbti(mbti) &&
       validateEmail(email) &&
-      validateBirthDate(birthDate) &&
-      validatePhoneNumber(phoneNumber)
+      validateBirth(birth) &&
+      validatePhone(phone)
     ) {
       // 회원가입 성공 팝업
       Swal.fire({
@@ -56,21 +57,19 @@ const SignUp = () => {
       }).then((res) => {
         // 확인 버튼을 클릭했을 때 조건이 맞으면 메인 페이지로 이동
         if (res.isConfirmed) {
-          // 기존 정보에 새 데이터를 추가
-          setData((data) => ({
-            ...data,
-            user: [
-              ...data.user,
-              {
-                id: data.user.length + 1,
-                username: userId,
-                pw: password,
-                gender: gender,
-                mbti: mbti,
-                email: email,
-              },
-            ],
-          }));
+          const member = {
+            memberId: memberId,
+            pw: password,
+            email: email,
+            phone: phone,
+            gender: gender,
+            birth: birth,
+            mbti: mbti,
+          };
+
+          joinMember(member).catch((error) => {
+            console.log(error);
+          });
 
           // 메인 페이지로 이동
           navigate('/');
@@ -82,21 +81,21 @@ const SignUp = () => {
   };
 
   //아이디 유효성 검사
-  const handleUserIdChange = (e) => {
-    setUserId(e.target.value);
-    const isValid = validateUserId(e.target.value);
+  const handleMemberIdChange = (e) => {
+    setMemberId(e.target.value);
+    const isValid = validateMemberId(e.target.value);
     if (!isValid) {
-      setUserIdError(
+      setmemberIdError(
         '아이디는 영소문자와 숫자를 포함하여 4~12자로만 입력해주세요.'
       );
     } else {
-      setUserIdError('');
+      setmemberIdError('');
     }
   };
 
-  const validateUserId = (userId) => {
+  const validateMemberId = (memberId) => {
     const regex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{4,12}$/;
-    return regex.test(userId);
+    return regex.test(memberId);
   };
 
   //비밀번호 유효성 검사
@@ -148,33 +147,33 @@ const SignUp = () => {
     return regex.test(email);
   };
 
-  const handleBirthDateChange = (e) => {
-    setBirthDate(e.target.value);
-    validateBirthDate(e.target.value);
+  const handleBirthChange = (e) => {
+    setBirth(e.target.value);
+    validateBirth(e.target.value);
   };
 
-  const validateBirthDate = (birthDate) => {
+  const validateBirth = (birth) => {
     const regex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!regex.test(birthDate)) {
-      setBirthDateError('생일은 YYYY-MM-DD 형식으로 입력하세요.');
+    if (!regex.test(birth)) {
+      setBirthError('생일은 YYYY-MM-DD 형식으로 입력하세요.');
       return false;
     }
-    setBirthDateError('');
+    setBirthError('');
     return true;
   };
 
-  const handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
-    validatePhoneNumber(e.target.value);
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+    validatePhone(e.target.value);
   };
 
-  const validatePhoneNumber = (phoneNumber) => {
+  const validatePhone = (phone) => {
     const regex = /^\d{3}-\d{4}-\d{4}$/;
-    if (!regex.test(phoneNumber)) {
-      setPhoneNumberError('전화번호는 010-xxxx-xxxx 형식으로 입력하세요.');
+    if (!regex.test(phone)) {
+      setPhoneError('전화번호는 010-xxxx-xxxx 형식으로 입력하세요.');
       return false;
     }
-    setPhoneNumberError('');
+    setPhoneError('');
     return true;
   };
 
@@ -207,15 +206,17 @@ const SignUp = () => {
           <input
             type="text"
             placeholder="아이디를 입력하세요"
-            value={userId}
-            onChange={handleUserIdChange}
+            value={memberId}
+            name="id"
+            onChange={handleMemberIdChange}
             className={styles.inputField}
             required
           />
-          <div>{userIdError}</div>
+          <div>{memberIdError}</div>
           <input
             type="password"
             placeholder="비밀번호를 입력하세요"
+            name="pw"
             value={password}
             onChange={handlePasswordChange}
             className={styles.inputField}
@@ -234,6 +235,7 @@ const SignUp = () => {
           <input
             type="email"
             placeholder="이메일을 입력하세요"
+            name="email"
             value={email}
             onChange={handleEmailChange}
             className={styles.inputField}
@@ -243,26 +245,29 @@ const SignUp = () => {
           <input
             type="text"
             placeholder="전화번호를 입력하세요 (010-xxxx-xxxx)"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            name="phone"
+            value={phone}
+            onChange={handlePhoneChange}
             className={styles.inputField}
             required
           />
-          <div>{phoneNumberError}</div>
+          <div>{phoneError}</div>
           <input
             type="text"
             placeholder="생년월일을 입력하세요 (YYYY-MM-DD)"
-            value={birthDate}
-            onChange={handleBirthDateChange}
+            name="birth"
+            value={birth}
+            onChange={handleBirthChange}
             className={styles.inputField}
             required
           />
-          <div>{birthDateError}</div>
+          <div>{birthError}</div>
           <div className={styles.mgContainer}>
             <div className={styles.mbtiContainer}>
               <input
                 type="text"
                 placeholder="MBTI를 입력하세요"
+                name="mbti"
                 value={mbti}
                 onChange={(e) => setMbti(e.target.value)}
                 required

@@ -14,44 +14,49 @@ const Main = () => {
   const [sortType, setSortType] = useState(); //정렬
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    getReviewList()
-      .then(data => {
-        console.log(data);
-        setReview(data);
-      })
-      .catch(error => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   navigate('/');
+  // }, []);
 
   //logo 이미지 3초마다 변경
   useEffect(() => {
     console.log(data);
-    const images = ['/resources/images/logo1.jpg', '/resources/images/logo2.jpg', '/resources/images/logo3.jpg'];
+    const images = [
+      '/resources/images/logo1.jpg',
+      '/resources/images/logo2.jpg',
+      '/resources/images/logo3.jpg',
+    ];
     const interval = setInterval(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 3000);
 
     return () => clearInterval(interval);
   }, []); //빈 배열을 전달해서 컴포넌트가 첫 렌더링 될 때만 useEffect 실행
 
   //검색어 저장
-  const handleSearchInputChange = e => {
+  const handleSearchInputChange = (e) => {
     setSearchText(e.target.value);
   };
 
   //정렬값 저장
-  const onChangeSortType = e => {
+  const onChangeSortType = (e) => {
     setSortType(e.target.value);
   };
 
   //리뷰 정렬해주는 함수
   const getSortedDate = () => {
-    return review.sort((a, b) => {
+    return data.sort((a, b) => {
       if (sortType === 'oldest') {
-        return Number(new Date(a.createdDate).getTime()) - Number(new Date(b.createdDate).getTime()); //오름차순(오래된 날짜부터)
+        return (
+          Number(new Date(a.createdDate).getTime()) -
+          Number(new Date(b.createdDate).getTime())
+        ); //오름차순(오래된 날짜부터)
       } else {
         //내림차순
-        return Number(new Date(b.createdDate).getTime()) - Number(new Date(a.createdDate).getTime());
+        return (
+          Number(new Date(b.createdDate).getTime()) -
+          Number(new Date(a.createdDate).getTime())
+        );
       }
     });
   };
@@ -69,15 +74,17 @@ const Main = () => {
       <section
         className={styles.imageSection}
         style={{
-          backgroundImage: `url(/resources/images/logo${currentImageIndex + 1}.jpg)`,
+          backgroundImage: `url(/resources/images/logo${
+            currentImageIndex + 1
+          }.jpg)`,
         }}
       ></section>
 
       <section className={styles.searchContainer}>
         <input
-          type='text'
+          type="text"
           className={styles.searchInput}
-          placeholder='   어떤 여행을 찾아볼까요?'
+          placeholder="   어떤 여행을 찾아볼까요?"
           value={searchText}
           onChange={handleSearchInputChange}
         />

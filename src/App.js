@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route, useParams } from 'react-router-dom';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import MockData from './components/MockData.json';
 import Main from './pages/Main';
 import New from './pages/New';
@@ -10,12 +10,22 @@ import Layout from './components/Layout';
 import MyPage from './pages/MyPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import { getReviewList } from './api/reviewApi';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
 
 function App() {
   const [data, setData] = useState(MockData);
+
+  useEffect(() => {
+    getReviewList()
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   //레이아웃을 최상단으로 빼고 나머지 페이지를 밑으로 변경
   return (
