@@ -10,7 +10,7 @@ import Layout from './components/Layout';
 import MyPage from './pages/MyPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import { getReviewList } from './api/reviewApi';
+import EditMyPage from './pages/EditMyPage';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
@@ -40,6 +40,7 @@ function App() {
             <Route path="/new" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/mypage/:id" element={<MyPage />} />
+            <Route path="/editmypage" element={<EditMyPage />} />
           </Route>
         </Routes>
       </ReviewSetStateContext.Provider>

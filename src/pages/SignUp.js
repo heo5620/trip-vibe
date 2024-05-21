@@ -202,7 +202,7 @@ const SignUp = () => {
       <SignLogo className={styles.signlogo} />
       <div className={styles.content}>
         <h1 className={styles.heading}>Let's Start!</h1>
-        <form>
+        <form> 
           <input
             type="text"
             placeholder="아이디를 입력하세요"
