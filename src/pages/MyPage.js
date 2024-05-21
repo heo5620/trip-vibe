@@ -21,20 +21,41 @@ const MyPage = () => {
   return (
     <>
       <div className={styles.container}>
+      <h1 className={styles.headerText}>My Page</h1>
         <div className={styles.picture}>
           <img
             className={styles.profile}
-            src={profileImage || '/resources/images/unnamed.jpg'} // profileImage가 null이면 기본이미지가 나옴
+            src={profileImage || '/resources/images/unnamed.jpg'} 
+            // profileImage가 null이면 기본이미지가 나옴
             alt="프로필 사진"
           />
         </div>
-        <div>{memberInfo.memberId}</div>
-        <div>{memberInfo.email}</div>
-        <div>{memberInfo.phone}</div>
-        <div>{memberInfo.gender}</div>
-        <div>{memberInfo.mbti}</div>
-        <button>내 정보 수정</button>
-        <button>내 글 보기</button>
+        <div style={{
+          fontWeight: 'bold',
+          fontSize: '24px',
+          textAlign: 'center',
+          marginBottom: '12px'
+        }}>
+          ✨{memberInfo.memberId}
+        </div>
+
+        <div className={styles.infoText}>
+          {memberInfo.email} <br></br>
+          {memberInfo.gender} <br></br>
+          {memberInfo.mbti}
+          </div>
+        
+        
+        
+        <button className={styles.editButton} onClick={handlePage}>
+          내 정보 수정
+        </button>
+        <button className={styles.editButton}>내 글 목록</button>
+        
+
+        
+
+        
       </div>
     </>
   );

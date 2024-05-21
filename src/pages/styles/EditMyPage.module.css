@@ -26,6 +26,7 @@
 
 }
 
+
 .picture {
   margin-bottom: 20px;
   width: 190px;
@@ -74,32 +75,31 @@
   opacity: 1; /* 프로필사진 위에 마우스 올리면 수정 글씨가 나옴 */
 }
 
-.info {
+.inputField {
+  width: 340px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
   text-align: center;
-  margin-bottom: 20px;
-  font-family: TextFont;
-  color: #333;
-  display: flex;
-  justify-content: center;
+  border-radius: 35px;
 }
 
 .editButton {
   display: block;
   margin-left: 10px;
   margin: 10px auto 0;
-  margin-top: 6px;
-  background-color: transparent;
+  margin-top: 20px;
+  background-color: rgb(129, 183, 201);
   border: none;
   border-radius: 35px;
-  width: 230px;
+  width: 340px;
   height: 50px;
-  color: rgb(0, 0, 0);
+  
 }
 
 .editButton:hover {
   background-color: rgb(129, 183, 201);
   font-weight: bold;
 }
-
-
 

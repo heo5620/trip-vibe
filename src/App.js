@@ -11,6 +11,7 @@ import MyPage from './pages/MyPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import EditMyPage from './pages/EditMyPage';
+import { getReviewList } from './api/reviewApi';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
@@ -40,7 +41,7 @@ function App() {
             <Route path="/new" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/mypage/:id" element={<MyPage />} />
-            <Route path="/editmypage" element={<EditMyPage />} />
+            <Route path="/mypage/edit/:id" element={<EditMyPage />} />
           </Route>
         </Routes>
       </ReviewSetStateContext.Provider>
