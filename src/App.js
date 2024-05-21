@@ -16,7 +16,7 @@ export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
 
 function App() {
-  const [data, setData] = useState(MockData);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     getReviewList()

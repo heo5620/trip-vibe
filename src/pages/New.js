@@ -50,6 +50,7 @@ const New = () => {
     //   console.log(error);
     // }
     saveReview(formData).catch((error) => console.log(error));
+    nav('/');
   };
 
   const handleCancel = () => {
