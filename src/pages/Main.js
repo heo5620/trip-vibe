@@ -13,15 +13,23 @@ const Main = () => {
   const [searchText, setSearchText] = useState(''); //검색어
   const [sortType, setSortType] = useState(); //정렬
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {
-    getReviewList()
-      .then((data) => {
-        console.log(data);
-        setReview(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   getReviewList()
+  //     .then((data) => {
+  //       console.log(data);
+  //       setReview(data);
+  //     })
+  //     .catch((error) => console.log(error));
+
+  //   if (sessionStorage.getItem('memberId') === null) {
+  //     console.log('isLogin ?? :: ', isLogin);
+  //   } else {
+  //     setIsLogin(true);
+  //     console.log('isLogin ?? :: ', isLogin);
+  //   }
+  // }, []);
 
   //logo 이미지 3초마다 변경
   useEffect(() => {

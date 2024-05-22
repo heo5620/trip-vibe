@@ -62,7 +62,7 @@ const New = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.imagecontainer}>
           <label htmlFor="imageUpload">
-            
+            +
             <input
               type="file"
               id="imageUpload"

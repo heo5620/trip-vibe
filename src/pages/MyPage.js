@@ -17,10 +17,7 @@ const MyPage = () => {
   }, [id]);
 
   const handlePage = (e) => {
-    e.preventDefault(); // 기본 동작 중단
-
     navigate(`/mypage/edit/${id}`);
-    // :id 입력해야 됨
   };
 
   //사용자 프로필 이미지

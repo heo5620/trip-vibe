@@ -14,3 +14,11 @@ export const joinMember = async (member) => {
   );
   return response.data; //없음
 };
+
+export const signIn = async (memberId, pw) => {
+  const response = await axios.post(`${API_SERVER_HOST}/tripvibe/signin`, {
+    memberId,
+    pw,
+  });
+  return response.data;
+};
