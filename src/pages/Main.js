@@ -14,9 +14,14 @@ const Main = () => {
   const [sortType, setSortType] = useState(); //정렬
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // useEffect(() => {
-  //   navigate('/');
-  // }, []);
+  useEffect(() => {
+    getReviewList()
+      .then((data) => {
+        console.log(data);
+        setReview(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   //logo 이미지 3초마다 변경
   useEffect(() => {

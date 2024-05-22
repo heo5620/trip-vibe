@@ -14,20 +14,33 @@ const Detail = () => {
   const handleDelete = async () => {
     // const updateData = data.review.filter((item) => item.id !== parseInt(id));
     // setData({ ...data, review: updateData });
-    deleteReview(id).catch((error) => {
-      console.log(error);
-    });
+    deleteReview(id)
+      .then((data) => {
+        console.log('삭제된 데이터 : ' + data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     nav('/');
   };
 
   useEffect(() => {
     //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-    const updateReview = data.find((item) => item.id === parseInt(id));
-    //id에 해당하는 리뷰가 있으면, review에 저장.
-    if (updateReview) {
-      setReview(updateReview);
-    }
-  }, [review, id]); //data.review와 params.id가 변경될 때마다 useEffect
+    // const updateReview = data.review.find((item) => item.id === parseInt(id));
+    // //id에 해당하는 리뷰가 있으면, review에 저장.
+    // if (updateReview) {
+    //   setReview(updateReview);
+    // }
+
+    getReviewOne(id)
+      .then((data) => {
+        console.log(data);
+        setReview(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []); //data.review와 params.id가 변경될 때마다 useEffect
 
   if (!review) {
     return <div>Loading...</div>; // review가 null인 경우 로딩 중을 나타내거나 아무것도 표시하지 않음

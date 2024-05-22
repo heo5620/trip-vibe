@@ -19,50 +19,48 @@ const MyPage = () => {
   const handlePage = (e) => {
     e.preventDefault(); // 기본 동작 중단
 
-    navigate('/mypage/edit/');
+    navigate(`/mypage/edit/${id}`);
     // :id 입력해야 됨
-
-  }
+  };
 
   //사용자 프로필 이미지
   const [profileImage, setProfileImage] = useState(null);
 
   return (
     <>
-     <form onSubmit={handlePage}>
-      <div className={styles.container}>
-      <h1 className={styles.headerText}>My Page</h1>
-        <div className={styles.picture}>
-          <img
-            className={styles.profile}
-            src={profileImage || '/resources/images/unnamed.jpg'} 
-            // profileImage가 null이면 기본이미지가 나옴
-            alt="프로필 사진"
-          />
-        </div>
-        <div style={{
-          fontWeight: 'bold',
-          fontSize: '24px',
-          textAlign: 'center',
-          marginBottom: '12px'
-        }}>
-          ✨{memberInfo.memberId}
-        </div>
-
-        <div className={styles.infoText}>
-          {memberInfo.email} <br></br>
-          {memberInfo.gender} <br></br>
-          {memberInfo.mbti}
+      <form onSubmit={handlePage}>
+        <div className={styles.container}>
+          <h1 className={styles.headerText}>My Page</h1>
+          <div className={styles.picture}>
+            <img
+              className={styles.profile}
+              src={profileImage || '/resources/images/unnamed.jpg'}
+              // profileImage가 null이면 기본이미지가 나옴
+              alt="프로필 사진"
+            />
           </div>
-        
-        
-        
-        <button className={styles.editButton} onClick={handlePage}>
-          내 정보 수정
-        </button>
-        <button className={styles.editButton}>내 글 목록</button>
-        
-      </div>
+          <div
+            style={{
+              fontWeight: 'bold',
+              fontSize: '24px',
+              textAlign: 'center',
+              marginBottom: '12px',
+            }}
+          >
+            ✨{memberInfo.memberId}
+          </div>
+
+          <div className={styles.infoText}>
+            {memberInfo.email} <br></br>
+            {memberInfo.gender} <br></br>
+            {memberInfo.mbti}
+          </div>
+
+          <button className={styles.editButton} onClick={handlePage}>
+            내 정보 수정
+          </button>
+          <button className={styles.editButton}>내 글 목록</button>
+        </div>
       </form>
     </>
   );

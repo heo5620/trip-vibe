@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Header from '../components/Header';
 
 const API_SERVER_HOST = 'http://localhost:8080';
 
@@ -25,6 +26,16 @@ export const getReviewOne = async (id) => {
   return response.data;
 };
 
+//리뷰 수정
+export const updateReview = async (id, formData) => {
+  const response = await axios.put(
+    `${API_SERVER_HOST}/tripvibe/review/detail/${id}`,
+    formData
+  );
+  return response.data;
+};
+
+//리뷰 삭제
 export const deleteReview = async (id) => {
   const response = await axios.delete(
     `${API_SERVER_HOST}/tripvibe/review/${id}`,
@@ -32,3 +43,9 @@ export const deleteReview = async (id) => {
   );
   return response.data;
 };
+
+//  {
+//   headers: {
+//     'Content-Type': 'multipart/form-data',
+//   },
+// }

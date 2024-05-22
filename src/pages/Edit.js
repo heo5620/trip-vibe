@@ -1,57 +1,90 @@
 import { ReviewSetStateContext, ReviewStateContext } from '../App';
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './styles/Edit.module.css';
+import { getReviewOne, updateReview } from '../api/reviewApi';
 
 const Edit = () => {
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  //기존 데이터를 불러옴.
-  const oldReview = data.review.find((item) => item.id === parseInt(params.id));
-
-  const [title, setTitle] = useState(oldReview.title);
-  const [rating, setRating] = useState(oldReview.rating);
-  const [newImg, setNewImg] = useState(`/${oldReview.img}`); //기존 이미지로 초기화
-  const [content, setcontent] = useState(oldReview.content);
+  const [title, setTitle] = useState();
+  const [rating, setRating] = useState();
+  const [imgName, setImgName] = useState(); //기존 이미지로 초기화
+  const [content, setContent] = useState();
   const [hovering, setHovering] = useState(false);
+  const [newImg, setNewImg] = useState(null);
+  const [previewImg, setPreviewImg] = useState(null);
   const fileInputRef = useRef(null);
+
+  //기존 데이터 불러오기
+  useEffect(() => {
+    getReviewOne(id)
+      .then((data) => {
+        console.log(data);
+        setTitle(data.title);
+        setContent(data.content);
+        setRating(data.rating);
+        setImgName(data.imgName);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleContent = (e) => {
+    setContent(e.target.value);
+  };
+  const handleRating = (e) => {
+    setRating(e.target.value);
+  };
+
+  //새 이미지 저장
+  const handleImg = (e) => {
+    const file = e.target.files[0];
+    setNewImg(file);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file); //파일 데이터를 url로 바꿔서 저장
+
+    reader.onload = () => {
+      //파일을 성공적으로 읽어오면
+      setPreviewImg(reader.result); //preview에 저장
+    };
+  };
 
   //수정 완료 버튼 누를 때
   const handleUpdate = () => {
-    //params.id === itme.id 리뷰 데이터를 새로운 리뷰데이터로 변경 후, 나머지는 그대로 newReview에 담기.
-    const newReview = data.review.map((item) => {
-      if (item.id === parseInt(params.id)) {
-        return {
-          ...item,
-          title: title,
-          rating: rating,
-          img: newImg,
-          content: content,
-        };
-      } else {
-        return item;
-      }
-    });
-    setData({ ...data, review: newReview }); //기존의 데이터 유지. 리뷰 데이터만 변경.
-    console.log(data.review); //변경된 데이터 확인용 (지우지 마세요!)
-    navigate(`/detail/${params.id}`); //완료 후, 상세 페이지로 이동.
+    const newReview = {
+      //새 리뷰 데이터
+      title: title,
+      content: content,
+      rating: rating,
+      createdDate: new Date(),
+    };
+
+    console.log(newReview);
+
+    const formData = new FormData(); //리뷰를 담을 폼
+    formData.append('review', JSON.stringify(newReview));
+    if (newImg) {
+      formData.append('img', newImg);
+    }
+
+    updateReview(id, formData) //아이디와 폼 보내기
+      .catch((error) => {
+        console.log(error);
+      });
+    navigate(`/detail/${id}`); //완료 후, 상세 페이지로 이동.
   };
 
   const handleCancel = () => {
     navigate(-1);
-  };
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setNewImg(reader.result); //파일 읽기 작업이 완료되면 업로드한 이미지를 newImg에 넣기.
-    };
-    reader.readAsDataURL(file);
   };
 
   return (
@@ -60,10 +93,11 @@ const Edit = () => {
         <input
           type="file"
           id="imageUpload"
+          name="img"
           style={{ display: 'none' }}
           ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
           accept="image/*"
-          onChange={handleImageUpload}
+          onChange={handleImg}
         />
         <div
           className={styles.edit_img_wrapper}
@@ -72,7 +106,7 @@ const Edit = () => {
         >
           <img
             className={styles.edit_image}
-            src={newImg}
+            src={previewImg || 'http://localhost:8080/image/' + imgName} //prview가 있다면 보여주기.
             alt="이미지"
             onClick={() => fileInputRef.current.click()}
             width="400"
@@ -93,21 +127,24 @@ const Edit = () => {
         <input
           type="text"
           className={styles.edit_title}
+          name="title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleTitle}
         ></input>
         <input
           type="text"
           className={styles.edit_rating}
+          content="rating"
           value={rating}
-          onChange={(e) => setRating(e.target.value)}
+          onChange={handleRating}
         ></input>
       </div>
       <div className={styles.edit_review_container}>
         <textarea
           className={styles.edit_text}
+          name="content"
           value={content}
-          onChange={(e) => setcontent(e.target.value)}
+          onChange={handleContent}
         ></textarea>
       </div>
 
