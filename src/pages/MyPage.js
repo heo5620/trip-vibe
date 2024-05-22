@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import styles from './styles/Mypage.module.css';
+import { useNavigate } from 'react-router-dom';
 import { getMemberOne } from '../api/memberApi';
 import { useParams } from 'react-router-dom';
+import styles from './styles/Mypage.module.css';
 
 const MyPage = () => {
   const { id } = useParams();
   const [memberInfo, setMemberInfo] = useState([]);
-
+  const navigate = useNavigate();
   //회원 1명 조회
   useEffect(() => {
     getMemberOne(id).then((data) => {
@@ -15,11 +16,20 @@ const MyPage = () => {
     });
   }, [id]);
 
+  const handlePage = (e) => {
+    e.preventDefault(); // 기본 동작 중단
+
+    navigate('/mypage/edit/');
+    // :id 입력해야 됨
+
+  }
+
   //사용자 프로필 이미지
   const [profileImage, setProfileImage] = useState(null);
 
   return (
     <>
+     <form onSubmit={handlePage}>
       <div className={styles.container}>
       <h1 className={styles.headerText}>My Page</h1>
         <div className={styles.picture}>
@@ -52,11 +62,8 @@ const MyPage = () => {
         </button>
         <button className={styles.editButton}>내 글 목록</button>
         
-
-        
-
-        
       </div>
+      </form>
     </>
   );
 };

@@ -28,7 +28,7 @@ const New = () => {
     reader.readAsDataURL(file); //file을 읽어서 url로 변경
 
     reader.onload = () => {
-      //파일을 성공적으로 읽으 경우
+      //파일을 성공적으로 읽은 경우
       setPreviewImg(reader.result); //미리보기 이미지 변경
     };
   };
@@ -62,7 +62,7 @@ const New = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.imagecontainer}>
           <label htmlFor="imageUpload">
-            +
+            
             <input
               type="file"
               id="imageUpload"
