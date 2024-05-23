@@ -190,33 +190,43 @@ const SignUp = () => {
   //mbti 유효성 검사
   const validateMbti = (mbti) => {
     const mbtiTypes = [
-        'ENFP', 'ENFJ', 'ENTP', 'ENTJ',
-        'ESFP', 'ESFJ', 'ESTP', 'ESTJ',
-        'INFP', 'INFJ', 'INTP', 'INTJ',
-        'ISFP', 'ISFJ', 'ISTP', 'ISTJ',
+      'ENFP',
+      'ENFJ',
+      'ENTP',
+      'ENTJ',
+      'ESFP',
+      'ESFJ',
+      'ESTP',
+      'ESTJ',
+      'INFP',
+      'INFJ',
+      'INTP',
+      'INTJ',
+      'ISFP',
+      'ISFJ',
+      'ISTP',
+      'ISTJ',
     ];
 
     if (mbti === '') {
-        setMbtiError('MBTI를 입력해주세요.');
-        return false;
+      setMbtiError('MBTI를 입력해주세요.');
+      return false;
     }
 
     if (mbti.length !== 4 || !mbtiTypes.includes(mbti.toUpperCase())) {
-        setMbtiError('유효한 MBTI를 입력해주세요.');
-        return false;
+      setMbtiError('유효한 MBTI를 입력해주세요.');
+      return false;
     }
 
     setMbtiError('');
     return true;
   };
 
-
-  
-
   return (
     <div className={styles.container}>
       <SignLogo className={styles.signlogo} />
       <div className={styles.content}>
+        <h1 className={styles.heading}>Let's Start!</h1>
         <h1 className={styles.BodyTopText}>Let's Start!</h1>
         <form>
           <input
