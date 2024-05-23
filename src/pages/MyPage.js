@@ -8,15 +8,20 @@ const MyPage = () => {
   const { id } = useParams();
   const [memberInfo, setMemberInfo] = useState([]);
   const navigate = useNavigate();
+  
   //회원 1명 조회
   useEffect(() => {
     getMemberOne(id).then((data) => {
-      setMemberInfo(data);
+      setMemberInfo(data); 
       console.log(data);
     });
   }, [id]);
 
   const handlePage = (e) => {
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
     navigate(`/mypage/edit/${id}`);
   };
 
@@ -24,11 +29,12 @@ const MyPage = () => {
   const [profileImage, setProfileImage] = useState(null);
 
   return (
-    <>
+
       <form onSubmit={handlePage}>
-        <div className={styles.container}>
-          <h1 className={styles.headerText}>My Page</h1>
-          <div className={styles.picture}>
+        <div className={styles.myContainer}>
+         <div className={styles.myContent}>
+          <h1 className={styles.BodyTopText}>My Page</h1>
+          <div className={styles.myPicture}>
             <img
               className={styles.profile}
               src={profileImage || '/resources/images/unnamed.jpg'}
@@ -47,19 +53,28 @@ const MyPage = () => {
             ✨{memberInfo.memberId}
           </div>
 
-          <div className={styles.infoText}>
-            {memberInfo.email} <br></br>
-            {memberInfo.gender} <br></br>
-            {memberInfo.mbti}
-          </div>
+          <table className={styles.infoTable}>
+          <tr>
+            <td> Email</td>
+            <td>{memberInfo.email}</td>
+          </tr>
+          <tr>
+            <td> Gender</td>
+            <td>{memberInfo.gender}</td>
+          </tr>
+          <tr>
+            <td> Mbti</td>
+            <td>{memberInfo.mbti}</td>
+          </tr>
+          </table>
 
           <button className={styles.editButton} onClick={handlePage}>
             내 정보 수정
           </button>
-          <button className={styles.editButton}>내 글 목록</button>
+          <button className={styles.reviewButton}>내 글 목록</button>
+        </div>
         </div>
       </form>
-    </>
   );
 };
 

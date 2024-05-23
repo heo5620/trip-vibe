@@ -69,7 +69,7 @@ const SignIn = () => {
     <div className={styles.container}>
       <SignLogo className={styles.signlogo} />
       <div className={styles.content}>
-        <h1 className={styles.heading}>Welcome!</h1>
+        <h1 className={styles.BodyTopText}>Welcome!</h1>
         <form onSubmit={handleSignIn}>
           <input
             type="text"

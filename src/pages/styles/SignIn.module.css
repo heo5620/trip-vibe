@@ -18,7 +18,7 @@
   background-color: rgba(143, 176, 180, 0.3);
 }
 
-.heading {
+.BodyTopText {
   text-align: center;
   margin-top: 60px;
   margin-bottom: 80px;
@@ -69,14 +69,6 @@
   border-radius: 50%;
 }
 
-/* .buttonContainer {
-  text-align: center;
-  margin-top: 50px;
-
-  margin: 0 auto;
-
-  width: 270px;
-} */
 
 .signinButton {
   display: block;
