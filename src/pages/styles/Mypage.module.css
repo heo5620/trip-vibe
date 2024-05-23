@@ -28,9 +28,9 @@
   border-radius: 20px;
 }
 
-.BodyTopText{
+.BodyTopText {
   text-align: center;
-  margin-top: 60px; 
+  margin-top: 60px;
   margin-bottom: 80px;
   font-family: WelcomeFont;
 }
@@ -63,7 +63,6 @@
   object-fit: cover; /* 이미지 받아서 비율 유지 */
   transition: filter 0.3s ease; /* 필터 속성에 대한 전환 효과 설정 */
 }
-
 
 .editText {
   position: absolute;
@@ -108,7 +107,7 @@
 }
 
 .infoTable tr td:nth-child(even) {
-  text-align: center;  
+  text-align: center;
 }
 
 .editButton {
@@ -123,7 +122,7 @@
   height: 50px;
 }
 
-.reviewButton{
+.reviewButton {
   display: block;
   margin-left: 10px;
   margin: 10px auto 0;
@@ -144,4 +143,3 @@
   background-color: rgb(129, 183, 201);
   font-weight: bold;
 }
-

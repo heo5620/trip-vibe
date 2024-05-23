@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -12,19 +11,20 @@ const MyPage = () => {
 
   // 회원 정보 조회 및 세션 확인
   useEffect(() => {
-    getMemberFromSession().then((data) => {
-      setMemberInfo(data);
-      console.log(data);
-    }).catch((error) => {
-      navigate('/signin'); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
-    });
+    getMemberFromSession()
+      .then((data) => {
+        setMemberInfo(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        navigate('/signin'); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+      });
   }, [navigate]);
 
   const handlePage = (e) => {
     e.preventDefault();
     navigate(`/mypage/edit/${memberInfo.id}`);
   };
-
 
   // const handlePage = (e) => {
 
@@ -35,15 +35,17 @@ const MyPage = () => {
   const [profileImage, setProfileImage] = useState(null);
 
   return (
-
-      <form onSubmit={handlePage}>
-        <div className={styles.myContainer}>
-         <div className={styles.myContent}>
+    <form onSubmit={handlePage}>
+      <div className={styles.myContainer}>
+        <div className={styles.myContent}>
           <h1 className={styles.BodyTopText}>My Page</h1>
           <div className={styles.myPicture}>
             <img
               className={styles.profile}
-              src={profileImage || '/resources/images/unnamed.jpg'}
+              src={
+                'http://localhost:8080/image/' + memberInfo.imgName ||
+                '/resources/images/unnamed.jpg'
+              }
               // profileImage가 null이면 기본이미지가 나옴
               alt="프로필 사진"
             />
@@ -60,18 +62,18 @@ const MyPage = () => {
           </div>
 
           <table className={styles.infoTable}>
-          <tr>
-            <td> Email</td>
-            <td>{memberInfo.email}</td>
-          </tr>
-          <tr>
-            <td> Gender</td>
-            <td>{memberInfo.gender}</td>
-          </tr>
-          <tr>
-            <td> Mbti</td>
-            <td>{memberInfo.mbti}</td>
-          </tr>
+            <tr>
+              <td> Email</td>
+              <td>{memberInfo.email}</td>
+            </tr>
+            <tr>
+              <td> Gender</td>
+              <td>{memberInfo.gender}</td>
+            </tr>
+            <tr>
+              <td> Mbti</td>
+              <td>{memberInfo.mbti}</td>
+            </tr>
           </table>
 
           <button className={styles.editButton} onClick={handlePage}>
@@ -79,8 +81,8 @@ const MyPage = () => {
           </button>
           <button className={styles.reviewButton}>내 글 목록</button>
         </div>
-        </div>
-      </form>
+      </div>
+    </form>
   );
 };
 
