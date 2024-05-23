@@ -1,8 +1,9 @@
 import { ReviewSetStateContext } from '../App';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/New.module.css';
 import { saveReview } from '../api/reviewApi';
+import { checkLoginStatus } from '../api/memberApi';
 
 const New = () => {
   const setData = useContext(ReviewSetStateContext);
@@ -11,6 +12,22 @@ const New = () => {
   const [privewImg, setPreviewImg] = useState(null);
   const [review, setReview] = useState({ title: '', content: '', rating: '' });
   const [img, setImg] = useState(null);
+  const [currentMember, setCurrentMember] = useState();
+
+  useEffect(() => {
+    checkLoginStatus()
+      .then((data) => {
+        if (data.status === 'success') {
+          console.log('로그인 상태:', data.memberInfo);
+          setCurrentMember(data.memberInfo);
+        } else {
+          console.log('로그인 상태 아님');
+        }
+      })
+      .catch((error) => {
+        console.error('세션 상태 확인 중 오류 발생:', error);
+      });
+  }, []);
 
   const handleReview = e => {
     setReview({

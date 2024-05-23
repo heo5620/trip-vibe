@@ -8,8 +8,7 @@
   src: url('../styles/fonts/Jalnan2TTF.ttf') format('truetype');
 }
 
-.container {
-  text-align: center; /* 가로 방향 중앙 정렬 */
+.myContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,18 +17,29 @@
   background-color: rgba(143, 176, 180, 0.3);
 }
 
-.headerText{
+.myContent {
+  justify-content: center;
+  margin-top: 40px;
+  width: 700px;
+  height: 860px;
+  padding: 30px;
+  box-shadow: rgb(88, 167, 150, 0.6) 0px 0px 29px 0px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.BodyTopText{
   text-align: center;
   margin-top: 60px; 
   margin-bottom: 80px;
   font-family: WelcomeFont;
-
 }
 
-.picture {
-  margin-bottom: 20px;
-  width: 190px;
-  height: 190px;
+.myPicture {
+  margin: auto;
+  margin-bottom: 40px;
+  width: 150px;
+  height: 150px;
   overflow: hidden;
   border-radius: 70%;
   position: relative;
@@ -54,9 +64,6 @@
   transition: filter 0.3s ease; /* 필터 속성에 대한 전환 효과 설정 */
 }
 
-.profile:hover {
-  filter: brightness(70%); /* 마우스가 위로 올라가면 프로필사진이 어두워짐 */
-}
 
 .editText {
   position: absolute;
@@ -83,17 +90,49 @@
   justify-content: center;
 }
 
+.infoTable {
+  margin: auto;
+  margin-top: 40px;
+  border-collapse: collapse;
+  border-spacing: 10px 10px;
+  font-size: 17.5px;
+  /* border: 2px solid lightgrey;
+  border-radius: 10px; */
+  padding: 30px;
+  /* background-color: rgb(244, 247, 250); */
+}
+
+.infoTable tr td {
+  border-bottom: 1px solid lightgray;
+  padding: 12px;
+}
+
+.infoTable tr td:nth-child(even) {
+  text-align: center;  
+}
+
 .editButton {
   display: block;
   margin-left: 10px;
   margin: 10px auto 0;
-  margin-top: 6px;
-  background-color: transparent;
+  margin-top: 70px;
+  background-color: rgb(255, 255, 255);
   border: none;
   border-radius: 35px;
-  width: 230px;
+  width: 340px;
   height: 50px;
-  color: rgb(0, 0, 0);
+}
+
+.reviewButton{
+  display: block;
+  margin-left: 10px;
+  margin: 10px auto 0;
+  margin-top: 2px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 35px;
+  width: 340px;
+  height: 50px;
 }
 
 .editButton:hover {
@@ -101,5 +140,8 @@
   font-weight: bold;
 }
 
-
+.reviewButton:hover {
+  background-color: rgb(129, 183, 201);
+  font-weight: bold;
+}
 

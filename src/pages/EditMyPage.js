@@ -7,28 +7,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { getMemberOne } from '../api/memberApi';
 import { useParams } from 'react-router-dom';
+import { editMember } from '../api/memberApi';
 
 
 
 const EditMyPage = () =>{
-
-const navigate = useNavigate();
-
-const { id } = useParams();
-const [memberInfo, setMemberInfo] = useState([]);
-  //회원 1명 조회
-    useEffect(() => {
-      getMemberOne(id).then((data) => {
-        setMemberInfo(data);
-        console.log(data);
-      });
-    }, [id]);
+  const [hovering, setHovering] = useState(false);
+  const data = useContext(ReviewStateContext);
+  const setData = useContext(ReviewSetStateContext); 
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate(-1);
+  };
+ 
     
-
-    
-const data = useContext(ReviewStateContext);
-const setData = useContext(ReviewSetStateContext); 
-
 //수정할 수 있는 pw,email,gender,mbti,...
 const [password, setPassword] = useState('');
 const [email, setEmail] = useState('');
@@ -43,6 +36,16 @@ const [emailError, setEmailError] = useState('');
 const [phoneError, setPhoneError] = useState('');
 const [genderError, setGenderError] = useState('');
 const [mbtiError, setMbtiError] = useState('');
+ 
+
+//회원 1명 조회
+  const [memberInfo, setMemberInfo] = useState([]);
+      useEffect(() => {
+        getMemberOne(id).then((data) => {
+          setMemberInfo(data); 
+          console.log(data);
+        });
+      }, [id]);
 
 
 
@@ -57,6 +60,22 @@ const handleEditMyPage = (e) => {
         validateMbti(mbti)
     ) {
         
+          const editMemberData = {
+            pw: password,
+            email: email,
+            phone: phone,
+            gender: gender,
+            mbti: mbti,
+          };
+          console.log(editMemberData);
+
+          const formData = new FormData();
+          formData.append('member', JSON.stringify(editMemberData));
+          editMember(id, formData) 
+          .catch((error) => {
+            console.log(error);
+          });
+          
         Swal.fire({
             icon: 'success',
             title: '회원정보수정이 완료되었습니다!',
@@ -65,26 +84,16 @@ const handleEditMyPage = (e) => {
             confirmButtonText: '확인',
             cancelButtonText: '취소',
         }).then((res) => {
-            
-            if (res.isConfirmed) {
-                const member = {
-                    pw: password,
-                    email: email,
-                    phone: phone,
-                    gender: gender,
-                    mbti: mbti,
-                };
-
-            
+            if (res.isConfirmed) {   
             navigate('/');
-            console.log('회원가입 성공');
+            console.log('회원정보수정 성공');
             }
         });
-    }
+    
+  }
 };
 
 //정보수정 유효성 검사
-
 //비밀번호 유효성 검사
 const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -167,84 +176,23 @@ const handlePasswordChange = (e) => {
 
     setMbtiError('');
     return true;
-};
+  };
 
     const handleGenderChange = (e) => {
         setGender(e.target.value);
     };
 
 
-  //사용자 프로필 수정
-  const [profileImage, setProfileImage] = useState(null);
-
-  const fileInputRef = useRef(null);
-
-  const [hovering, setHovering] = useState(false);
-
-
-  // 프로필 사진 수정
-  const changeImage = (e) => {
-    const file = e.target.files[0]; // 선택된 파일 가져옴
-    const reader = new FileReader(); // FileReader 객체 생성, 파일을 URL로 읽어옴
-
-    reader.onloadend = () => {
-      // 파일 작업이 완료되면
-      setProfileImage(reader.result); // reder.result : 파일 데이터 URL(바꿀 이미지)
-    };
-
-    if (file) {
-      // 선택된 파일이 있을 경우에만 수행
-      reader.readAsDataURL(file); // 파일 내용을 읽고 URL로 변환, 뭔지 잘 모름
-    }
-  };
-
   return (
-    <>
-      <div className={styles.container}>
-        <>
-          <h1 className={styles.headerText}>🔐My Profile</h1>
-        </>
-        <div className={styles.picture}>
-          <input
-            type="file"
-            style={{ display: 'none' }}
-            ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
-            onChange={changeImage}
-            accept="image/*" // 모든 이미지 파일 허용. 유저가 이미지파일만 선택할 수 있도록 함
-          />
-
-          <div
-            className={styles.profileWrapper}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-          >
-            <img
-              className={styles.profile}
-              src={profileImage || '/resources/images/unnamed.jpg'} // profileImage가 null이면 기본이미지가 나옴
-              onClick={() => fileInputRef.current.click()}
-              alt="프로필 사진"
-            />
-            {/* unnamed.jpg는 임시 샘플파일임 */}
-
-            {hovering && ( // 이미지 위에 마우스가 올라가면 수정하기 글씨가 나옴
-              <div
-                className={styles.editText}
-                onClick={() => fileInputRef.current.click()}
-              >
-                업로드
-              </div>
-            )}
-          </div>
-        </div> 
-        <>
-        {/*로그인 한 user id 표시 div  */}
-        </>
-        <>
-        {/* 수정할 수 있는 데이터 input div 시작 */}
-        </>
+      <div className={styles.editContainer}>
+        <div className={styles.editContent}>
+          <h1 className={styles.BodyTopText}>🔐My Page</h1>
         
-        <div className={styles.content}>
-            <form onSubmit={handleEditMyPage}>
+        
+        {/*로그인 한 user id 표시 div  */}
+        {/* 수정할 수 있는 데이터 input div 시작 */}
+        <div >
+            
                 <input className={styles.inputField}
                     placeholder="수정할 비밀번호를 입력하세요"
                     type = "password"
@@ -289,13 +237,19 @@ const handlePasswordChange = (e) => {
                     required
                 />
                 <div>{mbtiError}</div>
-                <Button type='submit' className={styles.editButton}>수정 완료</Button>
-            </form>
+                {/* 수정 완료 버튼 */}
+                <Button onClick={handleEditMyPage} className={styles.editButton}>수정 완료</Button>
+                <Button className={styles.cancelButton} onClick={handleCancel}>뒤로 가기</Button>
+
+            
         </div> 
-        {/* input div 끝 */}
+        {/* 수정할 수 있는 데이터 input div 끝 */}
     
       </div>
-    </>
+      {/* content의 끝 */}
+      </div>
+      /* container의 끝 */
+ 
   );
 };
 
