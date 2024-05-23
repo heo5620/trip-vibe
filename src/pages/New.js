@@ -19,7 +19,7 @@ const New = () => {
       .then((data) => {
         if (data.status === 'success') {
           console.log('로그인 상태:', data.memberInfo);
-          setCurrentMember(data.memberInfo);
+          setCurrentMember(data.memberInfo); //현재 로그인한 멤버의 고유 아이디
         } else {
           console.log('로그인 상태 아님');
         }
@@ -29,7 +29,7 @@ const New = () => {
       });
   }, []);
 
-  const handleReview = e => {
+  const handleReview = (e) => {
     setReview({
       ...review,
       [e.target.name]: e.target.value,
@@ -37,7 +37,7 @@ const New = () => {
     });
   };
 
-  const handleImg = e => {
+  const handleImg = (e) => {
     const file = e.target.files[0];
     setImg(file);
 
@@ -51,17 +51,18 @@ const New = () => {
   };
 
   //작성완료(새로고침 문제 수정 중)
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('review', JSON.stringify(review));
     formData.append('img', img);
+    formData.append('id', currentMember);
 
     //리뷰 등록
     try {
       const response = await saveReview(formData);
-      setData(prevData => [...prevData, response]);
+      setData((prevData) => [...prevData, response]);
       nav('/');
     } catch (error) {
       console.log(error);
@@ -78,52 +79,56 @@ const New = () => {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <div className={styles.imagecontainer}>
-          <label htmlFor='imageUpload'>
+          <label htmlFor="imageUpload">
             +
             <input
-              type='file'
-              id='imageUpload'
-              accept='image/*'
-              name='img'
+              type="file"
+              id="imageUpload"
+              accept="image/*"
+              name="img"
               onChange={handleImg}
               style={{ display: 'none' }}
             />
           </label>
           {privewImg && (
             <div>
-              <img className={styles.modalimage} src={privewImg} alt='미리보기' />
+              <img
+                className={styles.modalimage}
+                src={privewImg}
+                alt="미리보기"
+              />
             </div>
           )}
         </div>
         <input
           className={styles.titleinput}
-          type='text'
-          placeholder='제목'
-          name='title'
+          type="text"
+          placeholder="제목"
+          name="title"
           value={review.title}
           onChange={handleReview}
         />
         <input
           className={styles.ratinginput}
-          type='text'
-          placeholder='평점'
-          name='rating'
+          type="text"
+          placeholder="평점"
+          name="rating"
           value={review.rating}
           onChange={handleReview}
         />
         <div className={styles.reviewcontainer}>
           <input
             className={styles.reviewinput}
-            name='content'
+            name="content"
             value={review.content}
-            placeholder='내용을 입력해주세요'
+            placeholder="내용을 입력해주세요"
             onChange={handleReview}
           />
           <div className={styles.reviewbuttoncontainer}>
             <button className={styles.cancelbutton} onClick={handleCancel}>
               뒤로 가기
             </button>
-            <button className={styles.completebutton} type='submit'>
+            <button className={styles.completebutton} type="submit">
               작성 완료
             </button>
           </div>
