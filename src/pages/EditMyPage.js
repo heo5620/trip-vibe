@@ -213,7 +213,6 @@ const EditMyPage = () => {
     <div className={styles.editContainer}>
       <div className={styles.editContent}>
         <h1 className={styles.BodyTopText}>🔐My Page</h1>
-        <div className={styles.edit_img_content}>
           <div className={styles.myPicture}>
             <input
               type="file"
@@ -250,7 +249,6 @@ const EditMyPage = () => {
               )}
             </div>
           </div>
-        </div>
         <div>
           <input
             className={styles.inputField}

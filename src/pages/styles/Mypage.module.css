@@ -118,20 +118,20 @@
   background-color: rgb(255, 255, 255);
   border: none;
   border-radius: 35px;
-  width: 340px;
-  height: 50px;
+  width: 325px;
+  height: 40px;
 }
 
 .reviewButton {
   display: block;
   margin-left: 10px;
   margin: 10px auto 0;
-  margin-top: 2px;
+  margin-top: 1px;
   background-color: rgb(255, 255, 255);
   border: none;
   border-radius: 35px;
-  width: 340px;
-  height: 50px;
+  width: 325px;
+  height: 40px;
 }
 
 .editButton:hover {
@@ -142,4 +142,22 @@
 .reviewButton:hover {
   background-color: rgb(129, 183, 201);
   font-weight: bold;
+}
+
+
+.deleteButton {
+  display: block;
+  color: lightgray;
+  margin: 0 auto;
+  margin-top: 8px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  transition: color 0.3s;
+  font-size: medium;
+}
+
+.deleteButton:hover {
+  color: gray;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255);
 }
