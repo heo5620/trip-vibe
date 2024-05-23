@@ -119,9 +119,6 @@ const Main = () => {
             <option value={'oldest'}>오래된순</option>
           </select>
         </div>
-        <div>
-          <button onClick={logout}>로그아웃</button>
-        </div>
         <button className={`${styles.writeButton}`} onClick={goToWritePage}>
           글쓰기
         </button>
