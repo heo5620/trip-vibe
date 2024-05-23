@@ -23,18 +23,15 @@ const MyPage = () => {
       });
   }, [navigate]);
 
-  const handlePage = (e) => {
-    e.preventDefault();
+  //내 정보 수정 페이지로 이동
+  const goToEditMyPage = () => {
     navigate(`/mypage/edit/${memberInfo.id}`);
   };
 
-  // const handlePage = (e) => {
-
-  //   navigate(`/mypage/edit/${id}`);
-  // };
-
-  //사용자 프로필 이미지
-  const [profileImage, setProfileImage] = useState(null);
+  //내 글 목록 보러가기 페이지로 이동
+  const goToMyReviewList = () => {
+    navigate(`/myreviewlist/${memberInfo.id}`);
+  };
 
   const handleDeleteMember = async () => {
     // Swal.fire를 사용하여 사용자에게 확인을 요청하는 메시지를 표시
@@ -76,7 +73,7 @@ const MyPage = () => {
   };
 
   return (
-    
+    <form onSubmit={handlePage}>
       <div className={styles.myContainer}>
         <div className={styles.myContent}>
           <h1 className={styles.BodyTopText}>My Page</h1>
@@ -117,10 +114,12 @@ const MyPage = () => {
             </tr>
           </table>
 
-          <button className={styles.editButton} onClick={handlePage}>
+          <button className={styles.editButton} onClick={goToEditMyPage}>
             내 정보 수정
           </button>
-          <button className={styles.reviewButton}>내 글 목록</button>
+          <button className={styles.reviewButton} onClick={goToMyReviewList}>
+            내 글 목록
+          </button>
           
           <button 
           className={styles.deleteButton} 

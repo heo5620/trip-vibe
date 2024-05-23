@@ -12,8 +12,8 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import EditMyPage from './pages/EditMyPage';
 import { getReviewList } from './api/reviewApi';
-import LoginTest from './pages/LoginTest';
 import { checkLoginStatus } from './api/memberApi';
+import MyReviewList from './pages/MyReviewList';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
@@ -50,7 +50,7 @@ function App() {
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/mypage/*" element={<MyPage />} />
             <Route path="/mypage/edit/:id" element={<EditMyPage />} />
-            <Route path="/logintest" element={<LoginTest />} />
+            <Route path="/myreviewlist/:id" element={<MyReviewList />} />
           </Route>
         </Routes>
         {/* </SetIsLoggedInContext.Provider>
