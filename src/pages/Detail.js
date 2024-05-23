@@ -14,14 +14,24 @@ const Detail = () => {
   const handleDelete = async () => {
     // const updateData = data.review.filter((item) => item.id !== parseInt(id));
     // setData({ ...data, review: updateData });
-    deleteReview(id)
-      .then((data) => {
-        console.log('삭제된 데이터 : ' + data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    nav('/');
+
+    //새로고침 부분 코드 수정 부분
+    try {
+      await deleteReview(id);
+      setData(prevData => prevData.filter(item => item.id !== parseInt(id)));
+      nav('/');
+    } catch (error) {
+      console.log(error);
+    }
+
+    // deleteReview(id)
+    //   .then((data) => {
+    //     console.log('삭제된 데이터 : ' + data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // nav('/');
   };
 
   useEffect(() => {
@@ -33,11 +43,11 @@ const Detail = () => {
     // }
 
     getReviewOne(id)
-      .then((data) => {
+      .then(data => {
         console.log(data);
         setReview(data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }, []); //data.review와 params.id가 변경될 때마다 useEffect
@@ -49,15 +59,10 @@ const Detail = () => {
   return (
     <div className={styles.Detail}>
       <div className={styles.detail_header}>
-        <h4 className={styles.DateText}>
-          작성일 : {new Date(review.createdDate).toLocaleDateString()}
-        </h4>
+        <h4 className={styles.DateText}>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
         <h2 className={styles.TitleText}>{review.title}</h2>
         <div className={styles.btn}>
-          <button
-            className={styles.edit_button}
-            onClick={() => nav(`/edit/${id}`)}
-          >
+          <button className={styles.edit_button} onClick={() => nav(`/edit/${id}`)}>
             수정
           </button>
           <button className={styles.delete_button} onClick={handleDelete}>
@@ -67,10 +72,7 @@ const Detail = () => {
       </div>
       <div className={styles.detail_viewer}>
         <div>
-          <img
-            src={'http://localhost:8080/image/' + review.imgName}
-            alt="이미지"
-          ></img>
+          <img src={'http://localhost:8080/image/' + review.imgName} alt='이미지'></img>
         </div>
         <div className={styles.rating}>평점 : {review.rating}</div>
         <div className={styles.detail_content}>{review.content}</div>
