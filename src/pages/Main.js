@@ -1,6 +1,4 @@
 import { ReviewStateContext } from '../App';
-import { IsLoggedInContext } from '../App';
-import { SetIsLoggedInContext } from '../App';
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReviewList from '../components/ReviewList';
@@ -11,14 +9,11 @@ import { checkLoginStatus, logout } from '../api/memberApi';
 //header
 const Main = () => {
   const data = useContext(ReviewStateContext);
-  // const isLoggedIn = useContext(IsLoggedInContext);
-  // const setIsLoggedIn = useContext(SetIsLoggedInContext);
   const navigate = useNavigate();
   const [review, setReview] = useState(data); //빈 배열에서 data로 변경
   const [searchText, setSearchText] = useState(''); //검색어
   const [sortType, setSortType] = useState(); //정렬
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isLogin, setIsLogin] = useState(false);
 
   //새로 고침 이 부분 추가
   useEffect(() => {
@@ -77,16 +72,23 @@ const Main = () => {
     });
   };
 
-  // const logout = () => {
-  //   logout().then((data) => console.log(data));
-  // };
-
   //리뷰 정렬된 데이터
   const sortedData = getSortedDate();
 
-  //글쓰기 버튼 클릭 시, 리뷰 작성 페이지로 이동
-  const goNew = () => {
-    navigate('/new');
+  const goToWritePage = () => {
+    checkLoginStatus()
+      .then((data) => {
+        if (data.status === 'fail') {
+          //로그인 상태가 아니면
+          navigate('/signin'); //로그인 페이지로
+        } else {
+          //로그인 상태이면
+          navigate('/new'); //글쓰기 페이지로
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking login status:', error);
+      });
   };
 
   return (
@@ -120,7 +122,7 @@ const Main = () => {
         <div>
           <button onClick={logout}>로그아웃</button>
         </div>
-        <button className={`${styles.writeButton}`} onClick={goNew}>
+        <button className={`${styles.writeButton}`} onClick={goToWritePage}>
           글쓰기
         </button>
       </div>

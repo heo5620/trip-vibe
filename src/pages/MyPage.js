@@ -8,20 +8,16 @@ const MyPage = () => {
   const { id } = useParams();
   const [memberInfo, setMemberInfo] = useState([]);
   const navigate = useNavigate();
-  
+
   //회원 1명 조회
   useEffect(() => {
     getMemberOne(id).then((data) => {
-      setMemberInfo(data); 
+      setMemberInfo(data);
       console.log(data);
     });
   }, [id]);
 
   const handlePage = (e) => {
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
     navigate(`/mypage/edit/${id}`);
   };
 
@@ -29,10 +25,9 @@ const MyPage = () => {
   const [profileImage, setProfileImage] = useState(null);
 
   return (
-
-      <form onSubmit={handlePage}>
-        <div className={styles.myContainer}>
-         <div className={styles.myContent}>
+    <form onSubmit={handlePage}>
+      <div className={styles.myContainer}>
+        <div className={styles.myContent}>
           <h1 className={styles.BodyTopText}>My Page</h1>
           <div className={styles.myPicture}>
             <img
@@ -54,18 +49,18 @@ const MyPage = () => {
           </div>
 
           <table className={styles.infoTable}>
-          <tr>
-            <td> Email</td>
-            <td>{memberInfo.email}</td>
-          </tr>
-          <tr>
-            <td> Gender</td>
-            <td>{memberInfo.gender}</td>
-          </tr>
-          <tr>
-            <td> Mbti</td>
-            <td>{memberInfo.mbti}</td>
-          </tr>
+            <tr>
+              <td> Email</td>
+              <td>{memberInfo.email}</td>
+            </tr>
+            <tr>
+              <td> Gender</td>
+              <td>{memberInfo.gender}</td>
+            </tr>
+            <tr>
+              <td> Mbti</td>
+              <td>{memberInfo.mbti}</td>
+            </tr>
           </table>
 
           <button className={styles.editButton} onClick={handlePage}>
@@ -73,8 +68,8 @@ const MyPage = () => {
           </button>
           <button className={styles.reviewButton}>내 글 목록</button>
         </div>
-        </div>
-      </form>
+      </div>
+    </form>
   );
 };
 
