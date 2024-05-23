@@ -117,7 +117,7 @@ const EditMyPage = () => {
     const isValid = validatePassword(e.target.value);
     if (!isValid) {
       setPasswordError(
-        '비밀번호는 영문 소문자, 숫자, 특수문자(@, !, _)를 포함하여 8~20자로만 입력해주세요.'
+        '소문자, 숫자, 특수문자(@, !, _)를 포함하여 8~20자로 입력하세요'
       );
     } else {
       setPasswordError('');
@@ -213,13 +213,14 @@ const EditMyPage = () => {
     <div className={styles.editContainer}>
       <div className={styles.editContent}>
         <h1 className={styles.BodyTopText}>🔐My Page</h1>
+        <div className={styles.edit_img_content}>
           <div className={styles.myPicture}>
             <input
               type="file"
               id="imageUpload"
               name="img"
               style={{ display: 'none' }}
-              ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
+              ref={fileInputRef}
               accept="image/*"
               onChange={handleImg}
             />
@@ -233,7 +234,7 @@ const EditMyPage = () => {
                 src={
                   previewImg ||
                   'http://localhost:8080/image/' + memberInfo.imgName
-                } //prview가 있다면 보여주기.
+                }
                 alt="이미지"
                 onClick={() => fileInputRef.current.click()}
                 width="400"
@@ -249,70 +250,93 @@ const EditMyPage = () => {
               )}
             </div>
           </div>
-        <div>
-          <input
-            className={styles.inputField}
-            placeholder="수정할 비밀번호를 입력하세요"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-          <div>{passwordError}</div>
-
-          <input
-            className={styles.inputField}
-            placeholder="변경할 이메일을 입력하세요"
-            type="text"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          <div>{emailError}</div>
-
-          <input
-            className={styles.inputField}
-            placeholder="변경할 전화번호를 입력하세요"
-            type="text"
-            value={phone}
-            onChange={handlePhoneChange}
-            required
-          />
-          <div>{phoneError}</div>
-
-          <input
-            className={styles.inputField}
-            placeholder="변경할 성별을 입력하세요"
-            type="text"
-            value={gender}
-            onChange={handleGenderChange}
-            required
-          />
-          <div>{genderError}</div>
-
-          <input
-            className={styles.inputField}
-            placeholder="변경할 MBTI를 입력하세요"
-            type="text"
-            value={mbti}
-            onChange={(e) => setMbti(e.target.value)}
-            required
-          />
-          <div>{mbtiError}</div>
-          {/* 수정 완료 버튼 */}
-          <Button onClick={handleEditMyPage} className={styles.editButton}>
-            수정 완료
-          </Button>
-          <Button className={styles.cancelButton} onClick={handleCancel}>
-            뒤로 가기
-          </Button>
         </div>
-        {/* 수정할 수 있는 데이터 input div 끝 */}
+
+        <table className={styles.info_edit_table}>
+          <tbody>
+            <tr>
+              <td>비밀번호</td>
+              <td>
+                <input
+                  className={styles.inputField}
+                  placeholder="수정할 비밀번호를 입력하세요"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                />
+                <div>{passwordError}</div>
+              </td>
+            </tr>
+            <tr>
+              <td>이메일</td>
+              <td>
+                <input
+                  className={styles.inputField}
+                  placeholder="변경할 이메일을 입력하세요"
+                  type="text"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+                <div>{emailError}</div>
+              </td>
+            </tr>
+            <tr>
+              <td>전화번호</td>
+              <td>
+                <input
+                  className={styles.inputField}
+                  placeholder="변경할 전화번호를 입력하세요"
+                  type="text"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  required
+                />
+                <div>{phoneError}</div>
+              </td>
+            </tr>
+            <tr>
+              <td>성별</td>
+              <td>
+                <input
+                  className={styles.inputField}
+                  placeholder="변경할 성별을 입력하세요"
+                  type="text"
+                  value={gender}
+                  onChange={handleGenderChange}
+                  required
+                />
+                <div>{genderError}</div>
+              </td>
+            </tr>
+            <tr>
+              <td>MBTI</td>
+              <td>
+                <input
+                  className={styles.inputField}
+                  placeholder="변경할 MBTI를 입력하세요"
+                  type="text"
+                  value={mbti}
+                  onChange={(e) => setMbti(e.target.value)}
+                  required
+                />
+                <div>{mbtiError}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <Button onClick={handleEditMyPage} className={styles.editButton}>
+          수정 완료
+        </Button>
+        <Button className={styles.cancelButton} onClick={handleCancel}>
+          뒤로 가기
+        </Button>
       </div>
-      {/* content의 끝 */}
     </div>
-    /* container의 끝 */
   );
 };
+
 
 export default EditMyPage;

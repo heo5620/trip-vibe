@@ -34,10 +34,18 @@ const MyReviewList = () => {
 
   return (
     <>
-      <div className={styles.MyReviewListTitle}>내 리뷰</div>
-      <section className={styles.reviewSection}>
-        <MyReviewListEdit sortedData={review} />
-      </section>
+      {review.length > 0 ? (
+        <>
+          <div className={styles.MyReviewListTitle}>My Review</div>
+          <section className={styles.reviewSection}>
+            <ReviewList sortedData={review} />
+          </section>
+        </>
+      ) : (
+        <div className={styles.noReviewMessage}>
+          <h1>내가 쓴 글이 없습니다.</h1>
+        </div>
+      )}
     </>
   );
 };
