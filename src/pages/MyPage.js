@@ -10,14 +10,18 @@ const MyPage = () => {
   const navigate = useNavigate();
   //회원 1명 조회
   useEffect(() => {
-    getMemberOne(id).then((data) => {
+    getMemberOne(id).then(data => {
       setMemberInfo(data);
       console.log(data);
     });
   }, [id]);
 
-  const handlePage = (e) => {
+  const handlePage = e => {
     navigate(`/mypage/edit/${id}`);
+  };
+
+  const handleReviewPage = e => {
+    navigate(`/mypage/review/${id}`);
   };
 
   //사용자 프로필 이미지
@@ -33,7 +37,7 @@ const MyPage = () => {
               className={styles.profile}
               src={profileImage || '/resources/images/unnamed.jpg'}
               // profileImage가 null이면 기본이미지가 나옴
-              alt="프로필 사진"
+              alt='프로필 사진'
             />
           </div>
           <div
@@ -56,7 +60,9 @@ const MyPage = () => {
           <button className={styles.editButton} onClick={handlePage}>
             내 정보 수정
           </button>
-          <button className={styles.editButton}>내 글 목록</button>
+          <button className={styles.editButton} onClick={handleReviewPage}>
+            내 글 목록
+          </button>
         </div>
       </form>
     </>

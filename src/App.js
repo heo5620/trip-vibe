@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp';
 import EditMyPage from './pages/EditMyPage';
 import { getReviewList } from './api/reviewApi';
 import LoginTest from './pages/LoginTest';
+import MyReviewList from './components/MyReviewList';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
@@ -22,11 +23,11 @@ function App() {
 
   useEffect(() => {
     getReviewList()
-      .then((data) => {
+      .then(data => {
         console.log(data);
         setData(data);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }, []);
 
   //레이아웃을 최상단으로 빼고 나머지 페이지를 밑으로 변경
@@ -35,15 +36,16 @@ function App() {
       <ReviewSetStateContext.Provider value={setData}>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<Main />} />
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/detail/:id" element={<Detail />} />
-            <Route path="/new" element={<New />} />
-            <Route path="/edit/:id" element={<Edit />} />
-            <Route path="/mypage/:id" element={<MyPage />} />
-            <Route path="/mypage/edit/:id" element={<EditMyPage />} />
-            <Route path="/logintest" element={<LoginTest />} />
+            <Route path='/' element={<Main />} />
+            <Route path='/SignIn' element={<SignIn />} />
+            <Route path='/SignUp' element={<SignUp />} />
+            <Route path='/detail/:id' element={<Detail />} />
+            <Route path='/new' element={<New />} />
+            <Route path='/edit/:id' element={<Edit />} />
+            <Route path='/mypage/:id' element={<MyPage />} />
+            <Route path='/mypage/edit/:id' element={<EditMyPage />} />
+            <Route path='/logintest' element={<LoginTest />} />
+            <Route path='/mypage/review/:id' element={<MyReviewList />} />
           </Route>
         </Routes>
       </ReviewSetStateContext.Provider>
