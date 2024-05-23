@@ -1,7 +1,16 @@
+@font-face {
+  font-family: WelcomeFont;
+  src: url('../styles/fonts/Jalnan2TTF.ttf') format('truetype');
+}
+
+
+
 .MyReviewListTitle {
+  font-family: WelcomeFont;
   font-size: 2.5rem;
   margin: 30px;
   text-align: center;
+  margin-top: 100px;
 }
 
 .noReviewMessage {

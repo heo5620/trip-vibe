@@ -35,7 +35,7 @@ const MyReviewList = () => {
     <>
       {review.length > 0 ? (
         <>
-          <div className={styles.MyReviewListTitle}>내 리뷰</div>
+          <div className={styles.MyReviewListTitle}>My Review</div>
           <section className={styles.reviewSection}>
             <ReviewList sortedData={review} />
           </section>
