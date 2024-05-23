@@ -14,11 +14,11 @@ const SignIn = () => {
   // const setIsLoggedIn = useContext(SetIsLoggedInContext);
   const navigate = useNavigate();
   const [memberId, setMemberId] = useState(''); //memberId
-  const [pw, setPw] = useState(''); //userPw
+  const [password, setPassword] = useState(''); //userPw
   const [loginError, setLoginError] = useState('');
 
   //로그인 버튼 클릭 시 호출
-  const handleSignIn = (e) => {
+  const handleSignIn = e => {
     e.preventDefault(); //기본 동작 x
 
     // 입력받은 값이 유효성 검사에 맞지 않을 때,
@@ -28,15 +28,15 @@ const SignIn = () => {
     }
 
     console.log(memberId);
-    console.log(pw);
+    console.log(password);
 
     const member = {
       memberId: memberId,
-      pw: pw,
+      pw: password,
     };
 
     signIn(member) //로그인
-      .then((data) => {
+      .then(data => {
         if (data.status === 'fail') {
           //실패이면
           console.log('로그인 실패');
@@ -52,7 +52,7 @@ const SignIn = () => {
             showCancelButton: false,
             confirmButtonText: '확인',
             cancelButtonText: '취소',
-          }).then((res) => {
+          }).then(res => {
             /* 확인 버튼 클릭 시, 메인 페이지로 이동 */
             if (res.isConfirmed) {
               navigate('/');
@@ -61,7 +61,7 @@ const SignIn = () => {
           });
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error.response ? error.response.data : error.message);
       });
 
@@ -86,7 +86,7 @@ const SignIn = () => {
   //비밀번호 유효성 검사
   const validatePw = () => {
     const regex = /^[a-zA-Z0-9!@_]{8,20}$/;
-    return regex.test(pw); //t/f
+    return regex.test(password); //t/f
   };
 
   //회원가입 페이지로 이동
@@ -101,35 +101,29 @@ const SignIn = () => {
         <h1 className={styles.BodyTopText}>Welcome!</h1>
         <form onSubmit={handleSignIn}>
           <input
-            type="text"
-            placeholder="아이디를 입력하세요"
+            type='text'
+            placeholder='아이디를 입력하세요'
             value={memberId}
-            onChange={(e) => setMemberId(e.target.value)}
+            onChange={e => setMemberId(e.target.value)}
             className={styles.inputIdField}
             required
           />
           <input
-            type="pw"
-            placeholder="비밀번호를 입력하세요"
-            value={pw}
-            onChange={(e) => {
-              setPw(e.target.value);
+            type='password'
+            placeholder='비밀번호를 입력하세요'
+            value={password}
+            onChange={e => {
+              setPassword(e.target.value);
             }}
             className={styles.inputPwField}
             required
           />
-          {loginError && (
-            <div className={styles.errorMessage}>{loginError}</div>
-          )}
+          {loginError && <div className={styles.errorMessage}>{loginError}</div>}
           <div className={styles.buttonContainer}>
-            <button type="submit" className={styles.signinButton}>
+            <button type='submit' className={styles.signinButton}>
               로그인
             </button>
-            <div
-              type="submit"
-              className={styles.signupButton}
-              onClick={handleSignUp}
-            >
+            <div type='submit' className={styles.signupButton} onClick={handleSignUp}>
               회원가입
             </div>
           </div>

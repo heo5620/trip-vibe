@@ -49,10 +49,10 @@ function App() {
             <Route path='/detail/:id' element={<Detail />} />
             <Route path='/new' element={<New />} />
             <Route path='/edit/:id' element={<Edit />} />
-            <Route path='/mypage/:id' element={<MyPage />} />
+            <Route path='/mypage/*' element={<MyPage />} />
             <Route path='/mypage/edit/:id' element={<EditMyPage />} />
             <Route path='/logintest' element={<LoginTest />} />
-            <Route path='/mypage/review/:id' element={<MyReviewList />} />
+            <Route path='/mypage/review/*' element={<MyReviewList />} />
           </Route>
         </Routes>
         {/* </SetIsLoggedInContext.Provider>
