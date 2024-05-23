@@ -13,13 +13,18 @@ import SignUp from './pages/SignUp';
 import EditMyPage from './pages/EditMyPage';
 import { getReviewList } from './api/reviewApi';
 import LoginTest from './pages/LoginTest';
+import { checkLoginStatus } from './api/memberApi';
 
 export const ReviewStateContext = createContext();
 export const ReviewSetStateContext = createContext();
+// export const IsLoggedInContext = createContext(); // isLoggedIn 상태를 위한 Context 생성
+// export const SetIsLoggedInContext = createContext();
 
 function App() {
   const [data, setData] = useState([]);
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  //리뷰 목록 불러와서 context로.
   useEffect(() => {
     getReviewList()
       .then((data) => {
@@ -33,11 +38,13 @@ function App() {
   return (
     <ReviewStateContext.Provider value={data}>
       <ReviewSetStateContext.Provider value={setData}>
+        {/* <IsLoggedInContext.Provider value={isLoggedIn}>
+          <SetIsLoggedInContext.Provider value={setIsLoggedIn}> */}
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Main />} />
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/new" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />
@@ -46,6 +53,8 @@ function App() {
             <Route path="/logintest" element={<LoginTest />} />
           </Route>
         </Routes>
+        {/* </SetIsLoggedInContext.Provider>
+        </IsLoggedInContext.Provider> */}
       </ReviewSetStateContext.Provider>
     </ReviewStateContext.Provider>
   );

@@ -3,6 +3,7 @@ import { ReviewSetStateContext, ReviewStateContext } from '../App';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './styles/Detail.module.css';
 import { deleteReview, getReviewOne } from '../api/reviewApi';
+import { checkLoginStatus } from '../api/memberApi';
 
 const Detail = () => {
   const data = useContext(ReviewStateContext);
@@ -10,6 +11,20 @@ const Detail = () => {
   const { id } = useParams();
   const nav = useNavigate();
   const [review, setReview] = useState(null); // 기본값을 null로 설정
+
+  useEffect(() => {
+    checkLoginStatus()
+      .then((data) => {
+        if (data.status === 'fail') {
+          console.log('로그인 상태 아님(세션체크)');
+        } else {
+          console.log('로그인 상태입니다.(세션체크)');
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking login status:', error);
+      });
+  }, [data.status]);
 
   const handleDelete = async () => {
     // const updateData = data.review.filter((item) => item.id !== parseInt(id));
