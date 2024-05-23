@@ -73,62 +73,58 @@ const MyPage = () => {
   };
 
   return (
-    <form onSubmit={handlePage}>
-      <div className={styles.myContainer}>
-        <div className={styles.myContent}>
-          <h1 className={styles.BodyTopText}>My Page</h1>
-          <div className={styles.myPicture}>
-            <img
-              className={styles.profile}
-              src={
-                'http://localhost:8080/image/' + memberInfo.imgName ||
-                '/resources/images/unnamed.jpg'
-              }
-              // profileImage가 null이면 기본이미지가 나옴
-              alt="프로필 사진"
-            />
-          </div>
-          <div
-            style={{
-              fontWeight: 'bold',
-              fontSize: '24px',
-              textAlign: 'center',
-              marginBottom: '12px',
-            }}
-          >
-            ✨{memberInfo.memberId}
-          </div>
-
-          <table className={styles.infoTable}>
-            <tr>
-              <td> Email</td>
-              <td>{memberInfo.email}</td>
-            </tr>
-            <tr>
-              <td> Gender</td>
-              <td>{memberInfo.gender}</td>
-            </tr>
-            <tr>
-              <td> Mbti</td>
-              <td>{memberInfo.mbti}</td>
-            </tr>
-          </table>
-
-          <button className={styles.editButton} onClick={goToEditMyPage}>
-            내 정보 수정
-          </button>
-          <button className={styles.reviewButton} onClick={goToMyReviewList}>
-            내 글 목록
-          </button>
-          
-          <button 
-          className={styles.deleteButton} 
-          onClick={handleDeleteMember}>회원탈퇴</button>
+    <div className={styles.myContainer}>
+      <div className={styles.myContent}>
+        <h1 className={styles.BodyTopText}>My Page</h1>
+        <div className={styles.myPicture}>
+          <img
+            className={styles.profile}
+            src={
+              'http://localhost:8080/image/' + memberInfo.imgName ||
+              '/resources/images/unnamed.jpg'
+            }
+            // profileImage가 null이면 기본이미지가 나옴
+            alt="프로필 사진"
+          />
         </div>
-      </div>
-    
-  );
+        <div
+          style={{
+            fontWeight: 'bold',
+            fontSize: '24px',
+            textAlign: 'center',
+            marginBottom: '12px',
+          }}
+        >
+          ✨{memberInfo.memberId}
+        </div>
 
+        <table className={styles.infoTable}>
+          <tr>
+            <td> Email</td>
+            <td>{memberInfo.email}</td>
+          </tr>
+          <tr>
+            <td> Gender</td>
+            <td>{memberInfo.gender}</td>
+          </tr>
+          <tr>
+            <td> Mbti</td>
+            <td>{memberInfo.mbti}</td>
+          </tr>
+        </table>
+
+        <button className={styles.editButton} onClick={goToEditMyPage}>
+          내 정보 수정
+        </button>
+        <button className={styles.reviewButton} onClick={goToMyReviewList}>
+          내 글 목록
+        </button>
+        <button className={styles.deleteButton} onClick={handleDeleteMember}>
+          회원탈퇴
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default MyPage;
