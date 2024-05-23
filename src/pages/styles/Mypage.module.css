@@ -21,7 +21,7 @@
   justify-content: center;
   margin-top: 40px;
   width: 700px;
-  height: 860px;
+  height: 950px;
   padding: 30px;
   box-shadow: rgb(88, 167, 150, 0.6) 0px 0px 29px 0px;
   background-color: white;
@@ -91,7 +91,7 @@
 
 .infoTable {
   margin: auto;
-  margin-top: 40px;
+  margin-top: 50px;
   border-collapse: collapse;
   border-spacing: 10px 10px;
   font-size: 17.5px;
@@ -118,7 +118,7 @@
   background-color: rgb(255, 255, 255);
   border: none;
   border-radius: 35px;
-  width: 325px;
+  width: 300px;
   height: 40px;
 }
 
@@ -130,7 +130,7 @@
   background-color: rgb(255, 255, 255);
   border: none;
   border-radius: 35px;
-  width: 325px;
+  width: 300px;
   height: 40px;
 }
 
