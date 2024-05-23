@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -9,9 +10,9 @@ const MyPage = () => {
   const [memberInfo, setMemberInfo] = useState({});
   const navigate = useNavigate();
 
-  //회원 1명 조회
+  // 회원 정보 조회 및 세션 확인
   useEffect(() => {
-    getMemberOne(id).then((data) => {
+    getMemberFromSession().then((data) => {
       setMemberInfo(data);
       console.log(data);
     }).catch((error) => {
@@ -20,7 +21,8 @@ const MyPage = () => {
   }, [navigate]);
 
   const handlePage = (e) => {
-    navigate(`/mypage/edit/${id}`);
+    e.preventDefault();
+    navigate(`/mypage/edit/${memberInfo.id}`);
   };
 
 
@@ -33,9 +35,10 @@ const MyPage = () => {
   const [profileImage, setProfileImage] = useState(null);
 
   return (
-    <form onSubmit={handlePage}>
-      <div className={styles.myContainer}>
-        <div className={styles.myContent}>
+
+      <form onSubmit={handlePage}>
+        <div className={styles.myContainer}>
+         <div className={styles.myContent}>
           <h1 className={styles.BodyTopText}>My Page</h1>
           <div className={styles.myPicture}>
             <img
@@ -57,18 +60,18 @@ const MyPage = () => {
           </div>
 
           <table className={styles.infoTable}>
-            <tr>
-              <td> Email</td>
-              <td>{memberInfo.email}</td>
-            </tr>
-            <tr>
-              <td> Gender</td>
-              <td>{memberInfo.gender}</td>
-            </tr>
-            <tr>
-              <td> Mbti</td>
-              <td>{memberInfo.mbti}</td>
-            </tr>
+          <tr>
+            <td> Email</td>
+            <td>{memberInfo.email}</td>
+          </tr>
+          <tr>
+            <td> Gender</td>
+            <td>{memberInfo.gender}</td>
+          </tr>
+          <tr>
+            <td> Mbti</td>
+            <td>{memberInfo.mbti}</td>
+          </tr>
           </table>
 
           <button className={styles.editButton} onClick={handlePage}>
@@ -76,8 +79,8 @@ const MyPage = () => {
           </button>
           <button className={styles.reviewButton}>내 글 목록</button>
         </div>
-      </div>
-    </form>
+        </div>
+      </form>
   );
 };
 
