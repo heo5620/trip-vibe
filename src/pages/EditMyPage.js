@@ -213,42 +213,42 @@ const EditMyPage = () => {
     <div className={styles.editContainer}>
       <div className={styles.editContent}>
         <h1 className={styles.BodyTopText}>🔐My Page</h1>
-          <div className={styles.myPicture}>
-            <input
-              type="file"
-              id="imageUpload"
-              name="img"
-              style={{ display: 'none' }}
-              ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
-              accept="image/*"
-              onChange={handleImg}
+        <div className={styles.myPicture}>
+          <input
+            type="file"
+            id="imageUpload"
+            name="img"
+            style={{ display: 'none' }}
+            ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
+            accept="image/*"
+            onChange={handleImg}
+          />
+          <div
+            className={styles.edit_img_wrapper}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+          >
+            <img
+              className={styles.profile}
+              src={
+                previewImg ||
+                'http://localhost:8080/image/' + memberInfo.imgName
+              } //prview가 있다면 보여주기.
+              alt="이미지"
+              onClick={() => fileInputRef.current.click()}
+              width="400"
+              height="400"
             />
-            <div
-              className={styles.edit_img_wrapper}
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-            >
-              <img
-                className={styles.profile}
-                src={
-                  previewImg ||
-                  'http://localhost:8080/image/' + memberInfo.imgName
-                } //prview가 있다면 보여주기.
-                alt="이미지"
+            {hovering && (
+              <div
+                className={styles.edit_img_editText}
                 onClick={() => fileInputRef.current.click()}
-                width="400"
-                height="400"
-              />
-              {hovering && (
-                <div
-                  className={styles.edit_img_editText}
-                  onClick={() => fileInputRef.current.click()}
-                >
-                  사진 수정
-                </div>
-              )}
-            </div>
+              >
+                사진 수정
+              </div>
+            )}
           </div>
+        </div>
         <div>
           <input
             className={styles.inputField}
@@ -280,14 +280,34 @@ const EditMyPage = () => {
           />
           <div>{phoneError}</div>
 
-          <input
+          {/* <input
             className={styles.inputField}
             placeholder="변경할 성별을 입력하세요"
             type="text"
             value={gender}
             onChange={handleGenderChange}
             required
-          />
+          /> */}
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              checked={gender === 'male'}
+              value="male"
+              onChange={handleGenderChange}
+            />
+            male
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              checked={gender === 'female'}
+              value="female"
+              onChange={handleGenderChange}
+            />
+            female
+          </label>
           <div>{genderError}</div>
 
           <input
