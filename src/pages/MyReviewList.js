@@ -38,7 +38,7 @@ const MyReviewList = () => {
         <>
           <div className={styles.MyReviewListTitle}>My Review</div>
           <section className={styles.reviewSection}>
-            <ReviewList sortedData={review} />
+            <MyReviewListEdit sortedData={review} />
           </section>
         </>
       ) : (

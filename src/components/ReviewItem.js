@@ -6,13 +6,13 @@ const ReviewItem = ({ id, title, imgName, createdDate }) => {
 
   return (
     <div className={styles.ReviewItem}>
-      <div className={styles.review_img} onClick={() => nav(`/myreviewdetail/${id}`)}>
+      <div className={styles.review_img} onClick={() => nav(`/detail/${id}`)}>
         <img src={'http://localhost:8080/image/' + imgName} alt='reivew 이미지' width='300' height='300'></img>
       </div>
-      <div className={styles.title} onClick={() => nav(`/myreviewdetail/${id}`)}>
+      <div className={styles.title} onClick={() => nav(`/detail/${id}`)}>
         {title}
       </div>
-      <div className={styles.created_date} onClick={() => nav(`/myreviewdetail/${id}`)}>
+      <div className={styles.created_date} onClick={() => nav(`/detail/${id}`)}>
         {new Date(createdDate).toLocaleDateString()}{' '}
       </div>
     </div>
