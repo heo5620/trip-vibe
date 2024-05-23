@@ -217,11 +217,7 @@ const SignUp = () => {
     <div className={styles.container}>
       <SignLogo className={styles.signlogo} />
       <div className={styles.content}>
-<<<<<<< Updated upstream
-        <h1 className={styles.heading}>Let's Start!</h1>
-=======
         <h1 className={styles.BodyTopText}>Let's Start!</h1>
->>>>>>> Stashed changes
         <form>
           <input
             type="text"

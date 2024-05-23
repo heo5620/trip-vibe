@@ -1,29 +1,34 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMemberOne } from '../api/memberApi';
 import { useParams } from 'react-router-dom';
 import styles from './styles/Mypage.module.css';
+import { getMemberFromSession } from '../api/memberApi';
 
 const MyPage = () => {
-  const { id } = useParams();
-  const [memberInfo, setMemberInfo] = useState([]);
+  // const { id } = useParams();
+  const [memberInfo, setMemberInfo] = useState({});
   const navigate = useNavigate();
-  
-  //회원 1명 조회
+
+  // 회원 정보 조회 및 세션 확인
   useEffect(() => {
-    getMemberOne(id).then((data) => {
-      setMemberInfo(data); 
+    getMemberFromSession().then((data) => {
+      setMemberInfo(data);
       console.log(data);
+    }).catch((error) => {
+      navigate('/signin'); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
     });
-  }, [id]);
+  }, [navigate]);
 
   const handlePage = (e) => {
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
-    navigate(`/mypage/edit/${id}`);
+    e.preventDefault();
+    navigate(`/mypage/edit/${memberInfo.id}`);
   };
+
+
+  // const handlePage = (e) => {
+
+  //   navigate(`/mypage/edit/${id}`);
+  // };
 
   //사용자 프로필 이미지
   const [profileImage, setProfileImage] = useState(null);
