@@ -50,6 +50,7 @@ export const joinMember = async (member) => {
   return response.data; //없음
 };
 
+//로그인
 export const signIn = async (member) => {
   const response = await axios.post(
     `${API_SERVER_HOST}/tripvibe/login`,
@@ -65,13 +66,22 @@ export const signIn = async (member) => {
   return response.data; //로그인한 사용자의 고유 번호 받아옴
 };
 
+//로그인 확인
 export const checkLoginStatus = async () => {
   const response = await axios.get(`${API_SERVER_HOST}/tripvibe/checksession`);
   return response.data;
 };
 
+//로그아웃
 export const logout = async () => {
   const response = await axios.post(`${API_SERVER_HOST}/tripvibe/logout`);
+  return response.data;
+};
+
+// 회원 탈퇴
+export const deleteMember = async (id) => {
+  const response = await axios.delete(
+    `${API_SERVER_HOST}/tripvibe/mypage/delete/${id}`);
   return response.data;
 };
 

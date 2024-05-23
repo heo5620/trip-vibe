@@ -5,7 +5,7 @@ import styles from './styles/Detail.module.css';
 import { deleteReview, getReviewOne } from '../api/reviewApi';
 import { checkLoginStatus } from '../api/memberApi';
 
-const Detail = () => {
+const MyReviewDetail = () => {
   const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
   const { id } = useParams();
@@ -27,9 +27,6 @@ const Detail = () => {
   }, [data.status]);
 
   const handleDelete = async () => {
-    // const updateData = data.review.filter((item) => item.id !== parseInt(id));
-    // setData({ ...data, review: updateData });
-
     //새로고침 부분 코드 수정 부분
     try {
       await deleteReview(id);
@@ -38,25 +35,9 @@ const Detail = () => {
     } catch (error) {
       console.log(error);
     }
-
-    // deleteReview(id)
-    //   .then((data) => {
-    //     console.log('삭제된 데이터 : ' + data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // nav('/');
   };
 
   useEffect(() => {
-    //params.id와 data(Main에서 context로 받은 data)의 id가 같은 item 추출
-    // const updateReview = data.review.find((item) => item.id === parseInt(id));
-    // //id에 해당하는 리뷰가 있으면, review에 저장.
-    // if (updateReview) {
-    //   setReview(updateReview);
-    // }
-
     getReviewOne(id)
       .then(data => {
         console.log(data);
@@ -77,12 +58,12 @@ const Detail = () => {
         <h4 className={styles.DateText}>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
         <h2 className={styles.TitleText}>{review.title}</h2>
         <div className={styles.btn}>
-          {/* <button className={styles.edit_button} onClick={() => nav(`/edit/${id}`)}>
+          <button className={styles.edit_button} onClick={() => nav(`/edit/${id}`)}>
             수정
           </button>
           <button className={styles.delete_button} onClick={handleDelete}>
             삭제
-          </button> */}
+          </button>
         </div>
       </div>
       <div className={styles.detail_viewer}>
@@ -96,4 +77,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default MyReviewDetail;

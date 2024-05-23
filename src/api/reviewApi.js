@@ -15,13 +15,10 @@ export const getReviewList = async () => {
   return response.data;
 };
 
-export const getReviewsByUserId = async userId => {
-  try {
-    const response = await axios.get(`/api/reviews/user/${userId}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+//내가 쓴 리뷰 목록 조회
+export const getMyReviewList = async id => {
+  const response = await axios.get(`${API_SERVER_HOST}/tripvibe/myreviewlist/${id}`);
+  return response.data;
 };
 
 //리뷰 1개 조회
