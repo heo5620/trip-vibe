@@ -114,26 +114,24 @@
   width: 325px;
   padding: 10px;
   display: block;
-  
+
   margin-bottom: 10px;
   text-align: center;
   border-radius: 35px;
-  
 }
 
-.info_edit_table{
+.info_edit_table {
   margin: 7px auto;
   border-collapse: collapse;
   text-align: center;
   margin-top: 55px;
   width: 90%;
-  
 }
 
-.info_edit_table td{
+.info_edit_table td {
   margin: 7px auto;
   text-align: center;
-  
+
   /* border: 2px solid rgb(0, 254, 93); */
 }
 
@@ -142,11 +140,17 @@
 }
 
 .info_edit_table td:nth-child(even) {
-  width: 70%; 
-  
+  width: 70%;
 }
 
-
+.radioContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 120px;
+  gap: 30px;
+  margin-bottom: 6px;
+}
 
 .editButton {
   display: block;
