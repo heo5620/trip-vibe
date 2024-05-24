@@ -3,6 +3,7 @@ import styles from './styles/MyReviewList.module.css';
 import ReviewList from '../components/ReviewList';
 import { checkLoginStatus } from '../api/memberApi';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ReactComponent as Warning } from '../components/styles/icon/Group 10.svg';
 import { getMyReviewList } from '../api/reviewApi';
 import MyReviewListEdit from '../components/MyReviewListEdit';
 
@@ -11,6 +12,10 @@ const MyReviewList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [review, setReview] = useState([]);
   const navigate = useNavigate();
+
+  const myReviewAdd = () => {
+    navigate('/new');
+  };
 
   useEffect(() => {
     checkLoginStatus()
@@ -43,7 +48,11 @@ const MyReviewList = () => {
         </>
       ) : (
         <div className={styles.noReviewMessage}>
-          <h1>내가 쓴 글이 없습니다.</h1>
+          <Warning className={styles.Warning} />
+          <h1>이런! 아직 등록하신 리뷰가 없네요!</h1>
+          <button className={styles.goReview} onClick={myReviewAdd}>
+            리뷰 등록하러 가기
+          </button>
         </div>
       )}
     </>

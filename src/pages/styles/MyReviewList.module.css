@@ -3,8 +3,6 @@
   src: url('../styles/fonts/Jalnan2TTF.ttf') format('truetype');
 }
 
-
-
 .MyReviewListTitle {
   font-family: WelcomeFont;
   font-size: 2.5rem;
@@ -14,6 +12,27 @@
 }
 
 .noReviewMessage {
-  margin: 30px;
+  margin: 80px;
+  margin-top: 200px;
   text-align: center;
+}
+
+.Warning {
+  margin-bottom: 30px;
+}
+
+.goReview {
+  margin-top: 50px;
+  color: lightgrey;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  text-decoration: underline;
+  text-decoration-color: lightgray;
+}
+
+.goReview:hover {
+  color: rgb(94, 94, 94);
+  text-decoration-color: rgb(94, 94, 94);
 }
