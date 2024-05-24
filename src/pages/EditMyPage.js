@@ -299,14 +299,26 @@ const EditMyPage = () => {
             <tr>
               <td>성별</td>
               <td>
-                <input
-                  className={styles.inputField}
-                  placeholder="변경할 성별을 입력하세요"
-                  type="text"
-                  value={gender}
-                  onChange={handleGenderChange}
-                  required
-                />
+                <label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    checked={gender === 'male'}
+                    value="male"
+                    onChange={handleGenderChange}
+                  />
+                  male
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    checked={gender === 'female'}
+                    value="female"
+                    onChange={handleGenderChange}
+                  />
+                  female
+                </label>
                 <div>{genderError}</div>
               </td>
             </tr>
@@ -337,6 +349,5 @@ const EditMyPage = () => {
     </div>
   );
 };
-
 
 export default EditMyPage;
