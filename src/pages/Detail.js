@@ -2,7 +2,11 @@ import { useContext, useState, useEffect } from 'react';
 import { ReviewSetStateContext, ReviewStateContext } from '../App';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './styles/Detail.module.css';
-import { deleteReview, getReviewOne } from '../api/reviewApi';
+import {
+  deleteReview,
+  getMemberIdByReviewId,
+  getReviewOne,
+} from '../api/reviewApi';
 import { checkLoginStatus } from '../api/memberApi';
 
 const Detail = () => {
@@ -11,29 +15,29 @@ const Detail = () => {
   const { id } = useParams();
   const nav = useNavigate();
   const [review, setReview] = useState(null); // 기본값을 null로 설정
+  const [isAuthor, setIsAuthor] = useState(false);
 
   useEffect(() => {
     checkLoginStatus()
-      .then(data => {
+      .then((data) => {
         if (data.status === 'fail') {
           console.log('로그인 상태 아님(세션체크)');
         } else {
           console.log('로그인 상태입니다.(세션체크)');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error checking login status:', error);
       });
   }, [data.status]);
 
   const handleDelete = async () => {
-    // const updateData = data.review.filter((item) => item.id !== parseInt(id));
-    // setData({ ...data, review: updateData });
-
     //새로고침 부분 코드 수정 부분
     try {
       await deleteReview(id);
-      setData(prevData => prevData.filter(item => item.id !== parseInt(id)));
+      setData((prevData) =>
+        prevData.filter((item) => item.id !== parseInt(id))
+      );
       nav('/');
     } catch (error) {
       console.log(error);
@@ -58,13 +62,27 @@ const Detail = () => {
     // }
 
     getReviewOne(id)
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setReview(data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
+
+    // checkLoginStatus()
+    //   .then((data) => {
+    //     if (data.status === 'success') {
+    //       getMemberIdByReviewId(data.memberInfo, id).then((data) => {
+    //         if (data == true) {
+    //           setIsAuthor(true);
+    //         }
+    //       });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error checking login status:', error);
+    //   });
   }, []); //data.review와 params.id가 변경될 때마다 useEffect
 
   if (!review) {
@@ -74,7 +92,9 @@ const Detail = () => {
   return (
     <div className={styles.Detail}>
       <div className={styles.detail_header}>
-        <h4 className={styles.DateText}>작성일 : {new Date(review.createdDate).toLocaleDateString()}</h4>
+        <h4 className={styles.DateText}>
+          작성일 : {new Date(review.createdDate).toLocaleDateString()}
+        </h4>
         <h2 className={styles.TitleText}>{review.title}</h2>
         <div className={styles.btn}>
           {/* <button className={styles.edit_button} onClick={() => nav(`/edit/${id}`)}>
@@ -87,7 +107,10 @@ const Detail = () => {
       </div>
       <div className={styles.detail_viewer}>
         <div>
-          <img src={'http://localhost:8080/image/' + review.imgName} alt='이미지'></img>
+          <img
+            src={'http://localhost:8080/image/' + review.imgName}
+            alt="이미지"
+          ></img>
         </div>
         <div className={styles.rating}>평점 : {review.rating}</div>
         <div className={styles.detail_content}>{review.content}</div>

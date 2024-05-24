@@ -24,6 +24,8 @@ function Sidebar({ isOpen, setIsOpen }) {
   //로그아웃을 눌렀을 때
   const handleLogout = () => {
     logout().then(setIsLoggedIn(false));
+    setIsOpen(false);
+    navigate('/');
   };
 
   const handleOutsideClick = (e) => {
