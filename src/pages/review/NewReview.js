@@ -1,9 +1,9 @@
-import { ReviewSetStateContext } from '../App';
+import { ReviewSetStateContext } from '../../App';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './styles/New.module.css';
-import { saveReview } from '../api/reviewApi';
-import { checkLoginStatus } from '../api/memberApi';
+import { saveReview } from '../../api/reviewApi';
+import { checkLoginStatus } from '../../api/memberApi';
+import styles from '../styles/NewReview.module.css';
 
 const New = () => {
   const setData = useContext(ReviewSetStateContext);
@@ -67,8 +67,6 @@ const New = () => {
     } catch (error) {
       console.log(error);
     }
-    // saveReview(formData).catch(error => console.log(error));
-    // nav('/');
   };
 
   const handleCancel = () => {

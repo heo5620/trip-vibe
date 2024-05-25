@@ -1,24 +1,20 @@
-import { ReviewStateContext } from '../App';
-// import { IsLoggedInContext } from '../App';
-// import { SetIsLoggedInContext } from '../App';
+import { ReviewStateContext } from '../../App';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './styles/SignIn.module.css';
-import { ReactComponent as SignLogo } from '../components/styles/icon/Group 8.svg';
+import { signIn } from '../../api/memberApi';
+import styles from '../styles/SignIn.module.css';
+import { ReactComponent as SignLogo } from '../../components/styles/icon/Group 8.svg';
 import Swal from 'sweetalert2';
-import { signIn } from '../api/memberApi';
 
 const SignIn = () => {
   const data = useContext(ReviewStateContext);
-  // const isLoggedIn = useContext(IsLoggedInContext);
-  // const setIsLoggedIn = useContext(SetIsLoggedInContext);
   const navigate = useNavigate();
   const [memberId, setMemberId] = useState(''); //memberId
   const [password, setPassword] = useState(''); //userPw
   const [loginError, setLoginError] = useState('');
 
   //로그인 버튼 클릭 시 호출
-  const handleSignIn = e => {
+  const handleSignIn = (e) => {
     e.preventDefault(); //기본 동작 x
 
     // 입력받은 값이 유효성 검사에 맞지 않을 때,
@@ -36,7 +32,7 @@ const SignIn = () => {
     };
 
     signIn(member) //로그인
-      .then(data => {
+      .then((data) => {
         if (data.status === 'fail') {
           //실패이면
           console.log('로그인 실패');
@@ -52,7 +48,7 @@ const SignIn = () => {
             showCancelButton: false,
             confirmButtonText: '확인',
             cancelButtonText: '취소',
-          }).then(res => {
+          }).then((res) => {
             /* 확인 버튼 클릭 시, 메인 페이지로 이동 */
             if (res.isConfirmed) {
               navigate('/');
@@ -61,20 +57,9 @@ const SignIn = () => {
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error.response ? error.response.data : error.message);
       });
-
-    // 유저 정보 확인
-    // const user = data.user.find((user) => user.username === memberId);
-
-    // 입력 받은 값이 data 안에서 없거나, 일치 하지 않을 때
-    // if (!user || user.pw !== pw) {
-    //   setLoginError('아이디 또는 비밀번호가 일치하지 않습니다.');
-    //   return;
-    // }
-
-    // 로그인 성공
   };
 
   //아이디 유효성 검사
@@ -101,29 +86,35 @@ const SignIn = () => {
         <h1 className={styles.BodyTopText}>Welcome!</h1>
         <form onSubmit={handleSignIn}>
           <input
-            type='text'
-            placeholder='아이디를 입력하세요'
+            type="text"
+            placeholder="아이디를 입력하세요"
             value={memberId}
-            onChange={e => setMemberId(e.target.value)}
+            onChange={(e) => setMemberId(e.target.value)}
             className={styles.inputIdField}
             required
           />
           <input
-            type='password'
-            placeholder='비밀번호를 입력하세요'
+            type="password"
+            placeholder="비밀번호를 입력하세요"
             value={password}
-            onChange={e => {
+            onChange={(e) => {
               setPassword(e.target.value);
             }}
             className={styles.inputPwField}
             required
           />
-          {loginError && <div className={styles.errorMessage}>{loginError}</div>}
+          {loginError && (
+            <div className={styles.errorMessage}>{loginError}</div>
+          )}
           <div className={styles.buttonContainer}>
-            <button type='submit' className={styles.signinButton}>
+            <button type="submit" className={styles.signinButton}>
               로그인
             </button>
-            <div type='submit' className={styles.signupButton} onClick={handleSignUp}>
+            <div
+              type="submit"
+              className={styles.signupButton}
+              onClick={handleSignUp}
+            >
               회원가입
             </div>
           </div>

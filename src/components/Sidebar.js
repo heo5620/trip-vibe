@@ -6,6 +6,7 @@ import { checkLoginStatus, logout } from '../api/memberApi';
 
 function Sidebar({ isOpen, setIsOpen }) {
   const outside = useRef(null);
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -38,11 +39,11 @@ function Sidebar({ isOpen, setIsOpen }) {
     setIsOpen(isOpen);
   };
 
-  const navigate = useNavigate();
   const goMypage = () => {
     navigate('/mypage');
     setIsOpen(false);
   };
+
   const goSignin = () => {
     navigate('/signin');
     setIsOpen(false);

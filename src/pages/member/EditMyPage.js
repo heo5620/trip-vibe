@@ -1,20 +1,16 @@
-import { ReviewStateContext, ReviewSetStateContext } from '../App';
-import { useRef, useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getMemberFromSession, editMember } from '../../api/memberApi';
 import Button from 'react-bootstrap/Button';
-import styles from './styles/EditMyPage.module.css';
+import styles from '../styles/EditMyPage.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
-import { getMemberOne } from '../api/memberApi';
-import { useParams } from 'react-router-dom';
-import { editMember } from '../api/memberApi';
 
 const EditMyPage = () => {
   const [hovering, setHovering] = useState(false);
-  const data = useContext(ReviewStateContext);
-  const setData = useContext(ReviewSetStateContext);
   const { id } = useParams();
   const navigate = useNavigate();
+
   const handleCancel = () => {
     navigate(-1);
   };
@@ -38,8 +34,9 @@ const EditMyPage = () => {
 
   //회원 1명 조회
   const [memberInfo, setMemberInfo] = useState([]);
+
   useEffect(() => {
-    getMemberOne(id).then(data => {
+    getMemberFromSession().then((data) => {
       setMemberInfo(data);
       setPassword(data.pw);
       setEmail(data.email);
@@ -51,7 +48,7 @@ const EditMyPage = () => {
   }, [id]);
 
   //새 이미지 저장
-  const handleImg = e => {
+  const handleImg = (e) => {
     const file = e.target.files[0];
     setNewImg(file);
 
@@ -65,7 +62,7 @@ const EditMyPage = () => {
   };
 
   //회원 정보 수정
-  const handleEditMyPage = e => {
+  const handleEditMyPage = (e) => {
     e.preventDefault();
 
     if (
@@ -89,7 +86,7 @@ const EditMyPage = () => {
       formData.append('member', JSON.stringify(editMemberData));
       formData.append('img', newImg);
 
-      editMember(id, formData).catch(error => {
+      editMember(id, formData).catch((error) => {
         //회원 정보 수정 api 호출
         console.log(error);
       });
@@ -101,7 +98,7 @@ const EditMyPage = () => {
         showCancelButton: false,
         confirmButtonText: '확인',
         cancelButtonText: '취소',
-      }).then(res => {
+      }).then((res) => {
         if (res.isConfirmed) {
           navigate('/');
           console.log('회원정보수정 성공');
@@ -112,23 +109,25 @@ const EditMyPage = () => {
 
   //정보수정 유효성 검사
   //비밀번호 유효성 검사
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     const isValid = validatePassword(e.target.value);
     if (!isValid) {
-      setPasswordError('소문자, 숫자, 특수문자(@, !, _)를 포함하여 8~20자로 입력하세요');
+      setPasswordError(
+        '소문자, 숫자, 특수문자(@, !, _)를 포함하여 8~20자로 입력하세요'
+      );
     } else {
       setPasswordError('');
     }
   };
 
-  const validatePassword = password => {
+  const validatePassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*\d)(?=.*[@!_])[a-z\d@!_]{8,20}$/;
     return regex.test(password);
   };
 
   // 이메일 유효성 검사
-  const handleEmailChange = e => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
     const isValid = validateEmail(e.target.value);
     if (!isValid) {
@@ -138,17 +137,17 @@ const EditMyPage = () => {
     }
   };
 
-  const validateEmail = email => {
+  const validateEmail = (email) => {
     const regex = /\S+@\S+\.\S+/;
     return regex.test(email);
   };
 
-  const handlePhoneChange = e => {
+  const handlePhoneChange = (e) => {
     setPhone(e.target.value);
     validatePhone(e.target.value);
   };
 
-  const validatePhone = phone => {
+  const validatePhone = (phone) => {
     const regex = /^\d{3}-\d{4}-\d{4}$/;
     if (!regex.test(phone)) {
       setPhoneError('전화번호는 010-xxxx-xxxx 형식으로 입력하세요.');
@@ -159,7 +158,7 @@ const EditMyPage = () => {
   };
 
   //성별 유효성 검사
-  const validateGender = gender => {
+  const validateGender = (gender) => {
     if (gender === '') {
       setGenderError('성별을 선택해주세요.');
       return false;
@@ -169,7 +168,7 @@ const EditMyPage = () => {
   };
 
   //mbti 유효성 검사
-  const validateMbti = mbti => {
+  const validateMbti = (mbti) => {
     const mbtiTypes = [
       'ENFP',
       'ENFJ',
@@ -203,7 +202,7 @@ const EditMyPage = () => {
     return true;
   };
 
-  const handleGenderChange = e => {
+  const handleGenderChange = (e) => {
     setGender(e.target.value);
   };
 
@@ -214,12 +213,12 @@ const EditMyPage = () => {
         <div className={styles.edit_img_content}>
           <div className={styles.myPicture}>
             <input
-              type='file'
-              id='imageUpload'
-              name='img'
+              type="file"
+              id="imageUpload"
+              name="img"
               style={{ display: 'none' }}
               ref={fileInputRef}
-              accept='image/*'
+              accept="image/*"
               onChange={handleImg}
             />
             <div
@@ -229,14 +228,20 @@ const EditMyPage = () => {
             >
               <img
                 className={styles.profile}
-                src={previewImg || 'http://localhost:8080/image/' + memberInfo.imgName}
-                alt='이미지'
+                src={
+                  previewImg ||
+                  'http://localhost:8080/image/' + memberInfo.imgName
+                }
+                alt="이미지"
                 onClick={() => fileInputRef.current.click()}
-                width='400'
-                height='400'
+                width="400"
+                height="400"
               />
               {hovering && (
-                <div className={styles.edit_img_editText} onClick={() => fileInputRef.current.click()}>
+                <div
+                  className={styles.edit_img_editText}
+                  onClick={() => fileInputRef.current.click()}
+                >
                   사진 수정
                 </div>
               )}
@@ -251,8 +256,8 @@ const EditMyPage = () => {
               <td>
                 <input
                   className={styles.inputField}
-                  placeholder='수정할 비밀번호를 입력하세요'
-                  type='password'
+                  placeholder="수정할 비밀번호를 입력하세요"
+                  type="password"
                   value={password}
                   onChange={handlePasswordChange}
                   required
@@ -265,8 +270,8 @@ const EditMyPage = () => {
               <td>
                 <input
                   className={styles.inputField}
-                  placeholder='변경할 이메일을 입력하세요'
-                  type='text'
+                  placeholder="변경할 이메일을 입력하세요"
+                  type="text"
                   value={email}
                   onChange={handleEmailChange}
                   required
@@ -279,8 +284,8 @@ const EditMyPage = () => {
               <td>
                 <input
                   className={styles.inputField}
-                  placeholder='변경할 전화번호를 입력하세요'
-                  type='text'
+                  placeholder="변경할 전화번호를 입력하세요"
+                  type="text"
                   value={phone}
                   onChange={handlePhoneChange}
                   required
@@ -294,20 +299,20 @@ const EditMyPage = () => {
                 <div className={styles.radioContainer}>
                   <label>
                     <input
-                      type='radio'
-                      name='gender'
+                      type="radio"
+                      name="gender"
                       checked={gender === 'male'}
-                      value='male'
+                      value="male"
                       onChange={handleGenderChange}
                     />
                     male
                   </label>
                   <label>
                     <input
-                      type='radio'
-                      name='gender'
+                      type="radio"
+                      name="gender"
                       checked={gender === 'female'}
-                      value='female'
+                      value="female"
                       onChange={handleGenderChange}
                     />
                     female
@@ -322,10 +327,10 @@ const EditMyPage = () => {
               <td>
                 <input
                   className={styles.inputField}
-                  placeholder='변경할 MBTI를 입력하세요'
-                  type='text'
+                  placeholder="변경할 MBTI를 입력하세요"
+                  type="text"
                   value={mbti}
-                  onChange={e => setMbti(e.target.value)}
+                  onChange={(e) => setMbti(e.target.value)}
                   required
                 />
                 <div>{mbtiError}</div>

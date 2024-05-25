@@ -1,27 +1,33 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import ReviewList from '../components/ReviewList';
-import { getReviewsByUserId } from '../api/reviewApi'; // 사용자 리뷰를 가져오는 API 함수
-// import styles from './styles/MyReviewList.module.css';
+import React from 'react';
+import styles from './styles/ReviewList.module.css';
+import MyReviewItem from './MyReviewItem';
 
-const MyReviewList = () => {
-  const { id } = useParams();
-  const [reviews, setReviews] = useState([]);
+function MyReviewListEdit({ sortedData, searchText }) {
+  const chunkArray = (arr, chunkSize) => {
+    const chunkedArray = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      chunkedArray.push(arr.slice(i, i + chunkSize));
+    }
+    return chunkedArray;
+  };
 
-  useEffect(() => {
-    getReviewsByUserId(id)
-      .then(data => {
-        setReviews(data);
-      })
-      .catch(error => console.log(error));
-  }, [id]);
+  const filteredData = searchText
+    ? sortedData.filter((item) => item.title.includes(searchText))
+    : sortedData;
+
+  const chunkedData = chunkArray(filteredData, 3);
 
   return (
-    <div>
-      <h1>내 글 목록</h1>
-      <ReviewList sortedData={reviews} searchText='' />
+    <div className={styles.reviewContainer}>
+      {chunkedData.map((group, index) => (
+        <div key={index} className={styles.review_group}>
+          {group.map((item) => (
+            <MyReviewItem key={item.id} img={item.imgName} {...item} />
+          ))}
+        </div>
+      ))}
     </div>
   );
-};
+}
 
-export default MyReviewList;
+export default MyReviewListEdit;

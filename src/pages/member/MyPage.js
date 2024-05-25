@@ -1,35 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { getMemberFromSession } from '../api/memberApi';
-import { deleteMember } from '../api/memberApi';
-import styles from './styles/Mypage.module.css';
+import { getMemberFromSession } from '../../api/memberApi';
+import { deleteMember } from '../../api/memberApi';
+import styles from '../styles/Mypage.module.css';
 import Swal from 'sweetalert2';
 
 const MyPage = () => {
-  // const { id } = useParams();
   const [memberInfo, setMemberInfo] = useState({});
   const navigate = useNavigate();
-  // //회원 1명 조회
-  // useEffect(() => {
-  //   getMemberOne(id).then(data => {
-  //     setMemberInfo(data);
-  //     console.log(data);
-  //   });
-  // }, [id]);
-
-  const handleReviewPage = e => {
-    navigate(`/mypage/review/`);
-  };
 
   // 회원 정보 조회 및 세션 확인
   useEffect(() => {
     getMemberFromSession()
-      .then(data => {
+      .then((data) => {
         setMemberInfo(data);
         console.log(data);
       })
-      .catch(error => {
+      .catch((error) => {
         navigate('/signin'); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
       });
   }, [navigate]);
@@ -53,7 +40,7 @@ const MyPage = () => {
       showCancelButton: true,
       confirmButtonText: '확인',
       cancelButtonText: '취소',
-    }).then(async result => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           // 사용자가 확인을 클릭한 경우 회원 탈퇴를 진행
@@ -64,7 +51,7 @@ const MyPage = () => {
             title: '회원 탈퇴가 완료되었습니다.',
             text: '메인 페이지로 이동합니다.',
             confirmButtonText: '확인',
-          }).then(res => {
+          }).then((res) => {
             if (res.isConfirmed) {
               navigate('/');
             }
@@ -90,9 +77,12 @@ const MyPage = () => {
         <div className={styles.myPicture}>
           <img
             className={styles.profile}
-            src={'http://localhost:8080/image/' + memberInfo.imgName || '/resources/images/unnamed.jpg'}
+            src={
+              'http://localhost:8080/image/' + memberInfo.imgName ||
+              '/resources/images/unnamed.jpg'
+            }
             // profileImage가 null이면 기본이미지가 나옴
-            alt='프로필 사진'
+            alt="프로필 사진"
           />
         </div>
         <div

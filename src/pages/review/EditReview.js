@@ -1,11 +1,10 @@
-import { ReviewSetStateContext, ReviewStateContext } from '../App';
+import { ReviewSetStateContext } from '../../App';
 import { useContext, useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from './styles/Edit.module.css';
-import { getReviewOne, updateReview } from '../api/reviewApi';
+import { getReviewOne, updateReview } from '../../api/reviewApi';
+import styles from '../styles/EditReview.module.css';
 
 const Edit = () => {
-  const data = useContext(ReviewStateContext);
   const setData = useContext(ReviewSetStateContext);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,30 +21,30 @@ const Edit = () => {
   //기존 데이터 불러오기
   useEffect(() => {
     getReviewOne(id)
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setTitle(data.title);
         setContent(data.content);
         setRating(data.rating);
         setImgName(data.imgName);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, [id]);
 
-  const handleTitle = e => {
+  const handleTitle = (e) => {
     setTitle(e.target.value);
   };
-  const handleContent = e => {
+  const handleContent = (e) => {
     setContent(e.target.value);
   };
-  const handleRating = e => {
+  const handleRating = (e) => {
     setRating(e.target.value);
   };
 
   //새 이미지 저장
-  const handleImg = e => {
+  const handleImg = (e) => {
     const file = e.target.files[0];
     setNewImg(file);
 
@@ -66,9 +65,6 @@ const Edit = () => {
       title,
       content,
       rating,
-      // title: title,
-      // content: content,
-      // rating: rating,
       createdDate: new Date(),
     };
 
@@ -82,17 +78,15 @@ const Edit = () => {
 
     try {
       const updatedReview = await updateReview(id, formData);
-      setData(prevData => prevData.map(item => (item.id === parseInt(id) ? updatedReview : item)));
+      setData((prevData) =>
+        prevData.map((item) =>
+          item.id === parseInt(id) ? updatedReview : item
+        )
+      );
       navigate(`/detail/${id}`);
     } catch (error) {
       console.log(error);
     }
-
-    // updateReview(id, formData) //아이디와 폼 보내기
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // navigate(`/detail/${id}`); //완료 후, 상세 페이지로 이동.
   };
 
   const handleCancel = () => {
@@ -103,12 +97,12 @@ const Edit = () => {
     <div className={styles.Edit}>
       <div className={styles.edit_img_content}>
         <input
-          type='file'
-          id='imageUpload'
-          name='img'
+          type="file"
+          id="imageUpload"
+          name="img"
           style={{ display: 'none' }}
           ref={fileInputRef} // img를 클릭하면 대신해서 input이 클릭됨
-          accept='image/*'
+          accept="image/*"
           onChange={handleImg}
         />
         <div
@@ -119,31 +113,45 @@ const Edit = () => {
           <img
             className={styles.edit_image}
             src={previewImg || 'http://localhost:8080/image/' + imgName} //prview가 있다면 보여주기.
-            alt='이미지'
+            alt="이미지"
             onClick={() => fileInputRef.current.click()}
-            width='400'
-            height='400'
+            width="400"
+            height="400"
           />
 
           {hovering && (
-            <div className={styles.edit_img_editText} onClick={() => fileInputRef.current.click()}>
+            <div
+              className={styles.edit_img_editText}
+              onClick={() => fileInputRef.current.click()}
+            >
               사진 수정
             </div>
           )}
         </div>
       </div>
       <div className={styles.edit_title_rating}>
-        <input type='text' className={styles.edit_title} name='title' value={title} onChange={handleTitle}></input>
         <input
-          type='text'
+          type="text"
+          className={styles.edit_title}
+          name="title"
+          value={title}
+          onChange={handleTitle}
+        ></input>
+        <input
+          type="text"
           className={styles.edit_rating}
-          content='rating'
+          content="rating"
           value={rating}
           onChange={handleRating}
         ></input>
       </div>
       <div className={styles.edit_review_container}>
-        <textarea className={styles.edit_text} name='content' value={content} onChange={handleContent}></textarea>
+        <textarea
+          className={styles.edit_text}
+          name="content"
+          value={content}
+          onChange={handleContent}
+        ></textarea>
       </div>
 
       <div className={styles.edit_button_container}>
