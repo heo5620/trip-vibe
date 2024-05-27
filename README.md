@@ -130,6 +130,12 @@
 내 글 목록
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c00f2dd5-fbb5-4aec-94de-efff9743c31a)
 
+리뷰 검색 gif
+![review_search](https://github.com/heo5620/trip-vibe/assets/167669944/0dac8253-9833-4ea2-9380-b1b2081954c7)
+
+리뷰 쓰기 gif
+![review_write](https://github.com/heo5620/trip-vibe/assets/167669944/dc44613f-3dab-417d-987f-34e28be33096)
+
 리뷰 상세 페이지
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c2f6c80e-6665-40de-abeb-a137e61433c2)
 
