@@ -70,9 +70,9 @@
 <br>
 
 
-## 프로젝트 구조
+## ERD
 
-![group9](https://github.com/heo5620/trip-vibe/assets/167669944/162332e7-fa1c-4f25-b367-65e3c91b4086)
+![erd](https://github.com/heo5620/trip-vibe/assets/167669944/53ea6414-5038-498b-a773-04c68ba9f8c0)
 
 <br>
 
@@ -130,3 +130,5 @@
 내 글 목록
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c00f2dd5-fbb5-4aec-94de-efff9743c31a)
 
+리뷰 상세
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/c2f6c80e-6665-40de-abeb-a137e61433c2)
