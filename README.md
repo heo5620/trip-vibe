@@ -112,6 +112,21 @@
     - 사진, 제목, 내용, 평점 수정
 
 
-테스트 사진
+메인
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/a9f3fa84-e477-405d-ad5d-a31cb933a432)
+
+회원가입
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/231e3090-f457-4676-acad-89fd9ac8283b)
+
+로그인
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/7fc862a3-66fb-4a58-9c17-d5380ddfdb9a)
+
+마이페이지
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/c10c7f2a-f050-4326-a2f7-25bc7ff1e9b2)
+
+마이페이지 수정
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/d1d1e559-50e1-46d5-853e-9918ff8f3bc8)
+
+내 글 목록
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/c00f2dd5-fbb5-4aec-94de-efff9743c31a)
 
