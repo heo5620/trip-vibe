@@ -119,7 +119,7 @@
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/231e3090-f457-4676-acad-89fd9ac8283b)
 
 로그인 gif
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/3d29289b-2882-4b66-ab00-b2b1e567c600)
+![login](https://github.com/heo5620/trip-vibe/assets/167669944/d46d51fe-53d5-41c4-887c-60f7531ceaca)
 
 마이페이지
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c10c7f2a-f050-4326-a2f7-25bc7ff1e9b2)
