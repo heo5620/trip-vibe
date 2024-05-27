@@ -121,11 +121,11 @@
 로그인 gif
 ![login](https://github.com/heo5620/trip-vibe/assets/167669944/d46d51fe-53d5-41c4-887c-60f7531ceaca)
 
-마이페이지
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/c10c7f2a-f050-4326-a2f7-25bc7ff1e9b2)
+로그아웃 gif
+![signout](https://github.com/heo5620/trip-vibe/assets/167669944/bb9c3ec9-8668-4ff0-ad3c-02ea33921c89)
 
-마이페이지 수정
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/d1d1e559-50e1-46d5-853e-9918ff8f3bc8)
+마이페이지 수정 gif
+![mypage_edit](https://github.com/heo5620/trip-vibe/assets/167669944/7ee23c00-b73e-4e14-8d8f-b9e578578dfe)
 
 내 글 목록 글 있을 때 gif
 ![mypage_myreviews](https://github.com/heo5620/trip-vibe/assets/167669944/8a82ff8f-6e5c-4ac3-85c5-bd0aca6ee451)
@@ -139,17 +139,11 @@
 리뷰 상세 페이지
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c2f6c80e-6665-40de-abeb-a137e61433c2)
 
-리뷰 수정 페이지
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/8cb5dc61-ff44-4e02-8bc6-b2b78c25c3bf)
+리뷰 수정 gif
+![review_edit](https://github.com/heo5620/trip-vibe/assets/167669944/d58b757b-eb94-42f4-9ef8-8a5f0a7f4ec6)
 
-로그인 했을 때 사이드바
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/1449d207-f15a-477f-a3d0-73ddd39d5041)
-
-로그인 안했을 때 사이드바
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/6cf9fc44-de4c-4586-9222-0a8876d47e1d)
-
-메인에서 새 글 추가
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/bf7b5c68-291d-4b58-ab1d-f975132624de)
+리뷰 삭제 gif
+![review_delete](https://github.com/heo5620/trip-vibe/assets/167669944/88b8ed53-a1ee-4fd8-bf66-828634ab80c8)
 
 Member API
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c169c932-70e9-401c-ba25-56031f7ec3f4)
