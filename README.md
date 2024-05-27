@@ -111,3 +111,7 @@
     - 리뷰 수정 페이지
     - 사진, 제목, 내용, 평점 수정
 
+
+테스트 사진
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/a9f3fa84-e477-405d-ad5d-a31cb933a432)
+
