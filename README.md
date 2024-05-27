@@ -118,8 +118,8 @@
 회원가입
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/231e3090-f457-4676-acad-89fd9ac8283b)
 
-로그인
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/7fc862a3-66fb-4a58-9c17-d5380ddfdb9a)
+로그인 gif
+![image](https://github.com/heo5620/trip-vibe/assets/167669944/3d29289b-2882-4b66-ab00-b2b1e567c600)
 
 마이페이지
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/c10c7f2a-f050-4326-a2f7-25bc7ff1e9b2)
