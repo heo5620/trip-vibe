@@ -127,8 +127,8 @@
 마이페이지 수정
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/d1d1e559-50e1-46d5-853e-9918ff8f3bc8)
 
-내 글 목록
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/c00f2dd5-fbb5-4aec-94de-efff9743c31a)
+내 글 목록 글 있을 때 gif
+![mypage_myreviews](https://github.com/heo5620/trip-vibe/assets/167669944/8a82ff8f-6e5c-4ac3-85c5-bd0aca6ee451)
 
 리뷰 검색 gif
 ![review_search](https://github.com/heo5620/trip-vibe/assets/167669944/0dac8253-9833-4ea2-9380-b1b2081954c7)
