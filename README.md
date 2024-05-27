@@ -115,8 +115,8 @@
 메인
 ![image](https://github.com/heo5620/trip-vibe/assets/167669944/a9f3fa84-e477-405d-ad5d-a31cb933a432)
 
-회원가입
-![image](https://github.com/heo5620/trip-vibe/assets/167669944/231e3090-f457-4676-acad-89fd9ac8283b)
+회원가입 gif
+![signup](https://github.com/heo5620/trip-vibe/assets/167669944/83c41fc3-0710-4b07-8712-14c5f5ae8fd5)
 
 로그인 gif
 ![login](https://github.com/heo5620/trip-vibe/assets/167669944/d46d51fe-53d5-41c4-887c-60f7531ceaca)
