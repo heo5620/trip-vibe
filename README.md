@@ -25,8 +25,8 @@
 
 ## 개발 환경
 + Front-End : *React*
-+ Back-End : *(나중에 추가)*
-+ IDE : *Visual Studio Code*
++ Back-End : *Spring Boot*, *SpringDataJPA*, *Gradle*
++ IDE : *Visual Studio Code*, *IntelliJ*
 + Database : *MySQL*
 
 
