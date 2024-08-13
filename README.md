@@ -10,6 +10,12 @@
   <br>
   <br>
 
+  ## 😎 Back-End
+  https://github.com/onePackPerDay/trip-vibe-backend
+
+  <br>
+  <br>
+
   ## ⭐ 기능 소개
   ### Main
   ![MainPage](https://github.com/heo5620/trip-vibe/assets/135632902/ac0a2d8e-cc21-4d95-bf4f-884ac5df11e1)<br>
