@@ -111,9 +111,9 @@
     <thead>
       <tr>
         <th scope="col" style="text-align: center;"><a href="https://github.com/jihyunjoo2023">지현주(팀장)</a></th>
-        <th scope="col" style="text-align: center;"><a href="https://github.com/yoonaori">문태준</a></th>
-        <th scope="col" style="text-align: center;"><a href="https://github.com/Yujihoon1">원다희</a></th>
-        <th scope="col" style="text-align: center;"><a href="https://github.com/codenamesu">허수빈</a></th>
+        <th scope="col" style="text-align: center;"><a href="https://github.com/onePackPerDay">문태준</a></th>
+        <th scope="col" style="text-align: center;"><a href="https://github.com/daaaaaahee">원다희</a></th>
+        <th scope="col" style="text-align: center;"><a href="https://github.com/heo5620">허수빈</a></th>
       </tr>
     </thead>
     <tbody>
@@ -135,9 +135,9 @@
       <tr>
         <th></th>
         <th scope="col" style="text-align: center;"><a href="https://github.com/jihyunjoo2023">지현주(팀장)</a></th>
-        <th scope="col" style="text-align: center;"><a href="https://github.com/yoonaori">문태준</a></th>
-        <th scope="col" style="text-align: center;"><a href="https://github.com/Yujihoon1">원다희</a></th>
-        <th scope="col" style="text-align: center;"><a href="https://github.com/codenamesu">허수빈</a></th>
+        <th scope="col" style="text-align: center;"><a href="https://github.com/onePackPerDay">문태준</a></th>
+        <th scope="col" style="text-align: center;"><a href="https://github.com/daaaaaahee">원다희</a></th>
+        <th scope="col" style="text-align: center;"><a href="https://github.com/heo5620">허수빈</a></th>
       </tr>
     </thead>
     <tbody>
